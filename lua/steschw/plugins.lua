@@ -60,6 +60,7 @@ return packer.startup(function(use)
     -- Colorscheme
     use { "catppuccin/nvim", as = "catppuccin" }
     use "shaunsingh/nord.nvim"
+    use "olivercederborg/poimandres.nvim"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin

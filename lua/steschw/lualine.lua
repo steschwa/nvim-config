@@ -5,8 +5,8 @@ end
 
 lualine.setup({
     options = {
-        --[[ theme = "catppuccin" ]]
-        theme = "nord"
+        theme = "catppuccin"
+        --[[ theme = "nord" ]]
     },
     sections = {
         lualine_a = { "mode" },
