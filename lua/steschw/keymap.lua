@@ -26,6 +26,10 @@ keymap("n", "<C-l>", "<C-w>l")
 keymap("n", "<S-h>", "<cmd>BufferPrevious<cr>")
 keymap("n", "<S-l>", "<cmd>BufferNext<cr>")
 
+-- Insert --
+keymap("i", "<D-v>", "<C-r>+<cr>")
+keymap("i", "jk", "<Esc>")
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv")
@@ -107,12 +111,6 @@ local normalKeymaps = {
         r = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "LSP references" }
     }
 }
-local insertKeymaps = {
-    ["<D>"] = {
-        v = { "<C-r>+<cr>", "Paste" },
-    },
-    jk = { "<Esc>", "Switch to normal mode" },
-}
 
 local status_ok, whichkey = pcall(require, "which-key")
 if not status_ok then
@@ -121,7 +119,4 @@ end
 
 whichkey.register(normalKeymaps, {
     mode = "n"
-})
-whichkey.register(insertKeymaps, {
-    mode = "i"
 })
