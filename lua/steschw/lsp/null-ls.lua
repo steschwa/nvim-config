@@ -11,6 +11,7 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
     debug = false,
     sources = {
+        require("typescript.extensions.null-ls.code-actions"),
         formatting.prettierd.with({
             env = {
                 PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc")

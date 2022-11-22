@@ -111,8 +111,11 @@ local normalKeymaps = {
         a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "LSP code actions" },
         H = { "<cmd>lua vim.diagnostic.open_float()<CR>", "LSP help float" },
         f = { lsp_formatting, "LSP formatting" },
-        o = { "<cmd>OrganizeImports<cr>", "Organize imports (TS)" },
-        r = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "LSP references" }
+        r = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "LSP references" },
+        -- Typescript keybindings
+        ["to"] = { "<cmd>TypescriptOrganizeImports<cr>", "Organize imports (TS)" },
+        ["tm"] = { "<cmd>TypescriptAddMissingImports<cr>", "Add missing imports (TS)" },
+        ["tr"] = { "<cmd>TypescriptRenameFile<cr>", "Rename file (TS)" },
     }
 }
 
