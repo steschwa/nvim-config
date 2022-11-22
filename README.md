@@ -1,15 +1,11 @@
 # nvim-config
 
+![](./you-know.jpg)
+
 ## Requirements
 
 - Neovim v0.8
 - [Nerd Font](https://github.com/ryanoasis/nerd-fonts)
-
-### Optional
-
-- [Prettierd](https://github.com/fsouza/prettierd)
-- [ESLint](https://eslint.org/)
-- Typescript
 
 ## Setup
 
@@ -19,3 +15,9 @@
 4. `nvim ~/.config/nvim/lua/steschw/plugins.lua`
 5. (Inside Neovim): `:PackerSync`
 6. Close and reopen Neovim
+
+### LSP
+
+LSP related stuff like language servers, linters and formatters are installed using [Mason](https://github.com/williamboman/mason.nvim).
+Type `:Mason` inside Neovim to view, install, update and delete LSP stuff.
+For convenience `sumneko_lua`, `tsserver`, `jsonls` and `cssls` are setup to be installed automatically.
