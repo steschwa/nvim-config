@@ -22,6 +22,10 @@ keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
 keymap("n", "<C-k>", "<C-w>k")
 keymap("n", "<C-l>", "<C-w>l")
+keymap("n", "<leader>q", "@q<cr>")
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+keymap("n", "n", "nzz")
 
 keymap("n", "<S-h>", "<cmd>BufferPrevious<cr>")
 keymap("n", "<S-l>", "<cmd>BufferNext<cr>")
@@ -65,7 +69,7 @@ local normalKeymaps = {
         s = { "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", "Show document symbols" },
         o = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Show recently opened files" },
         d = { "<cmd>lua require('telescope.builtin').diagnostics({ bufnr=0 })<cr>", "Show buffer diagnostics" },
-        ["<leader>"] = { "<cmd>Telescope resume<cr>", "Reopen last picker" }
+        ["<leader>"] = { "<cmd>Telescope resume<cr>", "Reopen last picker" },
     },
     ["<leader>n"] = { "<cmd>noh<cr>", "No highlight" },
     ["<leader>e"] = { "<cmd>NvimTreeFindFileToggle<cr>", "Reveil in explorer" },

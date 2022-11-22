@@ -17,8 +17,10 @@ null_ls.setup {
             }
         }),
         formatting.dart_format,
+        formatting.black,
+        formatting.goimports,
         diagnostics.eslint,
         diagnostics.tsc,
-        formatting.black,
+        diagnostics.revive,
     },
 }

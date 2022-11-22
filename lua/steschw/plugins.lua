@@ -56,6 +56,7 @@ return packer.startup(function(use)
     use "folke/which-key.nvim"
     use "windwp/nvim-ts-autotag"
     use "sindrets/diffview.nvim"
+    use "chentoast/marks.nvim"
 
     -- Colorscheme
     use { "catppuccin/nvim", as = "catppuccin" }

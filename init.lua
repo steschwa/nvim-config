@@ -14,6 +14,7 @@ if vim.g.vscode == nil then
     require "steschw.harpoon"
     require "steschw.barbar"
     require "steschw.lualine"
+    require "steschw.marks"
     -- Load keymaps after whichkey was initialized
     require "steschw.keymap"
 else
