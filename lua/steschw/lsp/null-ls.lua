@@ -8,43 +8,51 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 
-local sources = {
-    require("typescript.extensions.null-ls.code-actions"),
-}
+local function get_sources()
+    local sources = {
+        require("typescript.extensions.null-ls.code-actions"),
+    }
 
-local add_source = function(source)
-    table.insert(sources, source)
+    local add_source = function(source)
+        table.insert(sources, source)
+    end
+
+    if vim.fn.executable("prettierd") == 1 then
+        add_source(formatting.prettierd.with({
+            env = {
+                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc")
+            }
+        }))
+    end
+
+    if vim.fn.executable("dart") == 1 then
+        add_source(formatting.dart_format)
+    end
+
+    if vim.fn.executable("black") == 1 then
+        add_source(formatting.black)
+    end
+
+    if vim.fn.executable("eslint_d") == 1 then
+        add_source(diagnostics.eslint_d)
+    end
+
+    if vim.fn.executable("tsc") == 1 then
+        add_source(diagnostics.tsc)
+    end
+
+    if vim.fn.executable("revive") == 1 then
+        add_source(diagnostics.revive)
+    end
+
+    if vim.fn.executable("goimports") == 1 then
+        add_source(formatting.goimports)
+    end
+
+    return sources
 end
 
-if vim.fn.executable("prettierd") == 1 then
-    add_source(formatting.prettierd.with({
-        env = {
-            PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc")
-        }
-    }))
-end
-
-if vim.fn.executable("dart") == 1 then
-    add_source(formatting.dart_format)
-end
-
-if vim.fn.executable("black") == 1 then
-    add_source(formatting.black)
-end
-
-if vim.fn.executable("eslint_d") == 1 then
-    add_source(diagnostics.eslint_d)
-end
-
-if vim.fn.executable("tsc") == 1 then
-    add_source(diagnostics.tsc)
-end
-
-if vim.fn.executable("revive") == 1 then
-    add_source(diagnostics.revive)
-end
-
-null_ls.setup {
+null_ls.setup({
     debug = false,
-    sources = sources,
-}
+    sources = get_sources(),
+})

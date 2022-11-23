@@ -22,6 +22,18 @@ if lspconfig.tsserver ~= nil then
     end
 end
 
+if lspconfig.cssls ~= nil then
+    lspconfig.cssls.setup(options)
+end
+
+if lspconfig.tailwindcss ~= nil then
+    lspconfig.tailwindcss.setup(options)
+end
+
+if lspconfig.gopls ~= nil then
+    lspconfig.gopls.setup(options)
+end
+
 if lspconfig.jsonls ~= nil then
     local jsonls_opts = require("steschw.lsp.settings.jsonls")
     lspconfig.jsonls.setup(vim.tbl_deep_extend("force", jsonls_opts, options))
