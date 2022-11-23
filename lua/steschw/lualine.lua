@@ -5,8 +5,10 @@ end
 
 lualine.setup({
     options = {
-        theme = "catppuccin"
-        --[[ theme = "nord" ]]
+        theme = "catppuccin",
+        section_separators = '',
+        component_separators = '',
+        globalstatus = true
     },
     sections = {
         lualine_a = { "mode" },
@@ -20,13 +22,13 @@ lualine.setup({
         },
         lualine_c = {},
         lualine_x = {},
-        lualine_y = { "branch" },
-        lualine_z = {
+        lualine_y = {
             {
                 "filename",
                 path = 1,
                 shorting_target = 100
             }
         },
+        lualine_z = { "branch" },
     }
 })

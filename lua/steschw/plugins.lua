@@ -46,13 +46,11 @@ return packer.startup(function(use)
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
     use "windwp/nvim-autopairs"
     use "kyazdani42/nvim-web-devicons"
-    use "kyazdani42/nvim-tree.lua"
     use "romgrk/barbar.nvim"
     use "numToStr/Comment.nvim"
     use "nvim-lualine/lualine.nvim"
     use "akinsho/toggleterm.nvim"
     use "ThePrimeagen/harpoon"
-    use "jose-elias-alvarez/null-ls.nvim"
     use "folke/which-key.nvim"
     use "windwp/nvim-ts-autotag"
     use "sindrets/diffview.nvim"
@@ -60,10 +58,13 @@ return packer.startup(function(use)
 
     -- Colorscheme
     use { "catppuccin/nvim", as = "catppuccin" }
-    use "shaunsingh/nord.nvim"
-    use "olivercederborg/poimandres.nvim"
+    --[[ use "shaunsingh/nord.nvim" ]]
+    --[[ use "olivercederborg/poimandres.nvim" ]]
 
-    -- cmp plugins
+    -- File tree
+    use "kyazdani42/nvim-tree.lua"
+
+    -- Cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
     use "hrsh7th/cmp-buffer" -- buffer completions
     use "hrsh7th/cmp-path" -- path completions
@@ -73,7 +74,7 @@ return packer.startup(function(use)
     use "hrsh7th/cmp-nvim-lua"
     use "hrsh7th/cmp-nvim-lsp-signature-help"
 
-    -- snippets
+    -- Snippets
     use "L3MON4D3/LuaSnip" --snippet engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
@@ -82,6 +83,7 @@ return packer.startup(function(use)
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig" -- enable LSP
     use "jose-elias-alvarez/typescript.nvim"
+    use "jose-elias-alvarez/null-ls.nvim"
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"
