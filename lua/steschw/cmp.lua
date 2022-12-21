@@ -56,7 +56,7 @@ local kind_icons = {
     TypeParameter = "",
 }
 
-local cmp_window = require "cmp.utils.window"
+local cmp_window = require("cmp.utils.window")
 cmp_window.info_ = cmp_window.info
 cmp_window.info = function(self)
     local info = self:info_()
@@ -122,6 +122,7 @@ cmp.setup {
                 buffer = "[Buffer]",
                 path = "[Path]",
             })[entry.source.name]
+
             return vim_item
         end,
     },

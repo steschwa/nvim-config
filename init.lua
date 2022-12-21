@@ -10,7 +10,6 @@ if vim.g.vscode == nil then
     require "steschw.comment"
     require "steschw.nvim-tree"
     require "steschw.toggleterm"
-    require "steschw.whichkey"
     require "steschw.harpoon"
     require "steschw.barbar"
     require "steschw.lualine"

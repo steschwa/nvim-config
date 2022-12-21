@@ -38,3 +38,15 @@ if lspconfig.jsonls ~= nil then
     local jsonls_opts = require("steschw.lsp.settings.jsonls")
     lspconfig.jsonls.setup(vim.tbl_deep_extend("force", jsonls_opts, options))
 end
+
+if lspconfig.pyright ~= nil then
+    lspconfig.pyright.setup(options)
+end
+
+if lspconfig.prismals ~= nil then
+    lspconfig.prismals.setup(options)
+end
+
+if lspconfig.dartls ~= nil then
+    lspconfig.dartls.setup(options)
+end

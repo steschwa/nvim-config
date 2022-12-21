@@ -49,6 +49,10 @@ local function get_sources()
         add_source(formatting.goimports)
     end
 
+    if vim.fn.executable("prisma-fmt") == 1 then
+        add_source(formatting.prismaFmt)
+    end
+
     return sources
 end
 

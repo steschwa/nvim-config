@@ -51,15 +51,14 @@ return packer.startup(function(use)
     use "nvim-lualine/lualine.nvim"
     use "akinsho/toggleterm.nvim"
     use "ThePrimeagen/harpoon"
-    use "folke/which-key.nvim"
     use "windwp/nvim-ts-autotag"
     use "sindrets/diffview.nvim"
     use "chentoast/marks.nvim"
 
     -- Colorscheme
     use { "catppuccin/nvim", as = "catppuccin" }
+    --[[ use "arcticicestudio/nord-vim" ]]
     --[[ use "shaunsingh/nord.nvim" ]]
-    --[[ use "olivercederborg/poimandres.nvim" ]]
 
     -- File tree
     use "kyazdani42/nvim-tree.lua"
@@ -84,6 +83,7 @@ return packer.startup(function(use)
     use "neovim/nvim-lspconfig" -- enable LSP
     use "jose-elias-alvarez/typescript.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
+    use "folke/trouble.nvim"
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"

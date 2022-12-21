@@ -1,10 +1,7 @@
 local function setup_catppuccin()
-    vim.g.catppuccin_flavour = "macchiato"
+    local catppuccin = require("catppuccin")
 
-    local catppuccin_status_ok, catppuccin = pcall(require, "catppuccin")
-    if not catppuccin_status_ok then
-        return
-    end
+    vim.g.catppuccin_flavour = "macchiato"
 
     catppuccin.setup({
         term_colors = true,
@@ -19,46 +16,37 @@ local function setup_catppuccin()
         }
     })
 
-    local status_ok, _ = pcall(vim.cmd, "colorscheme catppuccin")
-    if not status_ok then
-        vim.notify("colorscheme catppuccin not found!")
-        return
-    end
+    vim.cmd("colorscheme catppuccin")
 end
 
---[[ local function setup_nord() ]]
---[[     vim.g.contrast = true ]]
+--[[ local function setup_vim_nord() ]]
+--[[     vim.g.nord_bold_vertical_split_line = 1 ]]
+--[[     vim.g.nord_uniform_diff_background = 1 ]]
+--[[     vim.g.nord_bold = 0 ]]
+--[[     vim.g.nord_italic = 1 ]]
+--[[     vim.g.nord_italic_comments = 1 ]]
+--[[     vim.g.nord_underline = 0 ]]
+--[[]]
+--[[     vim.cmd("colorscheme nord") ]]
+--[[ end ]]
+
+--[[ local function setup_nvim_nord() ]]
+--[[     vim.g.nord_contrast = true ]]
 --[[     vim.g.nord_borders = true ]]
+--[[     vim.g.nord_disable_background = false ]]
 --[[     vim.g.nord_cursorline_transparent = true ]]
 --[[     vim.g.nord_italic = true ]]
+--[[     vim.g.nord_bold = false ]]
 --[[]]
---[[     local status_ok, _ = pcall(vim.cmd, "colorscheme nord") ]]
---[[     if not status_ok then ]]
+--[[     local status_nord_ok, nord = pcall(require, "nord") ]]
+--[[     if not status_nord_ok then ]]
 --[[         vim.notify("colorscheme nord not found!") ]]
 --[[         return ]]
 --[[     end ]]
---[[ end ]]
-
---[[ local function setup_poimandres() ]]
---[[     local poimandres_ok, poimandres = pcall(require, "poimandres") ]]
---[[     if not poimandres_ok then ]]
---[[         return ]]
---[[     end ]]
 --[[]]
---[[     poimandres.setup({ ]]
---[[         bold_vert_split = true, ]]
---[[         dim_nc_background = true, ]]
---[[         disable_float_background = true, ]]
---[[         disable_italics = true ]]
---[[     }) ]]
---[[]]
---[[     local status_ok, _ = pcall(vim.cmd, "colorscheme poimandres") ]]
---[[     if not status_ok then ]]
---[[         vim.notify("colorscheme poimandres not found!") ]]
---[[         return ]]
---[[     end ]]
+--[[     nord.set() ]]
 --[[ end ]]
 
 setup_catppuccin()
---[[ setup_nord() ]]
---[[ setup_poimandres() ]]
+--[[ setup_vim_nord() ]]
+--[[ setup_nvim_nord() ]]
