@@ -9,11 +9,11 @@ if vim.g.vscode == nil then
     require "steschw.autopairs"
     require "steschw.comment"
     require "steschw.nvim-tree"
-    require "steschw.toggleterm"
     require "steschw.harpoon"
     require "steschw.barbar"
     require "steschw.lualine"
     require "steschw.marks"
+    require "steschw.todo-comments"
     -- Load keymaps after whichkey was initialized
     require "steschw.keymap"
 else

@@ -49,10 +49,8 @@ return packer.startup(function(use)
     use "romgrk/barbar.nvim"
     use "numToStr/Comment.nvim"
     use "nvim-lualine/lualine.nvim"
-    use "akinsho/toggleterm.nvim"
     use "ThePrimeagen/harpoon"
     use "windwp/nvim-ts-autotag"
-    use "sindrets/diffview.nvim"
     use "chentoast/marks.nvim"
 
     -- Colorscheme
@@ -84,6 +82,7 @@ return packer.startup(function(use)
     use "jose-elias-alvarez/typescript.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
     use "folke/trouble.nvim"
+    use "folke/todo-comments.nvim"
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"

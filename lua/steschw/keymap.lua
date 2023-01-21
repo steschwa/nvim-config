@@ -33,6 +33,7 @@ local function set_normal_keymaps()
     n_keymap("n", "nzz")
     n_keymap("<D-s>", "<cmd>:w<cr>")
     n_keymap("<leader>n", "<cmd>noh<cr>")
+    n_keymap("&", "<cmd>:&&<cr>")
 
     -- Window management
     n_keymap("<leader>wl", "<C-w>v") -- vertical split
@@ -50,6 +51,7 @@ local function set_normal_keymaps()
     -- Trouble
     n_keymap("<leader>dd", "<cmd>TroubleToggle document_diagnostics<cr>")
     n_keymap("<leader>dw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+    n_keymap("<leader>t", "<cmd>TodoTrouble<cr>")
 
     -- Nvim Tree
     n_keymap("<leader>e", vim.cmd.NvimTreeFindFileToggle)
@@ -73,10 +75,6 @@ local function set_normal_keymaps()
     n_keymap("<leader>mf", harpoon_ui.toggle_quick_menu)
     n_keymap("<leader>mj", harpoon_ui.nav_next)
     n_keymap("<leader>mk", harpoon_ui.nav_prev)
-
-    -- Git diff view
-    n_keymap("<leader>gh", "<cmd>DiffviewFileHistory %<cr>")
-    n_keymap("<leader>gq", vim.cmd.DiffviewClose)
 
     -- LSP
     n_keymap("gd", telescope_builtin.lsp_definitions)
