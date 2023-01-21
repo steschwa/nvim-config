@@ -27,7 +27,8 @@ if lspconfig.cssls ~= nil then
 end
 
 if lspconfig.tailwindcss ~= nil then
-    lspconfig.tailwindcss.setup(options)
+    local tailwind_opts = require("steschw.lsp.settings.tailwindcss")
+    lspconfig.tailwindcss.setup(vim.tbl_deep_extend("force", tailwind_opts, options))
 end
 
 if lspconfig.gopls ~= nil then
