@@ -23,11 +23,6 @@ local function border(hl_name)
     }
 end
 
-local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
-
 local kind_icons = {
     Text = "",
     Method = "m",
@@ -65,6 +60,9 @@ cmp_window.info = function(self)
 end
 
 cmp.setup {
+    view = {
+        entries = "custom"
+    },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -86,10 +84,6 @@ cmp.setup {
                 cmp.select_next_item()
             elseif luasnip.expandable() then
                 luasnip.expand()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif check_backspace() then
-                fallback()
             else
                 fallback()
             end
@@ -100,8 +94,6 @@ cmp.setup {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
             else
                 fallback()
             end
@@ -140,16 +132,15 @@ cmp.setup {
     },
     window = {
         completion = {
-            border = border "CmpBorder",
+            border = border("CmpBorder"),
             winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
         },
         documentation = {
-            border = border "CmpDocBorder",
+            border = border("CmpDocBorder"),
         },
     },
     experimental = {
         ghost_text = false,
-        native_menu = false,
     },
 }
 
