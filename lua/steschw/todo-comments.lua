@@ -6,7 +6,7 @@ end
 -- https://github.com/folke/todo-comments.nvim#%EF%B8%8F-configuration
 todo_comments.setup({
     signs = true,
-    eywords = {
+    keywords = {
         FIX = {
             icon = " ", -- icon used for the sign, and in search results
             color = "error", -- can be a hex color, or a named color (see below)
@@ -25,5 +25,9 @@ todo_comments.setup({
         hint = { "DiagnosticHint", "#10B981" },
         default = { "Identifier", "#7C3AED" },
         test = { "Identifier", "#FF00FF" }
+    },
+    gui_style = {
+        fg = "NONE", -- The gui style to use for the fg highlight group.
+        bg = "BOLD", -- The gui style to use for the bg highlight group.
     },
 })
