@@ -35,7 +35,6 @@ local function set_normal_keymaps()
     n_keymap("<leader>n", "<cmd>noh<cr>")
     n_keymap("&", "<cmd>:&&<cr>")
     n_keymap("q", "<cmd>lclose<cr>")
-
     -- Window management
     n_keymap("<leader>wl", "<C-w>v") -- vertical split
     n_keymap("<leader>wq", "<C-w>q") -- close window
@@ -96,6 +95,8 @@ local function set_normal_keymaps()
             bufnr = bufnr,
         })
     end)
+    n_keymap("gu", "<cmd>:TypescriptRemoveUnused<cr>")
+    n_keymap("go", "<cmd>:TypescriptOrganizeImports<cr>")
 end
 
 local function set_insert_keymaps()
