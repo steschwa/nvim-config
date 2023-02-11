@@ -52,10 +52,11 @@ return packer.startup(function(use)
     use "ThePrimeagen/harpoon"
     use "windwp/nvim-ts-autotag"
     use "chentoast/marks.nvim"
+    use "rhysd/git-messenger.vim"
 
     -- Colorscheme
     use { "catppuccin/nvim", as = "catppuccin" }
-    --[[ use "arcticicestudio/nord-vim" ]]
+    use "gbprod/nord.nvim"
     --[[ use "shaunsingh/nord.nvim" ]]
 
     -- File tree

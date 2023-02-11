@@ -1,33 +1,22 @@
-local function setup_catppuccin()
-    local catppuccin = require("catppuccin")
-
-    vim.g.catppuccin_flavour = "macchiato"
-
-    catppuccin.setup({
-        term_colors = true,
-        integrations = {
-            barbar = true,
-            cmp = true,
-            nvimtree = true,
-            treesitter_context = true,
-            treesitter = true,
-            telescope = true,
-            which_key = true
-        }
-    })
-
-    vim.cmd("colorscheme catppuccin")
-end
-
---[[ local function setup_vim_nord() ]]
---[[     vim.g.nord_bold_vertical_split_line = 1 ]]
---[[     vim.g.nord_uniform_diff_background = 1 ]]
---[[     vim.g.nord_bold = 0 ]]
---[[     vim.g.nord_italic = 1 ]]
---[[     vim.g.nord_italic_comments = 1 ]]
---[[     vim.g.nord_underline = 0 ]]
+--[[ local function setup_catppuccin() ]]
+--[[     local catppuccin = require("catppuccin") ]]
 --[[]]
---[[     vim.cmd("colorscheme nord") ]]
+--[[     vim.g.catppuccin_flavour = "macchiato" ]]
+--[[]]
+--[[     catppuccin.setup({ ]]
+--[[         term_colors = true, ]]
+--[[         integrations = { ]]
+--[[             barbar = true, ]]
+--[[             cmp = true, ]]
+--[[             nvimtree = true, ]]
+--[[             treesitter_context = true, ]]
+--[[             treesitter = true, ]]
+--[[             telescope = true, ]]
+--[[             which_key = true ]]
+--[[         } ]]
+--[[     }) ]]
+--[[]]
+--[[     vim.cmd("colorscheme catppuccin") ]]
 --[[ end ]]
 
 --[[ local function setup_nvim_nord() ]]
@@ -47,6 +36,17 @@ end
 --[[     nord.set() ]]
 --[[ end ]]
 
-setup_catppuccin()
---[[ setup_vim_nord() ]]
---[[ setup_nvim_nord() ]]
+local function setup_nord()
+    local nord = require("nord")
+
+    nord.setup({
+        diff = { mode = "bg" },
+        borders = true,
+        errors = { mode = "bg" },
+    })
+
+    vim.cmd("colorscheme nord")
+end
+
+--[[ setup_catppuccin() ]]
+setup_nord()
