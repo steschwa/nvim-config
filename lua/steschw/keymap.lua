@@ -34,6 +34,7 @@ local function set_normal_keymaps()
     n_keymap("<D-s>", "<cmd>:w<cr>")
     n_keymap("<leader>n", "<cmd>noh<cr>")
     n_keymap("&", "<cmd>:&&<cr>")
+    n_keymap("q", "<cmd>lclose<cr>")
 
     -- Window management
     n_keymap("<leader>wl", "<C-w>v") -- vertical split
@@ -41,7 +42,7 @@ local function set_normal_keymaps()
 
     -- Telescope
     local telescope_builtin = require("telescope.builtin")
-    n_keymap("<leader>p", telescope_builtin.git_files)
+    n_keymap("<leader>p", telescope_builtin.fd)
     n_keymap("<leader>f", telescope_builtin.live_grep)
     n_keymap("<leader>r", telescope_builtin.registers)
     n_keymap("<leader>s", telescope_builtin.lsp_document_symbols)
@@ -71,10 +72,14 @@ local function set_normal_keymaps()
     -- Harpoon
     local harpoon_mark = require("harpoon.mark")
     local harpoon_ui = require("harpoon.ui")
-    n_keymap("<leader>ma", harpoon_mark.add_file)
-    n_keymap("<leader>mf", harpoon_ui.toggle_quick_menu)
-    n_keymap("<leader>mj", harpoon_ui.nav_next)
-    n_keymap("<leader>mk", harpoon_ui.nav_prev)
+    n_keymap("<leader>h", harpoon_ui.toggle_quick_menu)
+    n_keymap("<leader>ha", harpoon_mark.add_file)
+
+    -- Marks
+    n_keymap("<leader>m", "<cmd>MarksListBuf<cr>")
+
+    -- Git
+    n_keymap("<leader>g", "<cmd>GitMessenger<cr>")
 
     -- LSP
     n_keymap("gd", telescope_builtin.lsp_definitions)
