@@ -54,10 +54,12 @@ return packer.startup(function(use)
     use "chentoast/marks.nvim"
     use "rhysd/git-messenger.vim"
 
+    use "MunifTanjim/nui.nvim"
+    use "stevearc/dressing.nvim"
+
     -- Colorscheme
-    use { "catppuccin/nvim", as = "catppuccin" }
+    --[[ use { "catppuccin/nvim", as = "catppuccin" } ]]
     use "gbprod/nord.nvim"
-    --[[ use "shaunsingh/nord.nvim" ]]
 
     -- File tree
     use "kyazdani42/nvim-tree.lua"
