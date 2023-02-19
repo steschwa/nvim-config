@@ -2,6 +2,7 @@ if vim.g.vscode == nil then
     require "steschw.options"
     require "steschw.plugins"
     require "steschw.colorscheme"
+    require "steschw.hl-groups"
     require "steschw.cmp"
     require "steschw.lsp"
     require "steschw.treesitter"
