@@ -1,7 +1,4 @@
-local status_ok, marks = pcall(require, "marks")
-if not status_ok then
-    return
-end
+local marks = require("marks")
 
 marks.setup({
     default_mappings = false,

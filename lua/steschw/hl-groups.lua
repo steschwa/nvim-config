@@ -8,7 +8,7 @@ local colors_nord = {
 
 -- from https://github.com/NvChad/base46/blob/master/lua/base46/integrations/cmp.lua
 local cmp_hl = {
-  -- nvim cmp
+    -- nvim cmp
     CmpItemAbbr = { fg = colors_nord.white },
     CmpItemAbbrMatch = { fg = colors_nord.blue, bold = true },
     CmpBorder = { fg = colors_nord.grey },

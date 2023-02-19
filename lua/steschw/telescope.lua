@@ -1,16 +1,12 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-    return
-end
-
+local telescope = require("telescope")
 local actions = require("telescope.actions")
 
 local ignore = { "node_modules" }
 
 telescope.setup({
     defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
+        prompt_prefix = "  ",
+        selection_caret = " ",
         path_display = { "smart" },
         file_ignore_patterns = ignore,
         mappings = {
@@ -22,22 +18,13 @@ telescope.setup({
 
                 ["<C-u>"] = actions.preview_scrolling_up,
                 ["<C-d>"] = actions.preview_scrolling_down,
-
-                ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-                ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
             },
             n = {
                 ["<Esc>"] = actions.close,
                 ["<CR>"] = actions.select_default,
 
-                ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-                ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-
                 ["j"] = actions.move_selection_next,
                 ["k"] = actions.move_selection_previous,
-                ["H"] = actions.move_to_top,
-                ["M"] = actions.move_to_middle,
-                ["L"] = actions.move_to_bottom,
 
                 ["gg"] = actions.move_to_top,
                 ["G"] = actions.move_to_bottom,

@@ -2,8 +2,6 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require('lspkind')
 
-vim.o.completeopt = "menu,menuone,noselect"
-
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local function border(hl_name)

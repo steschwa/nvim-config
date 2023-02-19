@@ -1,7 +1,4 @@
-local status_ok, dressing = pcall(require, "dressing")
-if not status_ok then
-    return
-end
+local dressing = require("dressing")
 
 dressing.setup({
     input = {

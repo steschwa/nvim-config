@@ -1,10 +1,7 @@
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-    return
-end
+local nvim_tree = require("nvim-tree")
 
 local reset_default_mappings = {
     { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "" },
@@ -65,7 +62,7 @@ local override_mappings = function(override)
     return mappings
 end
 
-nvim_tree.setup {
+nvim_tree.setup({
     sort_by = "case_sensitive",
     view = {
         width = 50,
@@ -106,4 +103,4 @@ nvim_tree.setup {
     filters = {
         dotfiles = true,
     },
-}
+})

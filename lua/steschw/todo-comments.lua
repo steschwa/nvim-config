@@ -1,7 +1,4 @@
-local status_ok, todo_comments = pcall(require, "todo-comments")
-if not status_ok then
-    return
-end
+local todo_comments = require("todo-comments")
 
 -- https://github.com/folke/todo-comments.nvim#%EF%B8%8F-configuration
 todo_comments.setup({
