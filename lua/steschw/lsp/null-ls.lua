@@ -1,7 +1,4 @@
-local null_ls_status_ok, null_ls = pcall(require, "null-ls")
-if not null_ls_status_ok then
-    return
-end
+local null_ls = require("null-ls")
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
@@ -23,14 +20,6 @@ local function get_sources()
                 PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc")
             }
         }))
-    end
-
-    if vim.fn.executable("dart") == 1 then
-        add_source(formatting.dart_format)
-    end
-
-    if vim.fn.executable("black") == 1 then
-        add_source(formatting.black)
     end
 
     if vim.fn.executable("eslint_d") == 1 then

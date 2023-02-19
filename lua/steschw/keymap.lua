@@ -72,13 +72,15 @@ local function set_normal_keymaps()
     local harpoon_mark = require("harpoon.mark")
     local harpoon_ui = require("harpoon.ui")
     n_keymap("<leader>h", harpoon_ui.toggle_quick_menu)
-    n_keymap("<leader>ha", harpoon_mark.add_file)
+    n_keymap("<leader>a", harpoon_mark.add_file)
 
     -- Marks
     n_keymap("<leader>m", "<cmd>MarksListBuf<cr>")
 
     -- Git
     n_keymap("<leader>g", "<cmd>GitMessenger<cr>")
+    -- Disable default <Space>gm binding to prevent delay for <Space>g
+    vim.g.git_messenger_no_default_mappings = true
 
     -- LSP
     n_keymap("gd", telescope_builtin.lsp_definitions)
