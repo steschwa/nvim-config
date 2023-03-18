@@ -22,6 +22,15 @@ local function v_keymap(keys, cmd)
     keymap("v", keys, cmd)
 end
 
+local function fmt(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+            return client.name == "null-ls"
+        end,
+        bufnr = bufnr,
+    })
+end
+
 local function set_normal_keymaps()
     n_keymap("<C-h>", "<C-w>h")
     n_keymap("<C-j>", "<C-w>j")
@@ -32,16 +41,17 @@ local function set_normal_keymaps()
     n_keymap("<C-u>", "<C-u>zz")
     n_keymap("n", "nzz")
     n_keymap("<D-s>", "<cmd>:w<cr>")
+    n_keymap("<D-f>", fmt)
     n_keymap("<leader>n", "<cmd>noh<cr>")
     n_keymap("&", "<cmd>:&&<cr>")
-    n_keymap("q", "<cmd>lclose<cr>")
+    --[[ n_keymap("q", "<cmd>lclose<cr>") ]]
     -- Window management
     n_keymap("<leader>wl", "<C-w>v") -- vertical split
     n_keymap("<leader>wq", "<C-w>q") -- close window
 
     -- Telescope
     local telescope_builtin = require("telescope.builtin")
-    n_keymap("<leader>p", telescope_builtin.fd)
+    n_keymap("<leader>p", telescope_builtin.find_files)
     n_keymap("<leader>f", telescope_builtin.live_grep)
     n_keymap("<leader>r", telescope_builtin.registers)
     n_keymap("<leader>s", telescope_builtin.lsp_document_symbols)
@@ -89,14 +99,7 @@ local function set_normal_keymaps()
     n_keymap("gR", vim.lsp.buf.rename)
     n_keymap("ga", vim.lsp.buf.code_action)
     n_keymap("gr", "<cmd>TroubleToggle lsp_references<cr>")
-    n_keymap("gf", function(bufnr)
-        vim.lsp.buf.format({
-            filter = function(client)
-                return client.name == "null-ls"
-            end,
-            bufnr = bufnr,
-        })
-    end)
+    n_keymap("gf", fmt)
     n_keymap("gu", "<cmd>:TypescriptRemoveUnused<cr>")
     n_keymap("go", "<cmd>:TypescriptOrganizeImports<cr>")
 end
@@ -104,6 +107,7 @@ end
 local function set_insert_keymaps()
     i_keymap("<D-v>", "<C-r>+<cr>")
     i_keymap("<D-s>", "<cmd>:w<cr>")
+    i_keymap("<D-f>", fmt)
     i_keymap("jk", "<Esc>")
 end
 
@@ -121,3 +125,4 @@ vim.g.maplocalleader = " "
 set_normal_keymaps()
 set_insert_keymaps()
 set_visual_keymaps()
+
