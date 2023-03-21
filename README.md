@@ -1,7 +1,5 @@
 # nvim-config
 
-![](./you-know.jpg)
-
 ## Requirements
 
 -   Neovim v0.8+
