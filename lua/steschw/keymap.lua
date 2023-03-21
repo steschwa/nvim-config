@@ -44,19 +44,19 @@ local function set_normal_keymaps()
     n_keymap("<D-f>", fmt)
     n_keymap("<leader>n", "<cmd>noh<cr>")
     n_keymap("&", "<cmd>:&&<cr>")
-    --[[ n_keymap("q", "<cmd>lclose<cr>") ]]
     -- Window management
     n_keymap("<leader>wl", "<C-w>v") -- vertical split
     n_keymap("<leader>wq", "<C-w>q") -- close window
 
-    -- Telescope
-    local telescope_builtin = require("telescope.builtin")
-    n_keymap("<leader>p", telescope_builtin.find_files)
-    n_keymap("<leader>f", telescope_builtin.live_grep)
-    n_keymap("<leader>r", telescope_builtin.registers)
-    n_keymap("<leader>s", telescope_builtin.lsp_document_symbols)
-    n_keymap("<leader>o", telescope_builtin.oldfiles)
-    n_keymap("<leader><leader>", "<cmd>Telescope resume<cr>")
+    -- Fzf
+    local fzf = require("fzf-lua")
+    n_keymap("<leader>p", fzf.files)
+    n_keymap("<leader>f", fzf.live_grep)
+    n_keymap("<leader>s", function ()
+        fzf.lsp_document_symbols({ fzf_cli_args = "--with-nth -1.." })
+    end)
+    n_keymap("<leader>o", fzf.oldfiles)
+    n_keymap("<leader><leader>", fzf.resume)
 
     -- Trouble
     n_keymap("<leader>dd", "<cmd>TroubleToggle document_diagnostics<cr>")
@@ -93,7 +93,9 @@ local function set_normal_keymaps()
     vim.g.git_messenger_no_default_mappings = true
 
     -- LSP
-    n_keymap("gd", telescope_builtin.lsp_definitions)
+    n_keymap("gd", function ()
+       fzf.lsp_definitions({ jump_to_single_result = true })
+    end)
     n_keymap("gh", vim.lsp.buf.hover)
     n_keymap("gH", vim.diagnostic.open_float)
     n_keymap("gR", vim.lsp.buf.rename)

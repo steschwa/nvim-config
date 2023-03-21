@@ -89,7 +89,7 @@ return packer.startup(function(use)
     use "folke/todo-comments.nvim"
 
     -- Telescope
-    use "nvim-telescope/telescope.nvim"
+    use "ibhagwan/fzf-lua"
 
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter",
