@@ -44,6 +44,8 @@ local function set_normal_keymaps()
     n_keymap("<D-f>", fmt)
     n_keymap("<leader>n", "<cmd>noh<cr>")
     n_keymap("&", "<cmd>:&&<cr>")
+    n_keymap("`", "^")
+
     -- Window management
     n_keymap("<leader>wl", "<C-w>v") -- vertical split
     n_keymap("<leader>wq", "<C-w>q") -- close window
