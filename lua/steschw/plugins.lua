@@ -44,13 +44,11 @@ return packer.startup(function(use)
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-    use "windwp/nvim-autopairs"
     use "kyazdani42/nvim-web-devicons"
     use "romgrk/barbar.nvim"
     use "numToStr/Comment.nvim"
     use "nvim-lualine/lualine.nvim"
     use "ThePrimeagen/harpoon"
-    use "windwp/nvim-ts-autotag"
     use "chentoast/marks.nvim"
     use "rhysd/git-messenger.vim"
 
@@ -58,7 +56,6 @@ return packer.startup(function(use)
     use "stevearc/dressing.nvim"
 
     -- Colorscheme
-    --[[ use { "catppuccin/nvim", as = "catppuccin" } ]]
     use "gbprod/nord.nvim"
 
     -- File tree
@@ -87,6 +84,7 @@ return packer.startup(function(use)
     use "jose-elias-alvarez/null-ls.nvim"
     use "folke/trouble.nvim"
     use "folke/todo-comments.nvim"
+    use "windwp/nvim-autopairs"
 
     -- Telescope
     use "ibhagwan/fzf-lua"
@@ -96,6 +94,7 @@ return packer.startup(function(use)
         run = ":TSUpdate",
     }
     use "JoosepAlviste/nvim-ts-context-commentstring"
+    use "windwp/nvim-ts-autotag"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
