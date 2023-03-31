@@ -6,9 +6,7 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 local function get_sources()
-    local sources = {
-        require("typescript.extensions.null-ls.code-actions"),
-    }
+    local sources = {}
 
     local add_source = function(source)
         table.insert(sources, source)
@@ -27,6 +25,7 @@ local function get_sources()
     end
 
     if vim.fn.executable("tsc") == 1 then
+        add_source(require("typescript.extensions.null-ls.code-actions"))
         add_source(diagnostics.tsc)
     end
 
@@ -36,10 +35,6 @@ local function get_sources()
 
     if vim.fn.executable("goimports") == 1 then
         add_source(formatting.goimports)
-    end
-
-    if vim.fn.executable("prisma-fmt") == 1 then
-        add_source(formatting.prismaFmt)
     end
 
     return sources
