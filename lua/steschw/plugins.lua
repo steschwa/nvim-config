@@ -51,6 +51,7 @@ return packer.startup(function(use)
     use "ThePrimeagen/harpoon"
     use "chentoast/marks.nvim"
     use "rhysd/git-messenger.vim"
+    use "kylechui/nvim-surround"
 
     use "MunifTanjim/nui.nvim"
     use "stevearc/dressing.nvim"
