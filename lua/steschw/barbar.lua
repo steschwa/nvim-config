@@ -6,5 +6,10 @@ barbar.setup({
     tabpages = false,
     closeable = false,
     clickable = false,
-    icons = "both",
+    icons = {
+        buffer_index = true,
+        filetype = {
+            enabled = true
+        }
+    },
 })

@@ -17,5 +17,30 @@ configs.setup({
     context_commentstring = {
         enable = true,
         enable_autocmd = false,
-    }
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+
+                ["ap"] = "@parameter.outer",
+                ["ip"] = "@parameter.inner",
+
+                ["ac"] = "@comment.outer",
+            },
+            selection_modes = {
+                ["@function.outer"] = "V",
+                ["@function.inner"] = "V",
+
+                ["@parameter.outer"] = "v",
+                ["@parameter.inner"] = "v",
+
+                ["@comment.outer"] = "V",
+            },
+            include_surrounding_whitespace = true,
+        }
+    },
 })
