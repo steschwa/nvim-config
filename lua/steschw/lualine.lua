@@ -2,7 +2,6 @@ local lualine = require("lualine")
 
 lualine.setup({
     options = {
-        --[[ theme = "catppuccin", ]]
         theme = "nord",
         section_separators = '',
         component_separators = '',

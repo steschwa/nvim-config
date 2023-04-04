@@ -24,7 +24,7 @@ dressing.setup({
     },
     select = {
         enabled = true,
-        backend = {"nui", "telescope", "builtin"},
+        backend = {"nui", "builtin"},
         nui = {
             relative = "editor",
             position = "50%",
