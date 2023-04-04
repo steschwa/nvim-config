@@ -33,6 +33,8 @@ local function on_attach(bufnr)
     vim.keymap.set("n", "p", api.fs.paste, opts)
     vim.keymap.set("n", "f", api.live_filter.start, opts)
     vim.keymap.set("n", "F", api.live_filter.clear, opts)
+    vim.keymap.set("n", "m", api.node.open.preview, opts)
+    vim.keymap.set("n", "o", api.node.run.system, opts)
 end
 
 nvim_tree.setup({
