@@ -3,102 +3,76 @@ vim.g.loaded_netrwPlugin = 1
 
 local nvim_tree = require("nvim-tree")
 
-local reset_default_mappings = {
-    { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "" },
-    { key = "<C-e>", action = "" },
-    { key = "O", action = "" },
-    { key = { "<C-]>", "<2-RightMouse>" }, action = "" },
-    { key = "<C-v>", action = "" },
-    { key = "<C-x>", action = "" },
-    { key = "<C-t>", action = "" },
-    { key = "<", action = "" },
-    { key = ">", action = "" },
-    { key = "P", action = "" },
-    { key = "<BS>", action = "" },
-    { key = "<Tab>", action = "" },
-    { key = "K", action = "" },
-    { key = "J", action = "" },
-    { key = "I", action = "" },
-    { key = "H", action = "" },
-    { key = "U", action = "" },
-    { key = "R", action = "" },
-    { key = "a", action = "" },
-    { key = "d", action = "" },
-    { key = "D", action = "" },
-    { key = "r", action = "" },
-    { key = "<C-r>", action = "" },
-    { key = "x", action = "" },
-    { key = "c", action = "" },
-    { key = "p", action = "" },
-    { key = "y", action = "" },
-    { key = "Y", action = "" },
-    { key = "gy", action = "" },
-    { key = "[e", action = "" },
-    { key = "[c", action = "" },
-    { key = "]e", action = "" },
-    { key = "]c", action = "" },
-    { key = "-", action = "" },
-    { key = "s", action = "" },
-    { key = "f", action = "" },
-    { key = "F", action = "" },
-    { key = "q", action = "" },
-    { key = "W", action = "" },
-    { key = "E", action = "" },
-    { key = "S", action = "" },
-    { key = ".", action = "" },
-    { key = "<C-k>", action = "" },
-    { key = "g?", action = "" },
-    { key = "m", action = "" },
-    { key = "bmv", action = "" },
-}
+local function on_attach(bufnr)
+    local api = require("nvim-tree.api")
 
-local override_mappings = function(override)
-    local mappings = reset_default_mappings
+    local opts = {
+        buffer = bufnr,
+        noremap = true,
+        silent = true,
+        nowait = true,
+    }
 
-    for _, value in pairs(override) do
-        table.insert(mappings, value)
-    end
-
-    return mappings
+    vim.keymap.set("n", "q", api.tree.close, opts)
+    vim.keymap.set("n", "v", api.node.open.vertical, opts)
+    vim.keymap.set("n", "P", api.node.navigate.parent, opts)
+    vim.keymap.set("n", "K", api.node.navigate.sibling.first, opts)
+    vim.keymap.set("n", "J", api.node.navigate.sibling.last, opts)
+    vim.keymap.set("n", "I", api.tree.toggle_gitignore_filter, opts)
+    vim.keymap.set("n", "H", api.tree.toggle_hidden_filter, opts)
+    vim.keymap.set("n", "W", api.tree.collapse_all, opts)
+    vim.keymap.set("n", "E", api.tree.expand_all, opts)
+    vim.keymap.set("n", "<CR>", api.node.open.edit, opts)
+    vim.keymap.set("n", "l", api.node.open.edit, opts)
+    vim.keymap.set("n", "h", api.node.navigate.parent_close, opts)
+    vim.keymap.set("n", "a", api.fs.create, opts)
+    vim.keymap.set("n", "d", api.fs.remove, opts)
+    vim.keymap.set("n", "r", api.fs.rename, opts)
+    vim.keymap.set("n", "y", api.fs.copy.node, opts)
+    vim.keymap.set("n", "x", api.fs.cut, opts)
+    vim.keymap.set("n", "p", api.fs.paste, opts)
+    vim.keymap.set("n", "f", api.live_filter.start, opts)
+    vim.keymap.set("n", "F", api.live_filter.clear, opts)
 end
 
 nvim_tree.setup({
+    on_attach = on_attach,
     sort_by = "case_sensitive",
+    select_prompts = true,
+    git = {
+        enable = false,
+    },
     view = {
-        width = 50,
-        adaptive_size = true,
-        mappings = {
-            list = override_mappings({
-                { key = "q", action = "close" },
-                --[[ Movement ]]
-                { key = "v", action = "vsplit" },
-                { key = "P", action = "parent_node" },
-                { key = "K", action = "first_sibling" },
-                { key = "J", action = "last_sibling" },
-                { key = "I", action = "toggle_git_ignored" },
-                { key = "H", action = "toggle_dotfiles" },
-                { key = "W", action = "collapse_all" },
-                { key = "E", action = "expand_all" },
-                --[[ File actions ]]
-                { key = "<CR>", action = "edit" },
-                { key = "l", action = "edit" },
-                { key = "h", action = "close_node" },
-                { key = "a", action = "create" },
-                { key = "d", action = "remove" },
-                { key = "r", action = "rename" },
-                { key = "y", action = "copy" },
-                { key = "x", action = "cut" },
-                { key = "p", action = "paste" },
-                { key = "m", action = "toggle_mark" },
-                { key = "bm", action = "bulk_move" },
-                --[[ Search ]]
-                { key = "f", action = "live_filter" },
-                { key = "F", action = "clear_live_filter" },
-            })
+        width = {
+            min = 30,
+            max = "20%",
+            padding = 4,
         },
+        centralize_selection = true,
+        hide_root_folder = true,
     },
     renderer = {
-        group_empty = true,
+        group_empty = false,
+        add_trailing = true,
+        highlight_opened_files = "name",
+        indent_width = 3,
+        indent_markers = {
+            enable = true,
+        },
+        icons = {
+            show = {
+                folder_arrow = false,
+            },
+            glyphs = {
+                folder = {
+                    default = "",
+                    open = "",
+                    empty = "",
+                    empty_open = "",
+                }
+            }
+        },
+        special_files = {},
     },
     filters = {
         dotfiles = true,
