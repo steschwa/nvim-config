@@ -50,7 +50,6 @@ nvim_tree.setup({
             max = "20%",
             padding = 4,
         },
-        centralize_selection = true,
         hide_root_folder = true,
     },
     renderer = {

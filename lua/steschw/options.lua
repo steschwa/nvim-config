@@ -39,10 +39,3 @@ opt.guifont = "JetBrainsMono Nerd Font:h15" -- the font used in graphical neovim
 opt.shortmess:append "c"
 opt.whichwrap:append "<,>,[,],h,l"
 opt.iskeyword:append "-"
-
-vim.g.neovide_cursor_animation_length = 0
-vim.g.neovide_remember_window_size = true
-vim.g.neovide_hide_mouse_when_typing = false
-vim.g.neovide_confirm_quit = true
-vim.g.neovide_input_use_logo = true
-vim.g.neovide_cursor_vfx_mode = ""
