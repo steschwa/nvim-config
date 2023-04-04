@@ -79,3 +79,5 @@ nvim_tree.setup({
         dotfiles = true,
     },
 })
+
+require("lsp-file-operations").setup()

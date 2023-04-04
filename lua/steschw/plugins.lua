@@ -61,6 +61,7 @@ return packer.startup(function(use)
 
     -- File tree
     use "kyazdani42/nvim-tree.lua"
+    use "antosha417/nvim-lsp-file-operations"
 
     -- Cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
