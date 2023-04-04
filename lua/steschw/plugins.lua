@@ -86,6 +86,7 @@ return packer.startup(function(use)
     use "folke/trouble.nvim"
     use "folke/todo-comments.nvim"
     use "windwp/nvim-autopairs"
+    use "b0o/schemastore.nvim"
 
     -- Telescope
     use "ibhagwan/fzf-lua"

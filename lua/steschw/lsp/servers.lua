@@ -31,10 +31,12 @@ if lspconfig.gopls ~= nil then
 end
 
 if lspconfig.jsonls ~= nil then
-    local jsonls_opts = require("steschw.lsp.settings.jsonls")
-    lspconfig.jsonls.setup(vim.tbl_deep_extend("force", jsonls_opts, options))
-end
-
-if lspconfig.prismals ~= nil then
-    lspconfig.prismals.setup(options)
+    lspconfig.jsonls.setup({
+        settings = {
+            json = {
+                schemas = require("schemastore").json.schemas(),
+                validate = { enable = true },
+            },
+        },
+    })
 end
