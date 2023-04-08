@@ -47,7 +47,7 @@ nvim_tree.setup({
     view = {
         width = {
             min = 30,
-            max = "20%",
+            max = -1,
             padding = 4,
         },
         hide_root_folder = true,

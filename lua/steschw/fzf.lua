@@ -19,9 +19,6 @@ fzf.setup({
         ["--pointer"] = pointer,
         ["--padding"] = "1%,2%",
     },
-    --[[ fzf_colors = { ]]
-    --[[     ["bg+"] = { "bg", "" } ]]
-    --[[ }, ]]
     files = {
         prompt = prompt,
         fd_opts = "--color=never --type f --hidden --exclude node_modules --exclude .git",
