@@ -50,14 +50,17 @@ return packer.startup(function(use)
     use "nvim-lualine/lualine.nvim"
     use "ThePrimeagen/harpoon"
     use "chentoast/marks.nvim"
-    use "rhysd/git-messenger.vim"
     use "kylechui/nvim-surround"
+    use "ellisonleao/glow.nvim"
 
     use "MunifTanjim/nui.nvim"
     use "stevearc/dressing.nvim"
 
     -- Colorscheme
     use "gbprod/nord.nvim"
+
+    -- Git
+    use "rhysd/git-messenger.vim"
 
     -- File tree
     use "kyazdani42/nvim-tree.lua"

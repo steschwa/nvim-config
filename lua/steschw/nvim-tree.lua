@@ -41,9 +41,6 @@ nvim_tree.setup({
     on_attach = on_attach,
     sort_by = "case_sensitive",
     select_prompts = true,
-    git = {
-        enable = false,
-    },
     view = {
         width = {
             min = 30,
