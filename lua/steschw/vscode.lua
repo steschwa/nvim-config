@@ -6,7 +6,7 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
-vim.opt.iskeyword:append "-"
+vim.opt.iskeyword:append("-")
 
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set

@@ -36,6 +36,6 @@ opt.scrolloff = 3 -- is one of my fav
 opt.sidescrolloff = 8
 opt.guifont = "JetBrainsMono Nerd Font:h15" -- the font used in graphical neovim applications
 
-opt.shortmess:append "c"
-opt.whichwrap:append "<,>,[,],h,l"
-opt.iskeyword:append "-"
+opt.shortmess:append("c")
+opt.whichwrap:append("<,>,[,],h,l")
+opt.iskeyword:append("-")

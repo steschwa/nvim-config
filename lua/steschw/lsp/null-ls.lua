@@ -41,6 +41,10 @@ local function get_sources()
         add_source(formatting.black)
     end
 
+    if vim.fn.executable("stylua") == 1 then
+        add_source(formatting.stylua)
+    end
+
     return sources
 end
 
