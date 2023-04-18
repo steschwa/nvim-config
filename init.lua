@@ -18,7 +18,6 @@ if vim.g.vscode == nil then
     require "steschw.todo-comments"
     require "steschw.surround"
     require "steschw.dressing"
-    require "steschw.glow"
     require "steschw.keymap"
 else
     require "steschw.vscode"

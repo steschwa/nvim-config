@@ -51,7 +51,6 @@ return packer.startup(function(use)
     use "ThePrimeagen/harpoon"
     use "chentoast/marks.nvim"
     use "kylechui/nvim-surround"
-    use "ellisonleao/glow.nvim"
 
     use "MunifTanjim/nui.nvim"
     use "stevearc/dressing.nvim"
