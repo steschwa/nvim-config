@@ -17,7 +17,6 @@ if vim.g.vscode == nil then
     require("steschw.marks")
     require("steschw.todo-comments")
     require("steschw.dressing")
-    require("steschw.icon-picker")
     require("steschw.keymap")
 else
     require("steschw.vscode")

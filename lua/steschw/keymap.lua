@@ -65,9 +65,6 @@ local function set_normal_keymaps()
     n_keymap("<leader>dw", "<cmd>Trouble workspace_diagnostics<cr>")
     n_keymap("<leader>t", "<cmd>TodoTrouble<cr>")
 
-    -- Icon picker
-    n_keymap("<leader>i", "<cmd>IconPickerNormal emoji<cr>")
-
     -- Nvim Tree
     n_keymap("<leader>e", vim.cmd.NvimTreeFindFileToggle)
 

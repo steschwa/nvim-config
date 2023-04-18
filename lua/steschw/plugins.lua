@@ -43,14 +43,13 @@ return packer.startup(function(use)
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use("echasnovski/mini.nvim")
-    use("kyazdani42/nvim-web-devicons")
     use("romgrk/barbar.nvim")
     use("nvim-lualine/lualine.nvim")
     use("ThePrimeagen/harpoon")
     use("chentoast/marks.nvim")
-    use("ziontee113/icon-picker.nvim")
 
     -- UI
+    use("kyazdani42/nvim-web-devicons")
     use("MunifTanjim/nui.nvim")
     use("stevearc/dressing.nvim")
 
