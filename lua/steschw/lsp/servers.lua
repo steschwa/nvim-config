@@ -40,3 +40,7 @@ if lspconfig.jsonls ~= nil then
         },
     })
 end
+
+if lspconfig.pylsp ~= nil then
+    lspconfig.pylsp.setup(options)
+end

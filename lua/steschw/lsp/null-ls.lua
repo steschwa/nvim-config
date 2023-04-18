@@ -37,6 +37,10 @@ local function get_sources()
         add_source(formatting.goimports)
     end
 
+    if vim.fn.executable("black") == 1 then
+        add_source(formatting.black)
+    end
+
     return sources
 end
 
