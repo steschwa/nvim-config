@@ -6,6 +6,7 @@ if vim.g.vscode == nil then
     require "steschw.cmp"
     require "steschw.lsp"
     require "steschw.treesitter"
+    require "steschw.trouble"
     require "steschw.fzf"
     require "steschw.autopairs"
     require "steschw.comment"

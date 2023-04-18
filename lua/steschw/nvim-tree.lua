@@ -47,9 +47,9 @@ nvim_tree.setup({
             max = -1,
             padding = 4,
         },
-        hide_root_folder = true,
     },
     renderer = {
+        root_folder_label = false,
         group_empty = false,
         add_trailing = true,
         highlight_opened_files = "name",

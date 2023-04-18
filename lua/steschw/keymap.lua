@@ -61,8 +61,8 @@ local function set_normal_keymaps()
     n_keymap("<leader><leader>", fzf.resume)
 
     -- Trouble
-    n_keymap("<leader>dd", "<cmd>TroubleToggle document_diagnostics<cr>")
-    n_keymap("<leader>dw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+    n_keymap("<leader>dd", "<cmd>Trouble document_diagnostics<cr>")
+    n_keymap("<leader>dw", "<cmd>Trouble workspace_diagnostics<cr>")
     n_keymap("<leader>t", "<cmd>TodoTrouble<cr>")
 
     -- Nvim Tree
@@ -102,10 +102,12 @@ local function set_normal_keymaps()
     n_keymap("gH", vim.diagnostic.open_float)
     n_keymap("gR", vim.lsp.buf.rename)
     n_keymap("ga", vim.lsp.buf.code_action)
-    n_keymap("gr", "<cmd>TroubleToggle lsp_references<cr>")
     n_keymap("gf", fmt)
     n_keymap("gu", "<cmd>:TypescriptRemoveUnused<cr>")
     n_keymap("go", "<cmd>:TypescriptOrganizeImports<cr>")
+
+    -- Trouble
+    n_keymap("gr", "<cmd>Trouble lsp_references<cr>")
 end
 
 local function set_insert_keymaps()
@@ -113,6 +115,12 @@ local function set_insert_keymaps()
     i_keymap("<D-s>", "<cmd>:w<cr>")
     i_keymap("<D-f>", fmt)
     i_keymap("jk", "<Esc>")
+
+    -- Trouble
+    local trouble = require("trouble")
+    i_keymap("<C-n>", function () trouble.next({jump = true}) end)
+    i_keymap("<C-p>", function () trouble.previous({jump = true}) end)
+    i_keymap("<C-q>", "<cmd>TroubleClose<cr>")
 end
 
 local function set_visual_keymaps()
