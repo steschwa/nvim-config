@@ -40,7 +40,7 @@ configs.setup({
 
 				["@comment.outer"] = "V",
 			},
-			include_surrounding_whitespace = true,
+			include_surrounding_whitespace = false,
 		},
 	},
 })
