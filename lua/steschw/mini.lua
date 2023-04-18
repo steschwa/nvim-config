@@ -23,3 +23,4 @@ require("mini.pairs").setup({
 		terminal = false,
 	},
 })
+

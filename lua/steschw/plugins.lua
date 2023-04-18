@@ -87,7 +87,6 @@ return packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("folke/trouble.nvim")
 	use("folke/todo-comments.nvim")
-	use("windwp/nvim-autopairs")
 	use("b0o/schemastore.nvim")
 
 	-- Fzf
