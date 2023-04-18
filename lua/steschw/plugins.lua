@@ -48,6 +48,7 @@ return packer.startup(function(use)
     use("nvim-lualine/lualine.nvim")
     use("ThePrimeagen/harpoon")
     use("chentoast/marks.nvim")
+    use("ziontee113/icon-picker.nvim")
 
     -- UI
     use("MunifTanjim/nui.nvim")
