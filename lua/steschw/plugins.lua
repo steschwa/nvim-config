@@ -48,7 +48,6 @@ return packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 	use("ThePrimeagen/harpoon")
 	use("chentoast/marks.nvim")
-	use("kylechui/nvim-surround")
 	use("echasnovski/mini.nvim")
 
 	-- UI

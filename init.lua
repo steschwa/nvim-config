@@ -15,7 +15,6 @@ if vim.g.vscode == nil then
 	require("steschw.lualine")
 	require("steschw.marks")
 	require("steschw.todo-comments")
-	require("steschw.surround")
 	require("steschw.dressing")
 	require("steschw.keymap")
 else
