@@ -27,7 +27,6 @@ M.setup = function()
             border = "rounded",
             source = "always",
             header = "",
-            prefix = "",
         },
     }
 
@@ -36,7 +35,6 @@ M.setup = function()
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
     })
-
     vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = "rounded",
     })
@@ -62,7 +60,6 @@ M.on_attach = function(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)

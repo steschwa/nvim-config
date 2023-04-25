@@ -1,22 +1,14 @@
--- from https://github.com/NvChad/base46/blob/master/lua/base46/themes/nord.lua
-local colors_nord = {
-    white = "#abb2bf",
-    black = "#2E3440", --  nvim bg
-    grey = "#4b515d",
-    blue = "#7797b7",
-}
+local nord = require("steschw.colors.nord")
 
--- https://github.com/NvChad/base46/blob/master/lua/base46/integrations/cmp.lua
 local cmp_hl = {
-    CmpItemAbbr = { fg = colors_nord.white },
-    CmpItemAbbrMatch = { fg = colors_nord.blue, bold = true },
+    CmpItemAbbr = { fg = nord.snow_storm.origin },
+    CmpItemAbbrMatch = { fg = nord.frost.artic_water, bold = true },
     CmpBorder = { link = "TelescopeBorder" },
 }
 
--- https://github.com/ibhagwan/fzf-lua/blob/main/lua/fzf-lua/profiles/telescope.lua#L34
 local fzf_hl = {
-    TelescopeSelection = { bg = colors_nord.grey },
-    TelescopeNormal = { bg = colors_nord.black },
+    TelescopeSelection = { bg = nord.polar_night.brighter },
+    TelescopeNormal = { bg = nord.polar_night.origin },
 }
 
 local harpoon_hl = {
