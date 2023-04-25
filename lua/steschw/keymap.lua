@@ -1,3 +1,5 @@
+local utils_formatting = require("steschw.utils.formatting")
+
 local opts = { noremap = true, silent = true }
 
 -- Modes
@@ -22,15 +24,6 @@ local function v_keymap(keys, cmd)
     keymap("v", keys, cmd)
 end
 
-local function fmt(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-    })
-end
-
 local function set_normal_keymaps()
     n_keymap("<C-h>", "<C-w>h")
     n_keymap("<C-j>", "<C-w>j")
@@ -40,11 +33,10 @@ local function set_normal_keymaps()
     n_keymap("<C-d>", "<C-d>zz")
     n_keymap("<C-u>", "<C-u>zz")
     n_keymap("n", "nzz")
-    n_keymap("<D-s>", "<cmd>:w<cr>")
-    n_keymap("<D-f>", fmt)
     n_keymap("<leader>n", "<cmd>noh<cr>")
     n_keymap("&", "<cmd>:&&<cr>")
     n_keymap("`", "^")
+    n_keymap("gs", "<cmd>:w<cr>")
 
     -- Window management
     n_keymap("<leader>wl", "<C-w>v") -- vertical split
@@ -102,7 +94,7 @@ local function set_normal_keymaps()
     n_keymap("gH", vim.diagnostic.open_float)
     n_keymap("gR", vim.lsp.buf.rename)
     n_keymap("ga", vim.lsp.buf.code_action)
-    n_keymap("gf", fmt)
+    n_keymap("gf", utils_formatting.format)
     n_keymap("gu", "<cmd>:TypescriptRemoveUnused<cr>")
     n_keymap("go", "<cmd>:TypescriptOrganizeImports<cr>")
 
@@ -111,9 +103,6 @@ local function set_normal_keymaps()
 end
 
 local function set_insert_keymaps()
-    i_keymap("<D-v>", "<C-r>+<cr>")
-    i_keymap("<D-s>", "<cmd>:w<cr>")
-    i_keymap("<D-f>", fmt)
     i_keymap("jk", "<Esc>")
 
     -- Trouble
