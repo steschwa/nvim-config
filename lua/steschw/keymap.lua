@@ -56,6 +56,8 @@ local function set_normal_keymaps()
     n_keymap("<leader>dd", "<cmd>Trouble document_diagnostics<cr>")
     n_keymap("<leader>dw", "<cmd>Trouble workspace_diagnostics<cr>")
     n_keymap("<leader>t", "<cmd>TodoTrouble<cr>")
+    n_keymap("gr", "<cmd>Trouble lsp_references<cr>")
+    n_keymap("gd", "<cmd>Trouble lsp_definitions<cr>")
 
     -- Nvim Tree
     n_keymap("<leader>e", vim.cmd.NvimTreeFindFileToggle)
@@ -87,9 +89,6 @@ local function set_normal_keymaps()
     vim.g.git_messenger_no_default_mappings = true
 
     -- LSP
-    n_keymap("gd", function()
-        fzf.lsp_definitions({ jump_to_single_result = true })
-    end)
     n_keymap("gh", vim.lsp.buf.hover)
     n_keymap("gH", vim.diagnostic.open_float)
     n_keymap("gR", vim.lsp.buf.rename)
@@ -97,9 +96,6 @@ local function set_normal_keymaps()
     n_keymap("gf", utils_formatting.format)
     n_keymap("gu", "<cmd>:TypescriptRemoveUnused<cr>")
     n_keymap("go", "<cmd>:TypescriptOrganizeImports<cr>")
-
-    -- Trouble
-    n_keymap("gr", "<cmd>Trouble lsp_references<cr>")
 end
 
 local function set_insert_keymaps()

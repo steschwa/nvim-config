@@ -43,8 +43,14 @@ return packer.startup(function(use)
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use("echasnovski/mini.nvim")
+
+    -- Bufferline
     use("romgrk/barbar.nvim")
+
+    -- Statusline
     use("nvim-lualine/lualine.nvim")
+
+    -- Bookmarks
     use("ThePrimeagen/harpoon")
     use("chentoast/marks.nvim")
 
@@ -83,9 +89,9 @@ return packer.startup(function(use)
     use("neovim/nvim-lspconfig")
     use("jose-elias-alvarez/typescript.nvim")
     use("jose-elias-alvarez/null-ls.nvim")
+    use("b0o/schemastore.nvim")
     use("folke/trouble.nvim")
     use("folke/todo-comments.nvim")
-    use("b0o/schemastore.nvim")
 
     -- Fzf
     use("ibhagwan/fzf-lua")
