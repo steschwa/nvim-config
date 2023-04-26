@@ -11,7 +11,7 @@ fzf.setup({
         if width <= 150 then
             width = utils_window.calc_width({ padding = 4 })
         else
-            width = utils_window.calc_width({ padding = 32 })
+            width = utils_window.calc_width({ padding = 16 })
         end
 
         return {
