@@ -18,7 +18,7 @@ opt.number = true
 opt.numberwidth = 4
 opt.pumheight = 10
 opt.relativenumber = true
-opt.scrolloff = 3
+opt.scrolloff = 1
 opt.shiftwidth = 4
 opt.shiftround = true
 opt.shortmess:append({ c = true, W = true, C = true })

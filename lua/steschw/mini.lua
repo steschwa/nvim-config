@@ -29,7 +29,6 @@ require("mini.surround").setup({
         add = "sa",
         delete = "sd",
         replace = "sr",
-
         update_n_lines = "",
         find = "",
         find_left = "",
