@@ -9,4 +9,9 @@ M.format = function(bufnr)
     })
 end
 
+M.format_write = function(bufnr)
+    M.format(bufnr)
+    vim.cmd("w")
+end
+
 return M

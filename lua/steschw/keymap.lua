@@ -37,7 +37,7 @@ local function set_normal_keymaps()
     n("<leader>n", "<cmd>noh<cr>")
     n("&", "<cmd>:&&<cr>")
     n("`", "^")
-    n("gs", "<cmd>:w<cr>")
+    n("gs", utils_formatting.format_write)
 
     -- Window management
     n("<leader>wl", "<C-w>v") -- vertical split
@@ -104,7 +104,7 @@ local function set_normal_keymaps()
     n("gf", utils_formatting.format)
     n("gu", "<cmd>:TypescriptRemoveUnused<cr>")
     n("go", "<cmd>:TypescriptOrganizeImports<cr>")
-    n("[e", function()
+    n("[d", function()
         vim.diagnostic.goto_next({ float = false })
     end)
     n("]e", function()
