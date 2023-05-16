@@ -14,7 +14,7 @@ M.calc_width = function(options)
 
     local width = M.width() * percent
 
-    return width - M.padding(padding or 0)
+    return width - M.padding(padding)
 end
 
 return M

@@ -1,6 +1,6 @@
 if vim.g.vscode == nil then
     require("steschw.options")
-    require("steschw.autocmds")
+    require("steschw.autocmds").setup_autocmds()
     require("steschw.plugins")
     require("steschw.colorscheme")
     require("steschw.hl-groups")
