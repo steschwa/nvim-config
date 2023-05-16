@@ -35,11 +35,9 @@ trouble.setup({
     auto_close = true,
     auto_preview = true,
     auto_fold = false,
-    auto_jump = {
-        "lsp_definitions",
-    },
+    auto_jump = { "lsp_definitions" },
     signs = {
-        other = "●",
+        other = "",
     },
     use_diagnostic_signs = true,
 })

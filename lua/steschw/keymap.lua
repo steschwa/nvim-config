@@ -1,4 +1,3 @@
-local trouble = require("trouble")
 local utils_formatting = require("steschw.utils.formatting")
 
 local opts = { noremap = true, silent = true }
@@ -43,27 +42,27 @@ local function set_normal_keymaps()
     n("<leader>wl", "<C-w>v") -- vertical split
     n("<leader>wq", "<C-w>q") -- close window
 
-    -- Fzf
-    local fzf = require("fzf-lua")
-    n("<leader>p", fzf.files)
-    n("<leader>f", fzf.live_grep)
-    n("<leader>s", function()
-        fzf.lsp_document_symbols({ fzf_cli_args = "--with-nth -1.." })
-    end)
-    n("<leader>o", fzf.oldfiles)
-    n("<leader><leader>", fzf.resume)
+    -- Telescope
+    -- n("<leader>o", fzf.oldfiles)
+    -- n("<leader><leader>", fzf.resume)
+    local telescope = require("telescope.builtin")
+    n("<leader>p", telescope.find_files)
+    n("<leader>f", telescope.live_grep)
+    n("<leader>q", telescope.quickfix)
+    n("<leader>s", telescope.lsp_document_symbols)
 
     -- Trouble
-    n("<leader>dd", "<cmd>Trouble document_diagnostics<cr>")
-    n("<leader>dw", "<cmd>Trouble workspace_diagnostics<cr>")
+    local trouble = require("trouble")
+    n("<leader>d", "<cmd>Trouble document_diagnostics<cr>")
+    n("<leader>q", "<cmd>Trouble quickfix<cr>")
     n("<leader>t", "<cmd>TodoTrouble<cr>")
     n("gr", "<cmd>Trouble lsp_references<cr>")
     n("gd", "<cmd>Trouble lsp_definitions<cr>")
     n("<C-n>", function()
-        trouble.next({ jump = true })
+        trouble.next({ jump = true, skip_groups = true })
     end)
     n("<C-p>", function()
-        trouble.previous({ jump = true })
+        trouble.previous({ jump = true, skip_groups = true })
     end)
     n("<C-q>", "<cmd>TroubleClose<cr>")
 
@@ -102,8 +101,8 @@ local function set_normal_keymaps()
     n("gR", vim.lsp.buf.rename)
     n("ga", vim.lsp.buf.code_action)
     n("gf", utils_formatting.format)
-    n("gu", "<cmd>:TypescriptRemoveUnused<cr>")
-    n("go", "<cmd>:TypescriptOrganizeImports<cr>")
+    n("gu", "<cmd>TypescriptRemoveUnused<cr>")
+    n("go", "<cmd>TypescriptOrganizeImports<cr>")
     n("[d", function()
         vim.diagnostic.goto_next({ float = false })
     end)
@@ -116,6 +115,7 @@ local function set_insert_keymaps()
     i("jk", "<Esc>")
 
     -- Trouble
+    local trouble = require("trouble")
     i("<C-n>", function()
         trouble.next({ jump = true })
     end)

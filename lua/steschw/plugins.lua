@@ -93,8 +93,9 @@ return packer.startup(function(use)
     use("folke/trouble.nvim")
     use("folke/todo-comments.nvim")
 
-    -- Fzf
-    use("ibhagwan/fzf-lua")
+    -- Telescope
+    use("nvim-telescope/telescope.nvim")
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
     -- Treesitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })

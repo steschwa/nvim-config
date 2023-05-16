@@ -9,7 +9,7 @@ if vim.g.vscode == nil then
     require("steschw.mini")
     require("steschw.treesitter")
     require("steschw.trouble")
-    require("steschw.fzf")
+    require("steschw.telescope")
     require("steschw.nvim-tree")
     require("steschw.harpoon")
     require("steschw.barbar")
