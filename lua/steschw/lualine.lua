@@ -16,7 +16,7 @@ lualine.setup({
     extensions = {
         "nvim-tree",
         "trouble",
-        "fzf",
+        "quickfix",
     },
     sections = {
         lualine_a = { "mode" },

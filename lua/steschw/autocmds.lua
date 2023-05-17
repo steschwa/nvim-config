@@ -1,3 +1,5 @@
+local km = require("steschw.utils.keymap")
+
 local M = {}
 
 M.augroup = function(name)
@@ -25,7 +27,7 @@ M.setup_autocmds = function()
         },
         callback = function(event)
             vim.bo[event.buf].buflisted = false
-            vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+            km.n("q", "<cmd>close<cr>", { buffer = event.buf })
         end,
     })
 end

@@ -9,8 +9,8 @@ todo_comments.setup({
         FIXME = { icon = " ", color = "error" },
     },
     colors = {
-        error = { "DiagnosticError", "ErrorMsg" },
-        warning = { "DiagnosticWarn", "WarningMsg" },
+        error = { "DiagnosticError" },
+        warning = { "DiagnosticWarn" },
         info = { "DiagnosticInfo" },
         hint = { "DiagnosticHint" },
     },

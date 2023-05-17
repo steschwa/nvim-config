@@ -16,7 +16,7 @@ local action_qflist = mod_qflist.smart_send_to_qflist + mod_qflist.open_qflist
 
 telescope.setup({
     defaults = {
-        prompt_prefix = " ",
+        prompt_prefix = " ",
         selection_caret = " ",
         multi_icon = " ",
         vimgrep_arguments = {
@@ -32,6 +32,11 @@ telescope.setup({
         path_display = { "tail" },
         dynamic_preview_title = true,
         cache_picker = false,
+        layout_config = {
+            vertical = {
+                width = 0.5,
+            },
+        },
         mappings = {
             n = {
                 ["q"] = actions.close,
@@ -46,6 +51,8 @@ telescope.setup({
     },
     pickers = {
         find_files = {
+            layout_strategy = "vertical",
+            previewer = false,
             find_command = {
                 "fd",
                 "--color=never",
@@ -62,6 +69,14 @@ telescope.setup({
         live_grep = {
             max_results = 20,
             disable_coordinates = true,
+            layout_strategy = "vertical",
+            layout_config = {
+                preview_height = 10,
+            },
+        },
+        lsp_document_symbols = {
+            layout_strategy = "vertical",
+            previewer = false,
         },
     },
     extensions = {

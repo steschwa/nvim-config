@@ -1,6 +1,10 @@
 local utils_formatting = require("steschw.utils.formatting")
+local km = require("steschw.utils.keymap")
 
-local opts = { noremap = true, silent = true }
+local trouble = require("trouble")
+local telescope = require("telescope.builtin")
+local harpoon_mark = require("harpoon.mark")
+local harpoon_ui = require("harpoon.ui")
 
 -- Modes
 --   normal_mode = "n",
@@ -10,132 +14,103 @@ local opts = { noremap = true, silent = true }
 --   term_mode = "t",
 --   command_mode = "c",
 
-local function keymap(mode, keys, cmd)
-    vim.keymap.set(mode, keys, cmd, opts)
-end
-
-local function n(keys, cmd)
-    keymap("n", keys, cmd)
-end
-local function i(keys, cmd)
-    keymap("i", keys, cmd)
-end
-local function v(keys, cmd)
-    keymap("v", keys, cmd)
-end
-
-local function set_normal_keymaps()
-    n("<C-h>", "<C-w>h")
-    n("<C-j>", "<C-w>j")
-    n("<C-k>", "<C-w>k")
-    n("<C-l>", "<C-w>l")
-    n("<leader>q", "@q<cr>")
-    n("<C-d>", "<C-d>zz")
-    n("<C-u>", "<C-u>zz")
-    n("n", "nzz")
-    n("<leader>n", "<cmd>noh<cr>")
-    n("&", "<cmd>:&&<cr>")
-    n("`", "^")
-    n("gs", utils_formatting.format_write)
-
-    -- Window management
-    n("<leader>wl", "<C-w>v") -- vertical split
-    n("<leader>wq", "<C-w>q") -- close window
-
-    -- Telescope
-    -- n("<leader>o", fzf.oldfiles)
-    -- n("<leader><leader>", fzf.resume)
-    local telescope = require("telescope.builtin")
-    n("<leader>p", telescope.find_files)
-    n("<leader>f", telescope.live_grep)
-    n("<leader>q", telescope.quickfix)
-    n("<leader>s", telescope.lsp_document_symbols)
-
-    -- Trouble
-    local trouble = require("trouble")
-    n("<leader>d", "<cmd>Trouble document_diagnostics<cr>")
-    n("<leader>q", "<cmd>Trouble quickfix<cr>")
-    n("<leader>t", "<cmd>TodoTrouble<cr>")
-    n("gr", "<cmd>Trouble lsp_references<cr>")
-    n("gd", "<cmd>Trouble lsp_definitions<cr>")
-    n("<C-n>", function()
-        trouble.next({ jump = true, skip_groups = true })
-    end)
-    n("<C-p>", function()
-        trouble.previous({ jump = true, skip_groups = true })
-    end)
-    n("<C-q>", "<cmd>TroubleClose<cr>")
-
-    -- Nvim Tree
-    n("<leader>e", vim.cmd.NvimTreeFindFileToggle)
-
-    -- Buffer management
-    n("<S-h>", vim.cmd.BufferPrevious)
-    n("<S-l>", vim.cmd.BufferNext)
-    n("<leader>bp", vim.cmd.BufferPick)
-    n("<leader>ba", vim.cmd.BufferCloseAllButCurrent)
-    n("<leader>bq", vim.cmd.BufferClose)
-    n("<leader>bch", vim.cmd.BufferCloseBuffersLeft)
-    n("<leader>bcl", vim.cmd.BufferCloseBuffersRight)
-    n("<leader>b1", "<cmd>BufferGoto 1<cr>")
-    n("<leader>b2", "<cmd>BufferGoto 2<cr>")
-    n("<leader>b3", "<cmd>BufferGoto 3<cr>")
-
-    -- Harpoon
-    local harpoon_mark = require("harpoon.mark")
-    local harpoon_ui = require("harpoon.ui")
-    n("<leader>h", harpoon_ui.toggle_quick_menu)
-    n("<leader>a", harpoon_mark.add_file)
-
-    -- Marks
-    n("<leader>m", "<cmd>MarksListBuf<cr>")
-
-    -- Git
-    n("<leader>g", "<cmd>GitMessenger<cr>")
-    -- Disable default <Space>gm binding to prevent delay for <Space>g
-    vim.g.git_messenger_no_default_mappings = true
-
-    -- LSP
-    n("gh", vim.lsp.buf.hover)
-    n("gH", vim.diagnostic.open_float)
-    n("gR", vim.lsp.buf.rename)
-    n("ga", vim.lsp.buf.code_action)
-    n("gf", utils_formatting.format)
-    n("gu", "<cmd>TypescriptRemoveUnused<cr>")
-    n("go", "<cmd>TypescriptOrganizeImports<cr>")
-    n("[d", function()
-        vim.diagnostic.goto_next({ float = false })
-    end)
-    n("]e", function()
-        vim.diagnostic.goto_prev({ float = false })
-    end)
-end
-
-local function set_insert_keymaps()
-    i("jk", "<Esc>")
-
-    -- Trouble
-    local trouble = require("trouble")
-    i("<C-n>", function()
-        trouble.next({ jump = true })
-    end)
-    i("<C-p>", function()
-        trouble.previous({ jump = true })
-    end)
-    i("<C-q>", "<cmd>TroubleClose<cr>")
-end
-
-local function set_visual_keymaps()
-    v("<", "<gv")
-    v(">", ">gv")
-    v("p", '"_dP')
-end
-
 -- Remap space as leader key
-keymap("", "<Space>", "<Nop>")
+km.set("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-set_normal_keymaps()
-set_insert_keymaps()
-set_visual_keymaps()
+km.n("<C-h>", "<C-w>h")
+km.n("<C-j>", "<C-w>j")
+km.n("<C-k>", "<C-w>k")
+km.n("<C-l>", "<C-w>l")
+km.n("<leader>q", "@q<cr>")
+km.n("<C-d>", "<C-d>zz")
+km.n("<C-u>", "<C-u>zz")
+km.n("n", "nzz")
+km.n("<leader>n", "<cmd>noh<cr>")
+km.n("&", "<cmd>:&&<cr>")
+km.n("`", "^")
+km.n("gs", utils_formatting.format_write)
+
+-- Window management
+km.n("<leader>wl", "<C-w>v") -- vertical split
+km.n("<leader>wq", "<C-w>q") -- close window
+
+-- Telescope
+-- km.n("<leader>o", fzf.oldfiles)
+-- km.n("<leader><leader>", fzf.resume)
+km.n("<leader>p", telescope.find_files)
+km.n("<leader>f", telescope.live_grep)
+km.n("<leader>q", telescope.quickfix)
+km.n("<leader>s", telescope.lsp_document_symbols)
+
+-- Trouble
+km.n("<leader>d", "<cmd>Trouble document_diagnostics<cr>")
+km.n("<leader>q", "<cmd>Trouble quickfix<cr>")
+km.n("<leader>t", "<cmd>TodoTrouble<cr>")
+km.n("gr", "<cmd>Trouble lsp_references<cr>")
+km.n("gd", "<cmd>Trouble lsp_definitions<cr>")
+km.n("<C-n>", function()
+    trouble.next({ jump = true, skip_groups = true })
+end)
+km.n("<C-p>", function()
+    trouble.previous({ jump = true, skip_groups = true })
+end)
+km.n("<C-q>", "<cmd>TroubleClose<cr>")
+
+-- Nvim Tree
+km.n("<leader>e", vim.cmd.NvimTreeFindFileToggle)
+
+-- Buffer management
+km.n("<S-h>", vim.cmd.BufferPrevious)
+km.n("<S-l>", vim.cmd.BufferNext)
+km.n("<leader>bp", vim.cmd.BufferPick)
+km.n("<leader>ba", vim.cmd.BufferCloseAllButCurrent)
+km.n("<leader>bq", vim.cmd.BufferClose)
+km.n("<leader>bch", vim.cmd.BufferCloseBuffersLeft)
+km.n("<leader>bcl", vim.cmd.BufferCloseBuffersRight)
+km.n("<leader>b1", "<cmd>BufferGoto 1<cr>")
+km.n("<leader>b2", "<cmd>BufferGoto 2<cr>")
+km.n("<leader>b3", "<cmd>BufferGoto 3<cr>")
+
+-- Harpoon
+km.n("<leader>h", harpoon_ui.toggle_quick_menu)
+km.n("<leader>a", harpoon_mark.add_file)
+
+-- Marks
+km.n("<leader>m", "<cmd>MarksListBuf<cr>")
+
+-- Git
+km.n("<leader>g", "<cmd>GitMessenger<cr>")
+-- Disable default <Space>gm binding to prevent delay for <Space>g
+vim.g.git_messenger_no_default_mappings = true
+
+-- LSP
+km.n("gh", vim.lsp.buf.hover)
+km.n("gH", vim.diagnostic.open_float)
+km.n("gR", vim.lsp.buf.rename)
+km.n("ga", vim.lsp.buf.code_action)
+km.n("gf", utils_formatting.format)
+km.n("gu", "<cmd>TypescriptRemoveUnused<cr>")
+km.n("go", "<cmd>TypescriptOrganizeImports<cr>")
+km.n("[d", function()
+    vim.diagnostic.goto_next({ float = false })
+end)
+km.n("]e", function()
+    vim.diagnostic.goto_prev({ float = false })
+end)
+
+km.i("jk", "<Esc>")
+
+-- Trouble
+km.i("<C-n>", function()
+    trouble.next({ jump = true })
+end)
+km.i("<C-p>", function()
+    trouble.previous({ jump = true })
+end)
+km.i("<C-q>", "<cmd>TroubleClose<cr>")
+
+km.v("<", "<gv")
+km.v(">", ">gv")
+km.v("p", '"_dP')
