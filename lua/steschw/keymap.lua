@@ -62,16 +62,13 @@ km.n("<C-q>", "<cmd>TroubleClose<cr>")
 km.n("<leader>e", vim.cmd.NvimTreeFindFileToggle)
 
 -- Buffer management
-km.n("<S-h>", vim.cmd.BufferPrevious)
-km.n("<S-l>", vim.cmd.BufferNext)
-km.n("<leader>bp", vim.cmd.BufferPick)
-km.n("<leader>ba", vim.cmd.BufferCloseAllButCurrent)
-km.n("<leader>bq", vim.cmd.BufferClose)
-km.n("<leader>bch", vim.cmd.BufferCloseBuffersLeft)
-km.n("<leader>bcl", vim.cmd.BufferCloseBuffersRight)
-km.n("<leader>b1", "<cmd>BufferGoto 1<cr>")
-km.n("<leader>b2", "<cmd>BufferGoto 2<cr>")
-km.n("<leader>b3", "<cmd>BufferGoto 3<cr>")
+km.n("<S-h>", "<cmd>BufferPrevious<cr>")
+km.n("<S-l>", "<cmd>BufferNext<cr>")
+km.n("<leader>bp", "<cmd>BufferPick<cr>")
+km.n("<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
+km.n("<leader>bq", "<cmd>BufferClose<cr>")
+km.n("<leader>bch", "<cmd>BufferCloseBuffersLeft<cr>")
+km.n("<leader>bcl", "<cmd>BufferCloseBuffersRight<cr>")
 
 -- Harpoon
 km.n("<leader>h", harpoon_ui.toggle_quick_menu)

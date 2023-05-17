@@ -1,18 +1,7 @@
 local telescope = require("telescope")
 
-local actions = require("telescope.actions")
-local transform_mod = require("telescope.actions.mt").transform_mod
-
-local mod_qflist = {}
-mod_qflist.smart_send_to_qflist = function(bufnr)
-    actions.smart_send_to_qflist(bufnr)
-end
-mod_qflist.open_qflist = function()
-    vim.cmd("Trouble quickfix")
-end
-mod_qflist = transform_mod(mod_qflist)
-
-local action_qflist = mod_qflist.smart_send_to_qflist + mod_qflist.open_qflist
+local telescope_actions = require("telescope.actions")
+local action_qflist = require("steschw.telescope.actions").qflist()
 
 telescope.setup({
     defaults = {
@@ -39,12 +28,12 @@ telescope.setup({
         },
         mappings = {
             n = {
-                ["q"] = actions.close,
+                ["q"] = telescope_actions.close,
                 ["<C-q>"] = action_qflist,
             },
             i = {
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-j>"] = telescope_actions.move_selection_next,
+                ["<C-k>"] = telescope_actions.move_selection_previous,
                 ["<C-q>"] = action_qflist,
             },
         },
@@ -52,7 +41,6 @@ telescope.setup({
     pickers = {
         find_files = {
             layout_strategy = "vertical",
-            previewer = false,
             find_command = {
                 "fd",
                 "--color=never",
@@ -77,6 +65,7 @@ telescope.setup({
         lsp_document_symbols = {
             layout_strategy = "vertical",
             previewer = false,
+            symbol_width = 0.5,
         },
     },
     extensions = {
