@@ -5,17 +5,21 @@ local M = {}
 M.setup = function()
     local icons = require("steschw.lsp.style").icons
     local signs = {
-        { name = "DiagnosticSignError", text = icons.error },
-        { name = "DiagnosticSignWarn", text = icons.warn },
-        { name = "DiagnosticSignInfo", text = icons.info },
-        { name = "DiagnosticSignHint", text = icons.hint },
+        { name = "DiagnosticSignError", icon = icons.error },
+        { name = "DiagnosticSignWarn", icon = icons.warn },
+        { name = "DiagnosticSignInfo", icon = icons.info },
+        { name = "DiagnosticSignHint", icon = icons.hint },
     }
 
     for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+        vim.fn.sign_define(sign.name, {
+            text = sign.icon,
+            texthl = sign.name,
+            numhl = sign.name,
+        })
     end
 
-    local config = {
+    vim.diagnostic.config({
         virtual_text = true,
         signs = {
             active = signs,
@@ -30,9 +34,7 @@ M.setup = function()
             source = "always",
             header = "",
         },
-    }
-
-    vim.diagnostic.config(config)
+    })
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",

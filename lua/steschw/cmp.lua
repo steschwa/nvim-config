@@ -68,6 +68,7 @@ cmp.setup({
     formatting = {
         format = lspkind.cmp_format({
             mode = "symbol_text",
+            preset = "codicons",
         }),
     },
     sources = {

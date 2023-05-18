@@ -1,10 +1,10 @@
 local M = {}
 
 M.icons = {
-    error = "",
-    warn = "",
-    info = "",
-    hint = "",
+    error = "",
+    warn = "",
+    info = "",
+    hint = "",
 }
 
 return M

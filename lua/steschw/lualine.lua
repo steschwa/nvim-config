@@ -46,6 +46,11 @@ lualine.setup({
                 shorting_target = 100,
             },
         },
-        lualine_z = { "branch" },
+        lualine_z = {
+            {
+                "branch",
+                icon = "",
+            },
+        },
     },
 })
