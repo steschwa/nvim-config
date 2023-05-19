@@ -32,13 +32,20 @@ km.n("&", "<cmd>:&&<cr>")
 km.n("`", "^")
 km.n("gs", utils_formatting.format_write)
 
+-- Movement
+local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+km.n(";", ts_repeat_move.repeat_last_move)
+km.n(",", ts_repeat_move.repeat_last_move_opposite)
+km.n("f", ts_repeat_move.builtin_f)
+km.n("F", ts_repeat_move.builtin_F)
+km.n("t", ts_repeat_move.builtin_t)
+km.n("T", ts_repeat_move.builtin_T)
+
 -- Window management
 km.n("<leader>wl", "<C-w>v") -- vertical split
 km.n("<leader>wq", "<C-w>q") -- close window
 
 -- Telescope
--- km.n("<leader>o", fzf.oldfiles)
--- km.n("<leader><leader>", fzf.resume)
 km.n("<leader>p", telescope.find_files)
 km.n("<leader>f", telescope.live_grep)
 km.n("<leader>q", telescope.quickfix)
