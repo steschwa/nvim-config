@@ -1,5 +1,6 @@
 local dressing = require("dressing")
-local utils_window = require("steschw.utils.window")
+local window = require("steschw.utils.window")
+local debug_print = require("steschw.utils.debug").debug_print
 
 dressing.setup({
     input = {
@@ -16,10 +17,8 @@ dressing.setup({
                 ["<CR>"] = "Confirm",
             },
             i = {
-                ["<C-c>"] = "Close",
+                ["<C-q>"] = "Close",
                 ["<CR>"] = "Confirm",
-                ["<Up>"] = "HistoryPrev",
-                ["<Down>"] = "HistoryNext",
             },
         },
     },
@@ -29,7 +28,7 @@ dressing.setup({
         nui = {
             relative = "editor",
             position = "50%",
-            max_width = utils_window.calc_width({ percent = 0.8 }),
+            max_width = window.calc_width({ percent = 0.8 }),
             border = {
                 style = "rounded",
                 padding = { 1, 2 },
@@ -41,8 +40,18 @@ dressing.setup({
                 ["<CR>"] = "Confirm",
             },
             i = {
-                ["<C-c>"] = "Close",
+                ["<C-q>"] = "Close",
             },
         },
+        get_config = function(opts)
+            if opts.kind == "codeaction" then
+                return {
+                    backend = "nui",
+                    nui = {
+                        min_width = window.calc_width({ percent = 0.4 }),
+                    },
+                }
+            end
+        end,
     },
 })

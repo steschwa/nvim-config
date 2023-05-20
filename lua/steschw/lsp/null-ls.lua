@@ -15,8 +15,8 @@ local function get_sources()
     if vim.fn.executable("prettierd") == 1 then
         add_source(formatting.prettierd.with({
             env = {
-                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc")
-            }
+                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc"),
+            },
         }))
     end
 
@@ -26,7 +26,6 @@ local function get_sources()
 
     if vim.fn.executable("tsc") == 1 then
         add_source(require("typescript.extensions.null-ls.code-actions"))
-        add_source(diagnostics.tsc)
     end
 
     if vim.fn.executable("revive") == 1 then

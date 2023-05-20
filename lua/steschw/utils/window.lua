@@ -5,14 +5,14 @@ M.width = function()
 end
 
 M.padding = function(padding)
-    return 2 * padding
+    return 2 * math.floor(padding)
 end
 
 M.calc_width = function(options)
     local padding = options.padding or 0
     local percent = options.percent or 1
 
-    local width = M.width() * percent
+    local width = math.floor(M.width() * percent)
 
     return width - M.padding(padding)
 end
