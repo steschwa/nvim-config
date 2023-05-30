@@ -3,16 +3,14 @@ require("mini.comment").setup({
         ignore_blank_lines = true,
         start_of_line = false,
         pad_comment_parts = true,
+        custom_commentstring = function()
+            return require("ts_context_commentstring.internal").calculate_commentstring()
+        end,
     },
     mappings = {
         comment = "gc",
         comment_line = "gcc",
         textobject = "gc",
-    },
-    hooks = {
-        pre = function()
-            require("ts_context_commentstring.internal").update_commentstring()
-        end,
     },
 })
 

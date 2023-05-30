@@ -54,10 +54,10 @@ configs.setup({
         move = {
             enable = true,
             set_jumps = true,
-            goto_previous_start = {
+            goto_next_start = {
                 ["[f"] = "@function.outer",
             },
-            goto_next_start = {
+            goto_previous_start = {
                 ["]f"] = "@function.outer",
             },
         },

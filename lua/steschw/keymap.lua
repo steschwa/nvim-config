@@ -100,7 +100,7 @@ km.n("go", "<cmd>TypescriptOrganizeImports<cr>")
 km.n("[d", function()
     vim.diagnostic.goto_next({ float = false })
 end)
-km.n("]e", function()
+km.n("]d", function()
     vim.diagnostic.goto_prev({ float = false })
 end)
 
