@@ -31,6 +31,7 @@ km.n("<leader>n", "<cmd>noh<cr>")
 km.n("&", "<cmd>:&&<cr>")
 km.n("`", "^")
 km.n("gs", utils_formatting.format_write)
+km.n("<tab>", '"+')
 
 -- Movement
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
@@ -118,3 +119,4 @@ km.i("<C-q>", "<cmd>TroubleClose<cr>")
 km.v("<", "<gv")
 km.v(">", ">gv")
 km.v("p", '"_dP')
+km.v("<tab>", '"+')
