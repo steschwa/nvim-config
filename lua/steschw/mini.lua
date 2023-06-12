@@ -35,3 +35,22 @@ require("mini.surround").setup({
         suffix_next = "",
     },
 })
+
+require("mini.move").setup({
+    options = {
+        reindent_linewise = false,
+    },
+    mappings = {
+        -- visual mode
+        left = "<C-h>",
+        right = "<C-l>",
+        down = "<C-j>",
+        up = "<C-k>",
+
+        -- normal mode
+        line_left = "",
+        line_right = "",
+        line_down = "",
+        line_up = "",
+    },
+})
