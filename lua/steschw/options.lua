@@ -38,6 +38,6 @@ opt.undofile = true
 opt.updatetime = 500
 opt.wrap = false
 opt.writebackup = false
-opt.splitkeep = "screen"
+opt.splitkeep = "cursor"
 
 opt.whichwrap:append("<,>,[,],h,l")

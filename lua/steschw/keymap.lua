@@ -19,19 +19,24 @@ km.set("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- ########################################
+-- NORMAL
+-- ########################################
+
 km.n("<C-h>", "<C-w>h")
 km.n("<C-j>", "<C-w>j")
 km.n("<C-k>", "<C-w>k")
 km.n("<C-l>", "<C-w>l")
-km.n("<leader>q", "@q<cr>")
 km.n("<C-d>", "<C-d>zz")
 km.n("<C-u>", "<C-u>zz")
 km.n("n", "nzz")
+km.n("N", "Nzz")
 km.n("<leader>n", "<cmd>noh<cr>")
 km.n("&", "<cmd>:&&<cr>")
 km.n("`", "^")
 km.n("gs", utils_formatting.format_write)
-km.n("<tab>", '"+')
+km.n("<C-c>", '"+')
+km.n("<C-x>", "@q")
 
 -- Movement
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
@@ -49,7 +54,6 @@ km.n("<leader>wq", "<C-w>q") -- close window
 -- Telescope
 km.n("<leader>p", telescope.find_files)
 km.n("<leader>f", telescope.live_grep)
-km.n("<leader>q", telescope.quickfix)
 km.n("<leader>s", telescope.lsp_document_symbols)
 
 -- Trouble
@@ -72,7 +76,6 @@ km.n("<leader>e", vim.cmd.NvimTreeFindFileToggle)
 -- Buffer management
 km.n("<S-h>", "<cmd>BufferPrevious<cr>")
 km.n("<S-l>", "<cmd>BufferNext<cr>")
-km.n("<leader>bp", "<cmd>BufferPick<cr>")
 km.n("<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
 km.n("<leader>bq", "<cmd>BufferClose<cr>")
 km.n("<leader>bch", "<cmd>BufferCloseBuffersLeft<cr>")
@@ -81,9 +84,6 @@ km.n("<leader>bcl", "<cmd>BufferCloseBuffersRight<cr>")
 -- Harpoon
 km.n("<leader>h", harpoon_ui.toggle_quick_menu)
 km.n("<leader>a", harpoon_mark.add_file)
-
--- Marks
-km.n("<leader>m", "<cmd>MarksListBuf<cr>")
 
 -- Git
 km.n("<leader>g", "<cmd>GitMessenger<cr>")
@@ -105,6 +105,10 @@ km.n("]d", function()
     vim.diagnostic.goto_prev({ float = false })
 end)
 
+-- ########################################
+-- INSERT
+-- ########################################
+
 km.i("jk", "<Esc>")
 
 -- Trouble
@@ -116,7 +120,11 @@ km.i("<C-p>", function()
 end)
 km.i("<C-q>", "<cmd>TroubleClose<cr>")
 
+-- ########################################
+-- VISUAL
+-- ########################################
+
 km.v("<", "<gv")
 km.v(">", ">gv")
 km.v("p", '"_dP')
-km.v("<tab>", '"+')
+km.v("<C-c>", '"+')

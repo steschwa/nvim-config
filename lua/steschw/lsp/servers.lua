@@ -43,3 +43,7 @@ end
 if lspconfig.pylsp ~= nil then
     lspconfig.pylsp.setup(options)
 end
+
+if lspconfig.marksman ~= nil then
+    lspconfig.marksman.setup(options)
+end
