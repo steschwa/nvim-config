@@ -21,9 +21,11 @@ telescope.setup({
         path_display = { "tail" },
         dynamic_preview_title = true,
         cache_picker = false,
+        layout_strategy = "vertical",
         layout_config = {
             vertical = {
                 width = 0.5,
+                preview_cutoff = 0,
             },
         },
         mappings = {
@@ -40,7 +42,6 @@ telescope.setup({
     },
     pickers = {
         find_files = {
-            layout_strategy = "vertical",
             find_command = {
                 "fd",
                 "--color=never",
@@ -57,13 +58,11 @@ telescope.setup({
         live_grep = {
             max_results = 20,
             disable_coordinates = true,
-            layout_strategy = "vertical",
             layout_config = {
                 preview_height = 10,
             },
         },
         lsp_document_symbols = {
-            layout_strategy = "vertical",
             previewer = false,
             symbol_width = 0.5,
         },
