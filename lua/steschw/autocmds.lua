@@ -24,3 +24,11 @@ vim.api.nvim_create_autocmd("FileType", {
         km.n("q", "<cmd>close<cr>", { buffer = event.buf })
     end,
 })
+
+vim.api.nvim_create_autocmd("BufRead", {
+    group = augroup("env"),
+    pattern = { "*.env" },
+    callback = function()
+        vim.bo.filetype = "sh"
+    end,
+})
