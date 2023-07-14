@@ -36,6 +36,7 @@ km.n("&", "<cmd>:&&<cr>")
 km.n("`", "^")
 km.n("gs", utils_formatting.format_write)
 km.n("<C-c>", '"+')
+km.n("<C-f>", '<cmd>let @+ = expand("%")<cr>')
 km.n("<C-x>", "@q")
 
 -- Movement
