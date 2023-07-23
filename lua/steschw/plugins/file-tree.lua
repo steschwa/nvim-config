@@ -6,7 +6,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<leader>e", "<cmd>NvimTreeToggle<cr>", "n" },
+            { "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", "n" },
         },
         init = function()
             vim.g.loaded = 1
