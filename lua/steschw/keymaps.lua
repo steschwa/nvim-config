@@ -66,3 +66,11 @@ map("i", "jk", "<esc>")
 
 -- better paste
 map("v", "p", '"_dP')
+
+-- bufferline
+map("n", "<S-h>", "<cmd>BufferPrevious<cr>")
+map("n", "<S-l>", "<cmd>BufferNext<cr>")
+map("n", "<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
+map("n", "<leader>bq", "<cmd>BufferClose<cr>")
+map("n", "<leader>bch", "<cmd>BufferCloseBuffersLeft<cr>")
+map("n", "<leader>bcl", "<cmd>BufferCloseBuffersRight<cr>")
