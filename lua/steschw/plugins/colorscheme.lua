@@ -1,17 +1,17 @@
 return {
     {
-    "gbprod/nord.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-        borders = true,
-        --diff = { mode = "bg" },
-        --errors = { mode = "bg" },
+        "gbprod/nord.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            borders = true,
+            --diff = { mode = "bg" },
+            --errors = { mode = "bg" },
+        },
+        config = function(_, opts)
+            local nord = require("nord")
+            nord.setup(opts)
+            vim.cmd("colorscheme nord")
+        end,
     },
-    config = function(_, opts)
-        local nord = require("nord")
-        nord.setup(opts)
-        vim.cmd("colorscheme nord")
-    end,
-  }
 }

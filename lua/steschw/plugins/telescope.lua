@@ -9,7 +9,7 @@ return {
 
             local mod_qflist = {}
             mod_qflist.smart_send_to_qflist = function(bufnr)
-                actions.smart_send_to_qflist(bufnr)
+                telescope_actions.smart_send_to_qflist(bufnr)
             end
             mod_qflist.open_qflist = function()
                 vim.cmd("Trouble quickfix")
@@ -90,13 +90,13 @@ return {
                     },
                 },
             })
-        end
+        end,
     },
     {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         dependencies = {
-            "nvim-telescope/telescope.nvim"
-        }
-    }
+            "nvim-telescope/telescope.nvim",
+        },
+    },
 }

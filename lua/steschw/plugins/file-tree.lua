@@ -3,10 +3,10 @@ return {
         "nvim-tree/nvim-tree.lua",
         pin = true,
         dependencies = {
-            "nvim-tree/nvim-web-devicons"
+            "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<leader>e", "<cmd>NvimTreeToggle<cr>", "n" }
+            { "<leader>e", "<cmd>NvimTreeToggle<cr>", "n" },
         },
         init = function()
             vim.g.loaded = 1
@@ -84,9 +84,9 @@ return {
                     dotfiles = true,
                 },
             })
-        end
+        end,
     },
     {
         "antosha417/nvim-lsp-file-operations",
-    }
+    },
 }

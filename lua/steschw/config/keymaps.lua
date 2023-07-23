@@ -3,17 +3,17 @@ local map = require("steschw.utils.keys").map
 map("n", "`", "^")
 
 -- better up/down with wrapped lines
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { remap = true })
-map("n", "<C-j>", "<C-w>j", { remap = true })
-map("n", "<C-k>", "<C-w>k", { remap = true })
-map("n", "<C-l>", "<C-w>l", { remap = true })
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
-map("n", "<C-u>", "<C-u>zz", { remap = true })
-map("n", "<C-d>", "<C-d>zz", { remap = true })
+map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-d>", "<C-d>zz")
 
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
@@ -37,7 +37,7 @@ map("v", ">", ">gv")
 
 -- highlights under cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
-  map("n", "<leader>ui", vim.show_pos)
+    map("n", "<leader>ui", vim.show_pos)
 end
 
 -- system clipboard helpers

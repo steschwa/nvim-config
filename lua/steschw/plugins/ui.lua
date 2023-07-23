@@ -2,15 +2,17 @@ local win_utils = require("steschw.utils.window")
 
 return {
     -- bufferline
-    { 
+    {
         "romgrk/barbar.nvim",
-        version = '^1.0.0',
+        version = "^1.0.0",
         event = "VeryLazy",
         dependencies = {
             "lewis6991/gitsigns.nvim",
-            "nvim-tree/nvim-web-devicons"
+            "nvim-tree/nvim-web-devicons",
         },
-        init = function() vim.g.barbar_auto_setup = false end,
+        init = function()
+            vim.g.barbar_auto_setup = false
+        end,
         opts = {
             animation = false,
             auto_hide = false,
@@ -26,7 +28,7 @@ return {
                 separator = { left = "▎", right = "" },
                 modified = { button = "" },
             },
-        }
+        },
     },
 
     -- statusline
@@ -34,7 +36,7 @@ return {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         dependencies = {
-            "nvim-tree/nvim-web-devicons"
+            "nvim-tree/nvim-web-devicons",
         },
         opts = {
             options = {
@@ -83,7 +85,7 @@ return {
                     },
                 },
             },
-        }
+        },
     },
 
     -- better vim.ui
@@ -146,6 +148,6 @@ return {
                     end
                 end,
             },
-        }
+        },
     },
 }

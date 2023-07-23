@@ -18,4 +18,3 @@ M.calc_width = function(options)
 end
 
 return M
-

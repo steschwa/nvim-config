@@ -5,7 +5,7 @@ return {
         build = ":TSUpdate",
         cmd = { "TSUpdateSync" },
         event = { "BufReadPost", "BufNewFile" },
-        config = function() 
+        config = function()
             local configs = require("nvim-treesitter.configs")
             configs.setup({
                 ensure_installed = "all",
@@ -67,7 +67,7 @@ return {
                     },
                 },
             })
-        end
+        end,
     },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
 }

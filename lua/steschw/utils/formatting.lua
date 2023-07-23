@@ -17,4 +17,3 @@ M.format_write = function(bufnr)
 end
 
 return M
-

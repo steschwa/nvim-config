@@ -1,11 +1,11 @@
 return {
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "windwp/nvim-ts-autotag" },
-    { 
-        'echasnovski/mini.comment',
-        version = '*',
+    {
+        "echasnovski/mini.comment",
+        version = "*",
         dependencies = {
-            "JoosepAlviste/nvim-ts-context-commentstring"
+            "JoosepAlviste/nvim-ts-context-commentstring",
         },
         opts = {
             options = {
@@ -21,18 +21,18 @@ return {
                 comment_line = "gcc",
                 textobject = "gc",
             },
-        }
+        },
     },
     {
-        'echasnovski/mini.pairs',
-        version = '*',
+        "echasnovski/mini.pairs",
+        version = "*",
         opts = {
             modes = {
                 insert = true,
                 command = false,
                 terminal = false,
             },
-        }
+        },
     },
     {
         "echasnovski/mini.surround",
@@ -49,7 +49,7 @@ return {
                 suffix_last = "",
                 suffix_next = "",
             },
-        }
+        },
     },
     {
         "echasnovski/mini.move",
@@ -71,6 +71,6 @@ return {
                 line_down = "<M-j>",
                 line_up = "<M-k>",
             },
-        }
-    }
+        },
+    },
 }

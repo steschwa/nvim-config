@@ -1,3 +1,9 @@
+local default_opts = {
+    noremap = true,
+    silent = true,
+    nowait = true,
+}
+
 local M = {}
 
 function M.map(mode, lhs, rhs, opts)
@@ -5,10 +11,7 @@ function M.map(mode, lhs, rhs, opts)
     --do not create the keymap if a lazy keys handler exists
     if not keys.active[keys.parse({ lhs, mode = mode }).id] then
         opts = opts or {}
-        opts.silent = opts.silent ~= false
-        if opts.remap and not vim.g.vscode then
-            opts.remap = nil
-        end
+        opts = vim.tbl_extend("force", default_opts, opts)
         vim.keymap.set(mode, lhs, rhs, opts)
     end
 end
