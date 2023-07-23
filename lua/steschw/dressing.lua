@@ -1,12 +1,11 @@
 local dressing = require("dressing")
 local window = require("steschw.utils.window")
-local debug_print = require("steschw.utils.debug").debug_print
 
 dressing.setup({
     input = {
         enabled = true,
         default_prompt = "Input:",
-        prompt_align = "left",
+        title_pos = "left",
         insert_only = false,
         start_in_insert = true,
         border = "rounded",
@@ -24,7 +23,7 @@ dressing.setup({
     },
     select = {
         enabled = true,
-        backend = { "nui", "builtin" },
+        backend = { "nui" },
         nui = {
             relative = "editor",
             position = "50%",
@@ -49,6 +48,7 @@ dressing.setup({
                     backend = "nui",
                     nui = {
                         min_width = window.calc_width({ percent = 0.4 }),
+                        max_width = window.calc_width({ percent = 0.8 }),
                     },
                 }
             end

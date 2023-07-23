@@ -63,12 +63,6 @@ km.n("<leader>q", "<cmd>Trouble quickfix<cr>")
 km.n("<leader>t", "<cmd>TodoTrouble<cr>")
 km.n("gr", "<cmd>Trouble lsp_references<cr>")
 km.n("gd", "<cmd>Trouble lsp_definitions<cr>")
-km.n("<C-n>", function()
-    pcall(trouble.next, { jump = true })
-end)
-km.n("<C-p>", function()
-    pcall(trouble.previous, { jump = true })
-end)
 km.n("<C-q>", "<cmd>TroubleClose<cr>")
 
 -- Nvim Tree
