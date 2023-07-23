@@ -1,10 +1,12 @@
 return {
     {
         "nvim-tree/nvim-tree.lua",
-        lazy = false,
         pin = true,
         dependencies = {
             "nvim-tree/nvim-web-devicons"
+        },
+        keys = {
+            { "<leader>e", "<cmd>NvimTreeToggle<cr>", "n" }
         },
         init = function()
             vim.g.loaded = 1
@@ -83,5 +85,8 @@ return {
                 },
             })
         end
+    },
+    {
+        "antosha417/nvim-lsp-file-operations",
     }
 }
