@@ -1,15 +1,4 @@
-local function map(mode, lhs, rhs, opts)
-    local keys = require("lazy.core.handler").handlers.keys
-    --do not create the keymap if a lazy keys handler exists
-    if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-        opts = opts or {}
-        opts.silent = opts.silent ~= false
-        if opts.remap and not vim.g.vscode then
-            opts.remap = nil
-        end
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
-end
+local map = require("steschw.utils.keys").map
 
 map("n", "`", "^")
 
@@ -74,3 +63,6 @@ map("n", "<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
 map("n", "<leader>bq", "<cmd>BufferClose<cr>")
 map("n", "<leader>bch", "<cmd>BufferCloseBuffersLeft<cr>")
 map("n", "<leader>bcl", "<cmd>BufferCloseBuffersRight<cr>")
+
+-- file-tree
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")

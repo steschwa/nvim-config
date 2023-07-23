@@ -5,6 +5,7 @@ return {
     { 
         "romgrk/barbar.nvim",
         version = '^1.0.0',
+        event = "VeryLazy",
         dependencies = {
             "lewis6991/gitsigns.nvim",
             "nvim-tree/nvim-web-devicons"
@@ -31,6 +32,7 @@ return {
     -- statusline
     {
         "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
         dependencies = {
             "nvim-tree/nvim-web-devicons"
         },
@@ -87,7 +89,6 @@ return {
     -- better vim.ui
     {
         "stevearc/dressing.nvim",
-        lazy = true,
         event = "VeryLazy",
         dependencies = {
             "MunifTanjim/nui.nvim",

@@ -8,8 +8,10 @@ return {
         --diff = { mode = "bg" },
         --errors = { mode = "bg" },
     },
-    config = function()
-      vim.cmd("colorscheme nord")
+    config = function(_, opts)
+        local nord = require("nord")
+        nord.setup(opts)
+        vim.cmd("colorscheme nord")
     end,
   }
 }
