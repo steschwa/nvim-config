@@ -90,3 +90,11 @@ end)
 map("n", "gs", function()
     require("steschw.utils.formatting").format_write()
 end)
+
+-- trouble
+map("n", "<leader>d", "<cmd>Trouble document_diagnostics<cr>")
+map("n", "<leader>q", "<cmd>Trouble quickfix<cr>")
+map("n", "gr", "<cmd>Trouble lsp_references<cr>")
+map("n", "gd", "<cmd>Trouble lsp_definitions<cr>")
+map("n", "<C-q>", "<cmd>TroubleClose<cr>")
+map("n", "<leader>t", "<cmd>TodoTrouble<cr>")

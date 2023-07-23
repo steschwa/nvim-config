@@ -1,5 +1,7 @@
+local augroup = require("steschw.utils.autocmd").augroup
+
 vim.api.nvim_create_autocmd("User", {
-    group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
+    group = augroup("LazyVim"),
     pattern = "VeryLazy",
     callback = function()
         require("steschw.config.keymaps")
