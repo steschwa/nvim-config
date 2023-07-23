@@ -63,3 +63,9 @@ map("n", "<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
 map("n", "<leader>bq", "<cmd>BufferClose<cr>")
 map("n", "<leader>bch", "<cmd>BufferCloseBuffersLeft<cr>")
 map("n", "<leader>bcl", "<cmd>BufferCloseBuffersRight<cr>")
+
+-- telescope
+local telescope = require("telescope.builtin")
+map("n", "<leader>p", telescope.find_files)
+map("n", "<leader>f", telescope.live_grep)
+map("n", "<leader>s", telescope.lsp_document_symbols)
