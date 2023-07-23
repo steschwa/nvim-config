@@ -57,12 +57,6 @@ return {
                         "diagnostics",
                         sources = { "nvim_lsp" },
                         sections = { "error", "warn", "info", "hint" },
-                        --symbols = {
-                        --    error = lsp_icons.error .. " ",
-                        --    warn = lsp_icons.warn .. " ",
-                        --    info = lsp_icons.info .. " ",
-                        --    hint = lsp_icons.hint .. " ",
-                        --},
                         colored = true,
                         update_in_insert = true,
                     },

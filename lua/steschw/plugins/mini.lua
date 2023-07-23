@@ -66,10 +66,10 @@ return {
                 up = "<C-k>",
 
                 -- normal mode
-                line_left = "<M-h>",
-                line_right = "<M-l>",
-                line_down = "<M-j>",
-                line_up = "<M-k>",
+                line_left = "",
+                line_right = "",
+                line_down = "",
+                line_up = "",
             },
         },
     },
