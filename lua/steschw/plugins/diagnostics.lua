@@ -1,6 +1,7 @@
 return {
     {
         "folke/trouble.nvim",
+        version = "^2.0.0",
         event = { "LspAttach" },
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
@@ -47,6 +48,7 @@ return {
     },
     {
         "folke/todo-comments.nvim",
+        version = "^1.0.0",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
