@@ -7,28 +7,29 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+map("n", "<C-h>", "<C-w>h", { remap = true })
+map("n", "<C-j>", "<C-w>j", { remap = true })
+map("n", "<C-k>", "<C-w>k", { remap = true })
+map("n", "<C-l>", "<C-w>l", { remap = true })
 
-map("n", "<C-u>", "<C-u>zz", { desc = "Go to right window", remap = true })
-map("n", "<C-d>", "<C-d>zz", { desc = "Go to upper window", remap = true })
+map("n", "<C-u>", "<C-u>zz", { remap = true })
+map("n", "<C-d>", "<C-d>zz", { remap = true })
 
 -- clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
+map("n", "<leader>n", "<cmd>noh<cr>")
 
 -- center screen after n/N
 map("n", "n", "nzz")
 map("n", "N", "Nzz")
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("n", "n", "'Nn'[v:searchforward]", { expr = true })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true })
+map("n", "N", "'nN'[v:searchforward]", { expr = true })
+map("x", "N", "'nN'[v:searchforward]", { expr = true })
+map("o", "N", "'nN'[v:searchforward]", { expr = true })
 
 -- better indenting
 map("v", "<", "<gv")
@@ -36,7 +37,7 @@ map("v", ">", ">gv")
 
 -- highlights under cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
-  map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+  map("n", "<leader>ui", vim.show_pos)
 end
 
 -- system clipboard helpers
@@ -69,3 +70,23 @@ local telescope = require("telescope.builtin")
 map("n", "<leader>p", telescope.find_files)
 map("n", "<leader>f", telescope.live_grep)
 map("n", "<leader>s", telescope.lsp_document_symbols)
+
+-- lsp
+map("n", "gh", vim.lsp.buf.hover)
+map("n", "gH", vim.diagnostic.open_float)
+map("n", "gR", vim.lsp.buf.rename)
+map("n", "ga", vim.lsp.buf.code_action)
+map("n", "gf", function()
+    require("steschw.utils.formatting").format()
+end)
+map("n", "gu", "<cmd>TypescriptRemoveUnused<cr>")
+map("n", "go", "<cmd>TypescriptOrganizeImports<cr>")
+map("n", "[d", function()
+    vim.diagnostic.goto_next({ float = false })
+end)
+map("n", "]d", function()
+    vim.diagnostic.goto_prev({ float = false })
+end)
+map("n", "gs", function()
+    require("steschw.utils.formatting").format_write()
+end)
