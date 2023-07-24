@@ -5,8 +5,8 @@ return {
         priority = 1000,
         opts = {
             borders = true,
-            --diff = { mode = "bg" },
-            --errors = { mode = "bg" },
+            diff = { mode = "fg" },
+            errors = { mode = "bg" },
         },
         config = function(_, opts)
             local nord = require("nord")

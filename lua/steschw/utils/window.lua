@@ -1,14 +1,14 @@
 local M = {}
 
-M.width = function()
+function M.width()
     return vim.o.columns
 end
 
-M.padding = function(padding)
+function M.padding(padding)
     return 2 * math.floor(padding)
 end
 
-M.calc_width = function(options)
+function M.calc_width(options)
     local padding = options.padding or 0
     local percent = options.percent or 1
 

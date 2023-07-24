@@ -1,6 +1,6 @@
 local M = {}
 
-M.format = function(bufnr)
+function M.format(bufnr)
     pcall(vim.lsp.buf.format, {
         filter = function(client)
             return client.name == "null-ls"
@@ -9,7 +9,7 @@ M.format = function(bufnr)
     })
 end
 
-M.format_write = function(bufnr)
+function M.format_write(bufnr)
     pcall(function()
         M.format(bufnr)
         vim.cmd("w")
