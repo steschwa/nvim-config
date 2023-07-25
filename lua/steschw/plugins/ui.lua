@@ -134,4 +134,28 @@ return {
             },
         },
     },
+    {
+        "ThePrimeagen/harpoon",
+        keys = {
+            {
+                "<leader>h",
+                mode = { "n" },
+                function()
+                    require("harpoon.ui").toggle_quick_menu()
+                end,
+            },
+            {
+                "<leader>m",
+                mode = { "n" },
+                function()
+                    require("harpoon.mark").add_file()
+                end,
+            },
+        },
+        opts = {
+            menu = {
+                width = win_utils.calc_width({ padding = 16 }),
+            },
+        },
+    },
 }
