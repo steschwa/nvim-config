@@ -13,6 +13,7 @@ return {
             fold_closed = "",
             group = true,
             padding = false,
+            include_declaration = { "lsp_definitions" },
             action_keys = {
                 -- map to {} to remove a mapping, for example:
                 -- close = {},
