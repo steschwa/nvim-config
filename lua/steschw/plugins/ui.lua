@@ -138,14 +138,14 @@ return {
         "ThePrimeagen/harpoon",
         keys = {
             {
-                "<leader>h",
+                "<leader>hh",
                 mode = { "n" },
                 function()
                     require("harpoon.ui").toggle_quick_menu()
                 end,
             },
             {
-                "<leader>m",
+                "<leader>ha",
                 mode = { "n" },
                 function()
                     require("harpoon.mark").add_file()
@@ -155,6 +155,20 @@ return {
         opts = {
             menu = {
                 width = win_utils.calc_width({ padding = 16 }),
+            },
+        },
+    },
+    {
+        "chentoast/marks.nvim",
+        event = "VeryLazy",
+        opts = {
+            default_mappings = false,
+            refresh_interval = 500,
+            mappings = {
+                set_next = "ma",
+                delete_line = "md",
+                next = "]m",
+                prev = "[m",
             },
         },
     },
