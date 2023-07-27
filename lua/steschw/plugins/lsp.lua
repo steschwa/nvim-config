@@ -128,6 +128,19 @@ return {
                             },
                         })
                     end,
+                    ["yamlls"] = function()
+                        lspconfig.yamlls.setup({
+                            settings = {
+                                yaml = {
+                                    schemaStore = {
+                                        enable = false,
+                                        url = "",
+                                    },
+                                    schemas = require("schemastore").yaml.schemas(),
+                                },
+                            },
+                        })
+                    end,
                 },
             })
         end,
