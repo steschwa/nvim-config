@@ -115,7 +115,7 @@ return {
                 nui = {
                     relative = "editor",
                     position = "50%",
-                    min_width = win_utils.calc_width({ percent = 0.6 }),
+                    min_width = win_utils.calc_width({ percent = 0.4 }),
                     max_width = win_utils.calc_width({ percent = 0.8 }),
                     border = {
                         style = "rounded",
