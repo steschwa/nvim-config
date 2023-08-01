@@ -17,8 +17,7 @@ require("lazy").setup("steschw.plugins", {
         version = false,
     },
     ui = {
-        border = "single",
-        title = "Lazy Plugin Manager",
+        border = "rounded",
     },
     checker = { enabled = true },
 })

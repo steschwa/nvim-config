@@ -98,6 +98,3 @@ map("n", "gr", "<cmd>Trouble lsp_references<cr>")
 map("n", "gd", "<cmd>Trouble lsp_definitions<cr>")
 map("n", "<C-q>", "<cmd>TroubleClose<cr>")
 map("n", "<leader>t", "<cmd>TodoTrouble<cr>")
-
--- marks
-map("n", "<leader>m", "<cmd>MarksQFListBuf<cr>")

@@ -37,49 +37,60 @@ return {
         event = "VeryLazy",
         dependencies = {
             "nvim-tree/nvim-web-devicons",
+            "cbochs/grapple.nvim",
         },
-        opts = {
-            options = {
-                theme = "nord",
-                globalstatus = true,
-                component_separators = "",
-                section_separators = "",
-            },
-            extensions = {
-                "nvim-tree",
-                "trouble",
-                "quickfix",
-            },
-            sections = {
-                lualine_a = { "mode" },
-                lualine_b = {
-                    {
-                        "diagnostics",
-                        sources = { "nvim_lsp" },
-                        sections = { "error", "warn", "info", "hint" },
-                        colored = true,
-                        update_in_insert = true,
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "nord",
+                    globalstatus = true,
+                    component_separators = "",
+                    section_separators = "",
+                },
+                extensions = {
+                    "nvim-tree",
+                    "trouble",
+                    "quickfix",
+                },
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = {
+                        {
+                            "diagnostics",
+                            sources = { "nvim_lsp" },
+                            sections = { "error", "warn", "info", "hint" },
+                            colored = true,
+                            update_in_insert = true,
+                        },
+                    },
+                    lualine_c = {
+                        {
+                            function()
+                                local key = require("grapple").key()
+                                return " [" .. key .. "]"
+                            end,
+                            cond = require("grapple").exists,
+                        },
+                    },
+                    lualine_x = {},
+                    lualine_y = {
+                        {
+                            "filename",
+                            file_status = false,
+                            newfile_status = false,
+                            path = 4,
+                            shorting_target = 100,
+                        },
+                    },
+                    lualine_z = {
+                        {
+                            require("lazy.status").updates,
+                            cond = require("lazy.status").has_updates,
+                        },
                     },
                 },
-                lualine_c = {},
-                lualine_x = {},
-                lualine_y = {
-                    {
-                        "filename",
-                        file_status = false,
-                        newfile_status = false,
-                        path = 4,
-                        shorting_target = 100,
-                    },
-                },
-                lualine_z = {
-                    {
-                        require("lazy.status").updates,
-                        cond = require("lazy.status").has_updates,
-                    },
-                },
-            },
-        },
+            })
+        end,
     },
 
     -- better vim.ui
@@ -134,41 +145,33 @@ return {
             },
         },
     },
+
+    -- file marks
     {
-        "ThePrimeagen/harpoon",
+        "cbochs/grapple.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
         keys = {
             {
-                "<leader>hh",
+                "mm",
                 mode = { "n" },
                 function()
-                    require("harpoon.ui").toggle_quick_menu()
+                    require("grapple").toggle()
                 end,
             },
             {
-                "<leader>ha",
+                "<leader>m",
                 mode = { "n" },
                 function()
-                    require("harpoon.mark").add_file()
+                    require("grapple").popup_tags()
                 end,
             },
         },
         opts = {
-            menu = {
-                width = win_utils.calc_width({ padding = 16 }),
-            },
-        },
-    },
-    {
-        "chentoast/marks.nvim",
-        event = "VeryLazy",
-        opts = {
-            default_mappings = false,
-            refresh_interval = 500,
-            mappings = {
-                set_next = "ma",
-                delete_line = "md",
-                next = "]m",
-                prev = "[m",
+            popup_options = {
+                border = "rounded",
+                width = win_utils.calc_width({ percent = 0.7 }),
             },
         },
     },
