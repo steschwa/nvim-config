@@ -35,13 +35,6 @@ local cmp_hl = {
     CmpDocBorder = { link = "TelescopeBorder" },
 }
 
-local harpoon_hl = {
-    HarpoonCurrentFile = { fg = nord.frost.artic_water },
-    HarpoonBorder = { link = "TelescopeBorder" },
-}
-
-local highlights = vim.tbl_extend("force", cmp_hl, harpoon_hl)
-
-for hl, col in pairs(highlights) do
+for hl, col in pairs(cmp_hl) do
     vim.api.nvim_set_hl(0, hl, col)
 end

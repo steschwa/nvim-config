@@ -16,7 +16,6 @@ vim.api.nvim_create_autocmd("FileType", {
         "qf",
         "Trouble",
         "DressingSelect",
-        "harpoon",
         "vim",
     },
     callback = function(event)
