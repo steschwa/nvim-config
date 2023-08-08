@@ -98,3 +98,7 @@ map("n", "gr", "<cmd>Trouble lsp_references<cr>")
 map("n", "gd", "<cmd>Trouble lsp_definitions<cr>")
 map("n", "<C-q>", "<cmd>TroubleClose<cr>")
 map("n", "<leader>t", "<cmd>TodoTrouble<cr>")
+
+-- git
+map("n", "<leader>gb", "<cmd>Gitsigns blame_line<cr>")
+map("n", "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>")
