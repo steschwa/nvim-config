@@ -96,9 +96,6 @@ return {
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        },
         opts = {
             input = {
                 enabled = true,
@@ -121,16 +118,11 @@ return {
             },
             select = {
                 enabled = true,
-                backend = { "nui" },
-                nui = {
-                    relative = "editor",
-                    position = "50%",
+                backend = { "builtin" },
+                trim_prompt = true,
+                builtin = {
                     min_width = win_utils.calc_width({ percent = 0.4 }),
                     max_width = win_utils.calc_width({ percent = 0.8 }),
-                    border = {
-                        style = "rounded",
-                        padding = { 1, 2 },
-                    },
                 },
                 mappings = {
                     n = {
