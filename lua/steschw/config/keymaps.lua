@@ -102,3 +102,5 @@ map("n", "<leader>t", "<cmd>TodoTrouble<cr>")
 -- git
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<cr>")
 map("n", "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>")
+map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>")
+map("n", "]h", "<cmd>Gitsigns next_hunk<cr>")
