@@ -13,7 +13,7 @@ return {
                 start_of_line = false,
                 pad_comment_parts = true,
                 custom_commentstring = function()
-                    return require("ts_context_commentstring.internal").calculate_commentstring()
+                    return require("ts_context_commentstring").calculate_commentstring()
                 end,
             },
             mappings = {
