@@ -90,67 +90,63 @@ return {
                     "tailwindcss",
                     "gopls",
                 },
-                handlers = {
-                    function(server_name)
-                        require("lspconfig")[server_name].setup(server_options)
-                    end,
-                    ["lua_ls"] = function()
-                        local lua_opts = {
-                            settings = {
-                                Lua = {
-                                    diagnostics = {
-                                        globals = { "vim" },
-                                    },
-                                    workspace = {
-                                        library = {
-                                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                            [vim.fn.stdpath("config") .. "/lua"] = true,
-                                        },
+            })
+            mason_lspconfig.setup_handlers({
+                function(server_name)
+                    require("lspconfig")[server_name].setup(server_options)
+                end,
+                ["lua_ls"] = function()
+                    local lua_opts = {
+                        settings = {
+                            Lua = {
+                                diagnostics = {
+                                    globals = { "vim" },
+                                },
+                                workspace = {
+                                    library = {
+                                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                        [vim.fn.stdpath("config") .. "/lua"] = true,
                                     },
                                 },
                             },
-                        }
-                        lspconfig.lua_ls.setup(
-                            vim.tbl_deep_extend("force", lua_opts, server_options)
-                        )
-                    end,
-                    ["tsserver"] = function()
-                        local ts_server = require("typescript")
-                        ts_server.setup({ server = server_options })
-                    end,
-                    ["jsonls"] = function()
-                        lspconfig.jsonls.setup({
-                            settings = {
-                                json = {
-                                    schemas = require("schemastore").json.schemas(),
-                                    validate = { enable = true },
-                                },
+                        },
+                    }
+                    lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", lua_opts, server_options))
+                end,
+                ["tsserver"] = function()
+                    local ts_server = require("typescript")
+                    ts_server.setup({ server = server_options })
+                end,
+                ["jsonls"] = function()
+                    lspconfig.jsonls.setup({
+                        settings = {
+                            json = {
+                                schemas = require("schemastore").json.schemas(),
+                                validate = { enable = true },
                             },
-                        })
-                    end,
-                    ["yamlls"] = function()
-                        lspconfig.yamlls.setup({
-                            settings = {
-                                yaml = {
-                                    schemaStore = {
-                                        enable = false,
-                                        url = "",
-                                    },
-                                    schemas = require("schemastore").yaml.schemas(),
+                        },
+                    })
+                end,
+                ["yamlls"] = function()
+                    lspconfig.yamlls.setup({
+                        settings = {
+                            yaml = {
+                                schemaStore = {
+                                    enable = false,
+                                    url = "",
                                 },
+                                schemas = require("schemastore").yaml.schemas(),
                             },
-                        })
-                    end,
-                },
+                        },
+                    })
+                end,
             })
         end,
     },
     {
         "williamboman/mason.nvim",
         cmd = "Mason",
-        config = function()
-            require("mason").setup()
-        end,
+        config = true,
     },
     {
         "williamboman/mason-lspconfig.nvim",
