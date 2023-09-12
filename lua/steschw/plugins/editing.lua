@@ -39,9 +39,9 @@ return {
         version = "*",
         opts = {
             mappings = {
-                add = "sa",
-                delete = "sd",
-                replace = "sr",
+                add = "<C-s>a",
+                delete = "<C-s>d",
+                replace = "<C-s>r",
                 update_n_lines = "",
                 find = "",
                 find_left = "",

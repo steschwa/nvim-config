@@ -5,7 +5,7 @@ return {
         keys = {
             {
                 "s",
-                mode = { "n", "x", "o" },
+                mode = { "n", "o" },
                 function()
                     require("flash").jump()
                 end,
@@ -13,19 +13,18 @@ return {
             },
             {
                 "S",
-                mode = { "n", "o", "x" },
+                mode = { "n" },
                 function()
                     require("flash").treesitter()
                 end,
                 desc = "Flash Treesitter",
             },
-            {
-                "<c-s>",
-                mode = { "c" },
-                function()
-                    require("flash").toggle()
-                end,
-                desc = "Toggle Flash Search",
+        },
+        opts = {
+            modes = {
+                search = {
+                    enabled = false,
+                },
             },
         },
     },
