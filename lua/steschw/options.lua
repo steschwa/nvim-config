@@ -44,3 +44,10 @@ opt.writebackup = false
 opt.splitkeep = "cursor"
 
 opt.whichwrap:append("<,>,[,],h,l")
+
+vim.filetype.add({
+    extension = {
+        env = "sh",
+        hurl = "hurl",
+    },
+})
