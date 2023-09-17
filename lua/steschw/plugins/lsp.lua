@@ -164,26 +164,48 @@ return {
         config = function()
             local null_ls = require("null-ls")
 
-            local formatting = null_ls.builtins.formatting
             local diagnostics = null_ls.builtins.diagnostics
 
             local sources = {
-                formatting.prettierd.with({
-                    env = {
-                        PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc"),
-                    },
-                }),
                 diagnostics.eslint_d,
                 require("typescript.extensions.null-ls.code-actions"),
                 diagnostics.revive,
-                formatting.goimports,
-                formatting.black,
-                formatting.stylua,
             }
 
             null_ls.setup({
                 debug = false,
                 sources = sources,
+            })
+        end,
+    },
+    {
+        "stevearc/conform.nvim",
+        config = function()
+            local conform = require("conform")
+
+            local prettierd = require("conform.formatters.prettierd")
+
+            conform.setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    python = { "black" },
+                    go = { "goimports" },
+                    javascript = { "prettierd" },
+                    javascriptreact = { "prettierd" },
+                    html = { "prettierd" },
+                    css = { "prettierd" },
+                    scss = { "prettierd" },
+                    typescript = { "prettierd" },
+                    typescriptreact = { "prettierd" },
+                    json = { "prettierd" },
+                },
+                formatters = {
+                    prettierd = vim.tbl_deep_extend("force", prettierd, {
+                        env = {
+                            PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/dotfiles/.prettierrc"),
+                        },
+                    }),
+                },
             })
         end,
     },

@@ -1,19 +1,12 @@
 local M = {}
 
 function M.format(bufnr)
-    pcall(vim.lsp.buf.format, {
-        filter = function(client)
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-    })
+    require("conform").format({ bufnr = bufnr })
 end
 
 function M.format_write(bufnr)
-    pcall(function()
-        M.format(bufnr)
-        vim.cmd("w")
-    end)
+    require("conform").format({ bufnr = bufnr })
+    vim.cmd("w")
 end
 
 return M
