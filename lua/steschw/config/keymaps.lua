@@ -88,7 +88,7 @@ map("n", "gs", function()
     require("steschw.utils.formatting").format_write()
 end)
 map("n", "gf", function()
-    print(vim.bo.filetype)
+    require("steschw.utils.formatting").format()
 end)
 
 -- trouble
@@ -104,3 +104,7 @@ map("n", "gb", "<cmd>Gitsigns blame_line<cr>")
 map("n", "gp", "<cmd>Gitsigns preview_hunk_inline<cr>")
 map("n", "[g", "<cmd>Gitsigns next_hunk<cr>")
 map("n", "]g", "<cmd>Gitsigns prev_hunk<cr>")
+
+map("n", "<C-t>", function()
+    print(vim.bo.filetype)
+end)
