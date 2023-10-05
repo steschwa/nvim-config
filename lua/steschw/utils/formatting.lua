@@ -1,12 +1,16 @@
 local M = {}
 
 function M.format(bufnr)
-    require("conform").format({ bufnr = bufnr })
+    pcall(function()
+        require("conform").format({ bufnr = bufnr })
+    end)
 end
 
 function M.format_write(bufnr)
-    require("conform").format({ bufnr = bufnr })
-    vim.cmd("w")
+    pcall(function()
+        require("conform").format({ bufnr = bufnr })
+        vim.cmd("w")
+    end)
 end
 
 return M
