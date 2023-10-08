@@ -199,6 +199,7 @@ return {
                     typescript = { "prettierd" },
                     typescriptreact = { "prettierd" },
                     json = { "prettierd" },
+                    yaml = { "prettierd" },
                 },
                 formatters = {
                     prettierd = vim.tbl_deep_extend("force", prettierd, {
