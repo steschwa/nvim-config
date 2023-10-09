@@ -6,6 +6,7 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "williamboman/mason-lspconfig.nvim",
             "creativenull/efmls-configs-nvim",
+            "b0o/schemastore.nvim",
         },
         config = function()
             local signs = {
@@ -85,7 +86,6 @@ return {
             mason_lspconfig.setup({
                 ensure_installed = {
                     "lua_ls",
-                    "tsserver",
                     "jsonls",
                     "cssls",
                     "tailwindcss",
@@ -114,10 +114,6 @@ return {
                         },
                     }
                     lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", lua_opts, server_options))
-                end,
-                ["tsserver"] = function()
-                    local ts_server = require("typescript")
-                    ts_server.setup({ server = server_options })
                 end,
                 ["jsonls"] = function()
                     lspconfig.jsonls.setup({
@@ -190,7 +186,9 @@ return {
         },
     },
     {
-        "jose-elias-alvarez/typescript.nvim",
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        config = true,
     },
     {
         "b0o/schemastore.nvim",
