@@ -19,5 +19,5 @@ require("lazy").setup("steschw.plugins", {
     ui = {
         border = "rounded",
     },
-    checker = { enabled = true },
+    checker = { enabled = true, notify = false },
 })
