@@ -5,6 +5,7 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "williamboman/mason-lspconfig.nvim",
+            "creativenull/efmls-configs-nvim",
         },
         config = function()
             local signs = {
@@ -89,6 +90,7 @@ return {
                     "cssls",
                     "tailwindcss",
                     "gopls",
+                    "efm",
                 },
             })
             mason_lspconfig.setup_handlers({
@@ -140,6 +142,32 @@ return {
                         },
                     })
                 end,
+                ["efm"] = function()
+                    local eslint_d = require("efmls-configs.linters.eslint_d")
+                    local revive = require("efmls-configs.linters.go_revive")
+
+                    local languages = {
+                        typescript = { eslint_d },
+                        typescriptreact = { eslint_d },
+                        javascript = { eslint_d },
+                        javascriptreact = { eslint_d },
+                        go = { revive },
+                    }
+
+                    local efm_opts = {
+                        filetypes = vim.tbl_keys(languages),
+                        settings = {
+                            rootMarkers = { ".git/" },
+                            languages = languages,
+                        },
+                        init_options = {
+                            documentFormatting = false,
+                            documentRangeFormatting = false,
+                        },
+                    }
+
+                    lspconfig.efm.setup(vim.tbl_deep_extend("force", efm_opts, server_options))
+                end,
             })
         end,
     },
@@ -155,28 +183,17 @@ return {
         },
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "creativenull/efmls-configs-nvim",
+        version = "v1.x.x",
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "jose-elias-alvarez/typescript.nvim",
-            "b0o/schemastore.nvim",
+            "neovim/nvim-lspconfig",
         },
-        config = function()
-            local null_ls = require("null-ls")
-
-            local diagnostics = null_ls.builtins.diagnostics
-
-            local sources = {
-                diagnostics.eslint_d,
-                require("typescript.extensions.null-ls.code-actions"),
-                diagnostics.revive,
-            }
-
-            null_ls.setup({
-                debug = false,
-                sources = sources,
-            })
-        end,
+    },
+    {
+        "jose-elias-alvarez/typescript.nvim",
+    },
+    {
+        "b0o/schemastore.nvim",
     },
     {
         "stevearc/conform.nvim",
