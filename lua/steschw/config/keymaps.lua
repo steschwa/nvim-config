@@ -35,12 +35,8 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true })
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- highlights under cursor
-map("n", "<leader>ui", "<cmd>Inspect<cr>")
-
 -- system clipboard helpers
 map({ "n", "v" }, "<C-c>", '"+')
-map("n", "<C-f>", '<cmd>let @+ = expand("%")<cr>')
 
 -- macros
 map("n", "<C-x>", "@q")
@@ -49,7 +45,7 @@ map("n", "<C-x>", "@q")
 map("n", "<leader>wl", "<C-w>v")
 map("n", "<leader>wq", "<C-w>q")
 
--- close insert on jk
+-- leave insert on jk
 map("i", "jk", "<esc>")
 
 -- better paste
@@ -104,6 +100,9 @@ map("n", "gp", "<cmd>Gitsigns preview_hunk_inline<cr>")
 map("n", "[g", "<cmd>Gitsigns next_hunk<cr>")
 map("n", "]g", "<cmd>Gitsigns prev_hunk<cr>")
 
+-- misc
 map("n", "<C-t>", function()
     print(vim.bo.filetype)
 end)
+map("n", "<leader>ui", "<cmd>Inspect<cr>")
+map("n", "<C-f>", '<cmd>let @+ = expand("%")<cr>')
