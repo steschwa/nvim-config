@@ -50,6 +50,8 @@ return {
                     "nvim-tree",
                     "trouble",
                     "quickfix",
+                    "lazy",
+                    "mason",
                 },
                 sections = {
                     lualine_a = { "mode" },
