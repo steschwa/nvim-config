@@ -36,9 +36,7 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- highlights under cursor
-if vim.fn.has("nvim-0.9.0") == 1 then
-    map("n", "<leader>ui", vim.show_pos)
-end
+map("n", "<leader>ui", "<cmd>Inspect<cr>")
 
 -- system clipboard helpers
 map({ "n", "v" }, "<C-c>", '"+')
