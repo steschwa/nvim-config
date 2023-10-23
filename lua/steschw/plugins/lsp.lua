@@ -1,3 +1,5 @@
+local augroup = require("steschw.utils.autocmd").augroup
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -51,7 +53,6 @@ return {
 
             local on_attach = function(client)
                 if client.server_capabilities.document_highlight then
-                    local augroup = require("steschw.utils.autocmd").augroup
                     local group = augroup("lsp_document_highlight")
 
                     vim.api.nvim_create_autocmd("CursorHold", {
@@ -138,32 +139,6 @@ return {
                         },
                     })
                 end,
-                ["efm"] = function()
-                    local eslint_d = require("efmls-configs.linters.eslint_d")
-                    local revive = require("efmls-configs.linters.go_revive")
-
-                    local languages = {
-                        typescript = { eslint_d },
-                        typescriptreact = { eslint_d },
-                        javascript = { eslint_d },
-                        javascriptreact = { eslint_d },
-                        go = { revive },
-                    }
-
-                    local efm_opts = {
-                        filetypes = vim.tbl_keys(languages),
-                        settings = {
-                            rootMarkers = { ".git/" },
-                            languages = languages,
-                        },
-                        init_options = {
-                            documentFormatting = false,
-                            documentRangeFormatting = false,
-                        },
-                    }
-
-                    lspconfig.efm.setup(vim.tbl_deep_extend("force", efm_opts, server_options))
-                end,
             })
         end,
     },
@@ -223,6 +198,27 @@ return {
                         },
                     }),
                 },
+            })
+        end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            local lint = require("lint")
+            lint.linters_by_ft = {
+                typescript = { "eslint_d" },
+                typescriptreact = { "eslint_d" },
+                javascript = { "eslint_d" },
+                javascriptreact = { "eslint_d" },
+                go = { "revive" },
+            }
+
+            vim.api.nvim_create_autocmd({ "BufReadPost", "InsertLeave" }, {
+                group = augroup("lint"),
+                callback = function()
+                    require("lint").try_lint()
+                end,
             })
         end,
     },
