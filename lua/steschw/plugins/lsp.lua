@@ -7,7 +7,6 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "williamboman/mason-lspconfig.nvim",
-            "creativenull/efmls-configs-nvim",
             "b0o/schemastore.nvim",
         },
         config = function()
@@ -91,7 +90,6 @@ return {
                     "cssls",
                     "tailwindcss",
                     "gopls",
-                    "efm",
                 },
             })
             mason_lspconfig.setup_handlers({
@@ -154,13 +152,6 @@ return {
         },
     },
     {
-        "creativenull/efmls-configs-nvim",
-        version = "v1.x.x",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-    },
-    {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         config = true,
@@ -214,12 +205,15 @@ return {
                 go = { "revive" },
             }
 
-            vim.api.nvim_create_autocmd({ "BufReadPost", "InsertLeave" }, {
-                group = augroup("lint"),
-                callback = function()
-                    require("lint").try_lint()
-                end,
-            })
+            vim.api.nvim_create_autocmd(
+                { "BufReadPost", "BufWritePost", "InsertLeave", "CursorHold" },
+                {
+                    group = augroup("lint"),
+                    callback = function()
+                        require("lint").try_lint()
+                    end,
+                }
+            )
         end,
     },
 
