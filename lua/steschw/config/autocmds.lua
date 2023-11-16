@@ -1,4 +1,4 @@
-local map = require("steschw.utils.keys").map
+local keymap = require("steschw.utils.keys").keymap
 local augroup = require("steschw.utils.autocmd").augroup
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -20,6 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
-        map("n", "q", "<cmd>close<cr>", { buffer = event.buf })
+        keymap("n", "q", "<cmd>close<cr>", { buffer = event.buf })
     end,
 })

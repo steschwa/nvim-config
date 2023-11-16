@@ -14,35 +14,35 @@ return {
         end,
         config = function()
             local nvim_tree = require("nvim-tree")
-            local map = require("steschw.utils.keys").map
+            local keymap = require("steschw.utils.keys").keymap
 
             local function on_attach(bufnr)
                 local api = require("nvim-tree.api")
 
                 local opts = { buffer = bufnr }
 
-                map("n", "q", api.tree.close, opts)
-                map("n", "v", api.node.open.vertical, opts)
-                map("n", "P", api.node.navigate.parent, opts)
-                map("n", "K", api.node.navigate.sibling.first, opts)
-                map("n", "J", api.node.navigate.sibling.last, opts)
-                map("n", "I", api.tree.toggle_gitignore_filter, opts)
-                map("n", "H", api.tree.toggle_hidden_filter, opts)
-                map("n", "W", api.tree.collapse_all, opts)
-                map("n", "E", api.tree.expand_all, opts)
-                map("n", "<CR>", api.node.open.edit, opts)
-                map("n", "l", api.node.open.edit, opts)
-                map("n", "h", api.node.navigate.parent_close, opts)
-                map("n", "a", api.fs.create, opts)
-                map("n", "d", api.fs.remove, opts)
-                map("n", "r", api.fs.rename, opts)
-                map("n", "y", api.fs.copy.node, opts)
-                map("n", "x", api.fs.cut, opts)
-                map("n", "p", api.fs.paste, opts)
-                map("n", "f", api.live_filter.start, opts)
-                map("n", "F", api.live_filter.clear, opts)
-                map("n", "m", api.node.open.preview, opts)
-                map("n", "o", api.node.run.system, opts)
+                keymap("n", "q", api.tree.close, opts)
+                keymap("n", "v", api.node.open.vertical, opts)
+                keymap("n", "P", api.node.navigate.parent, opts)
+                keymap("n", "K", api.node.navigate.sibling.first, opts)
+                keymap("n", "J", api.node.navigate.sibling.last, opts)
+                keymap("n", "I", api.tree.toggle_gitignore_filter, opts)
+                keymap("n", "H", api.tree.toggle_hidden_filter, opts)
+                keymap("n", "W", api.tree.collapse_all, opts)
+                keymap("n", "E", api.tree.expand_all, opts)
+                keymap("n", "<CR>", api.node.open.edit, opts)
+                keymap("n", "l", api.node.open.edit, opts)
+                keymap("n", "h", api.node.navigate.parent_close, opts)
+                keymap("n", "a", api.fs.create, opts)
+                keymap("n", "d", api.fs.remove, opts)
+                keymap("n", "r", api.fs.rename, opts)
+                keymap("n", "y", api.fs.copy.node, opts)
+                keymap("n", "x", api.fs.cut, opts)
+                keymap("n", "p", api.fs.paste, opts)
+                keymap("n", "f", api.live_filter.start, opts)
+                keymap("n", "F", api.live_filter.clear, opts)
+                keymap("n", "m", api.node.open.preview, opts)
+                keymap("n", "o", api.node.run.system, opts)
             end
 
             nvim_tree.setup({

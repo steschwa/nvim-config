@@ -10,7 +10,7 @@ local M = {}
 ---@param lhs string
 ---@param rhs string|function
 ---@param opts? table
-function M.map(mode, lhs, rhs, opts)
+function M.keymap(mode, lhs, rhs, opts)
     local keys = require("lazy.core.handler").handlers.keys
     --do not create the keymap if a lazy keys handler exists
     if not keys.active[keys.parse({ lhs, mode = mode }).id] then
