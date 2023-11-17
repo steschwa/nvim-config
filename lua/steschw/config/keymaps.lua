@@ -6,30 +6,12 @@ keymap("n", "`", "^")
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
--- move to window using the <ctrl> hjkl keys
-keymap("n", "<C-h>", "<C-w>h")
-keymap("n", "<C-j>", "<C-w>j")
-keymap("n", "<C-k>", "<C-w>k")
-keymap("n", "<C-l>", "<C-w>l")
-
 keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "<C-d>", "<C-d>zz")
 
 -- clear search with <esc>
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 keymap("n", "<leader>n", "<cmd>noh<cr>")
-
--- center screen after n/N
-keymap("n", "n", "nzz")
-keymap("n", "N", "Nzz")
-
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-keymap("n", "n", "'Nn'[v:searchforward]", { expr = true })
-keymap("x", "n", "'Nn'[v:searchforward]", { expr = true })
-keymap("o", "n", "'Nn'[v:searchforward]", { expr = true })
-keymap("n", "N", "'nN'[v:searchforward]", { expr = true })
-keymap("x", "N", "'nN'[v:searchforward]", { expr = true })
-keymap("o", "N", "'nN'[v:searchforward]", { expr = true })
 
 -- better indenting
 keymap("v", "<", "<gv")
@@ -42,8 +24,12 @@ keymap({ "n", "v" }, "<C-c>", '"+')
 keymap("n", "<C-x>", "@q")
 
 -- windows
-keymap("n", "<leader>wl", "<C-w>v")
-keymap("n", "<leader>wq", "<C-w>q")
+keymap("n", "wp", "<C-w>v")
+keymap("n", "wc", "<C-w>q")
+keymap("n", "wh", "<C-w>h")
+keymap("n", "wj", "<C-w>j")
+keymap("n", "wk", "<C-w>k")
+keymap("n", "wl", "<C-w>l")
 
 -- leave insert on jk
 keymap("i", "jk", "<esc>")
@@ -54,10 +40,10 @@ keymap("v", "p", '"_dP')
 -- bufferline
 keymap("n", "<S-h>", "<cmd>BufferPrevious<cr>")
 keymap("n", "<S-l>", "<cmd>BufferNext<cr>")
-keymap("n", "<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
-keymap("n", "<leader>bq", "<cmd>BufferClose<cr>")
-keymap("n", "<leader>bch", "<cmd>BufferCloseBuffersLeft<cr>")
-keymap("n", "<leader>bcl", "<cmd>BufferCloseBuffersRight<cr>")
+keymap("n", "ba", "<cmd>BufferCloseAllButCurrent<cr>")
+keymap("n", "bc", "<cmd>BufferClose<cr>")
+keymap("n", "bh", "<cmd>BufferCloseBuffersLeft<cr>")
+keymap("n", "bl", "<cmd>BufferCloseBuffersRight<cr>")
 
 -- telescope
 local telescope = require("telescope.builtin")
@@ -86,7 +72,7 @@ keymap("n", "gf", function()
     require("steschw.utils.formatting").format()
 end)
 keymap("n", "gl", function()
-    require("lint").try_lint()
+    require("steschw.utils.linting").lint()
 end)
 
 -- trouble
