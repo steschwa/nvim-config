@@ -3,14 +3,12 @@ return {
         "gbprod/nord.nvim",
         lazy = false,
         priority = 1000,
-        opts = {
-            borders = true,
-            diff = { mode = "fg" },
-            errors = { mode = "bg" },
-        },
-        config = function(_, opts)
-            local nord = require("nord")
-            nord.setup(opts)
+        config = function()
+            require("nord").setup({
+                borders = true,
+                diff = { mode = "fg" },
+                errors = { mode = "bg" },
+            })
             vim.cmd("colorscheme nord")
         end,
     },
