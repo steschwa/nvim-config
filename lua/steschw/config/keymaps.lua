@@ -26,10 +26,10 @@ keymap("n", "<C-x>", "@q")
 -- windows
 keymap("n", "wp", "<C-w>v")
 keymap("n", "wc", "<C-w>q")
-keymap("n", "wh", "<C-w>h")
-keymap("n", "wj", "<C-w>j")
-keymap("n", "wk", "<C-w>k")
-keymap("n", "wl", "<C-w>l")
+keymap("n", "<C-h>", "<C-w>h")
+keymap("n", "<C-j>", "<C-w>j")
+keymap("n", "<C-k>", "<C-w>k")
+keymap("n", "<C-l>", "<C-w>l")
 
 -- leave insert on jk
 keymap("i", "jk", "<esc>")
@@ -40,10 +40,10 @@ keymap("v", "p", '"_dP')
 -- bufferline
 keymap("n", "<S-h>", "<cmd>BufferPrevious<cr>")
 keymap("n", "<S-l>", "<cmd>BufferNext<cr>")
-keymap("n", "ba", "<cmd>BufferCloseAllButCurrent<cr>")
-keymap("n", "bc", "<cmd>BufferClose<cr>")
-keymap("n", "bh", "<cmd>BufferCloseBuffersLeft<cr>")
-keymap("n", "bl", "<cmd>BufferCloseBuffersRight<cr>")
+keymap("n", "<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
+keymap("n", "<leader>bc", "<cmd>BufferClose<cr>")
+keymap("n", "<leader>bh", "<cmd>BufferCloseBuffersLeft<cr>")
+keymap("n", "<leader>bl", "<cmd>BufferCloseBuffersRight<cr>")
 
 -- telescope
 local telescope = require("telescope.builtin")
