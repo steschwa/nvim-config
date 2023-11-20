@@ -318,10 +318,11 @@ return {
                 window = {
                     completion = {
                         border = border("CmpBorder"),
-                        winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+                        winhighlight = "Normal:CmpNormal,CursorLine:CmpCursorLine,Search:None",
                     },
                     documentation = {
-                        border = border("CmpDocBorder"),
+                        border = border("CmpBorder"),
+                        winhighlight = "Normal:CmpNormal",
                     },
                 },
             })
