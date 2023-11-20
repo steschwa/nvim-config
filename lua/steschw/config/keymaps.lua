@@ -50,6 +50,7 @@ local telescope = require("telescope.builtin")
 keymap("n", "<leader>p", telescope.find_files)
 keymap("n", "<leader>f", telescope.live_grep)
 keymap("n", "<leader>s", telescope.lsp_document_symbols)
+keymap("n", "<leader><leader>", telescope.resume)
 
 -- lsp
 keymap("n", "gh", vim.lsp.buf.hover)
