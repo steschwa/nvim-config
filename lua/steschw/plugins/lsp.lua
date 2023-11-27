@@ -10,11 +10,12 @@ return {
             "b0o/schemastore.nvim",
         },
         config = function()
+            local lsp_utils = require("steschw.utils.lsp")
             local signs = {
-                { name = "DiagnosticSignError", icon = "" },
-                { name = "DiagnosticSignWarn", icon = "" },
-                { name = "DiagnosticSignInfo", icon = "" },
-                { name = "DiagnosticSignHint", icon = "" },
+                { name = "DiagnosticSignError", icon = lsp_utils.signs.error },
+                { name = "DiagnosticSignWarn", icon = lsp_utils.signs.warn },
+                { name = "DiagnosticSignInfo", icon = lsp_utils.signs.info },
+                { name = "DiagnosticSignHint", icon = lsp_utils.signs.hint },
             }
 
             for _, sign in ipairs(signs) do
@@ -34,7 +35,7 @@ return {
                 underline = true,
                 severity_sort = true,
                 float = {
-                    focusable = false,
+                    focusable = true,
                     style = "minimal",
                     border = "rounded",
                     source = "always",
@@ -250,14 +251,6 @@ return {
                     { "╰", hl_name },
                     { "│", hl_name },
                 }
-            end
-
-            local cmp_window = require("cmp.utils.window")
-            cmp_window.info_ = cmp_window.info
-            cmp_window.info = function(self)
-                local info = self:info_()
-                info.scrollable = false
-                return info
             end
 
             cmp.setup({

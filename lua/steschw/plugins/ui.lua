@@ -39,6 +39,8 @@ return {
             "cbochs/grapple.nvim",
         },
         config = function()
+            local lsp_signs = require("steschw.utils.lsp").signs
+
             require("lualine").setup({
                 options = {
                     theme = "nord",
@@ -60,6 +62,12 @@ return {
                             "diagnostics",
                             sources = { "nvim_lsp" },
                             sections = { "error", "warn", "info", "hint" },
+                            symbols = {
+                                error = lsp_signs.error .. " ",
+                                warn = lsp_signs.warn .. " ",
+                                info = lsp_signs.info .. " ",
+                                hint = lsp_signs.hint .. " ",
+                            },
                             colored = true,
                             update_in_insert = true,
                         },

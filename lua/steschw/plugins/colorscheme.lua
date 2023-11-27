@@ -9,36 +9,33 @@ return {
                 borders = true,
                 diff = { mode = "fg" },
                 errors = { mode = "bg" },
-                on_highlights = function(highlights, colors)
+                on_highlights = function(hl, c)
                     local origin_shade = "#2B303B"
 
-                    local selection = { bg = colors.polar_night.bright }
+                    local selection = { bg = c.polar_night.bright }
                     local float_border = { bg = origin_shade, fg = origin_shade }
-                    local float_normal = { bg = origin_shade, fg = colors.snow_storm.origin }
+                    local float_normal = { bg = origin_shade, fg = c.snow_storm.origin }
 
-                    highlights["TelescopeBorder"] = float_border
-                    highlights["TelescopeNormal"] = float_normal
-                    highlights["TelescopePromptNormal"] = { bg = colors.polar_night.bright }
-                    highlights["TelescopePromptBorder"] = {
-                        bg = colors.polar_night.bright,
-                        fg = colors.polar_night.bright,
-                    }
-                    highlights["TelescopePromptTitle"] = { fg = colors.frost.artic_water }
-                    highlights["TelescopeSelection"] = selection
-                    highlights["Title"] =
-                        { fg = colors.frost.artic_water, bg = origin_shade, bold = true }
-                    highlights["TelescopeTitle"] = { link = "Title" }
-                    highlights["TelescopeMultiIcon"] = { fg = colors.aurora.yellow }
-                    highlights["TelescopeMultiSelection"] = { fg = colors.aurora.yellow }
+                    hl["TelescopeBorder"] = float_border
+                    hl["TelescopeNormal"] = float_normal
+                    hl["TelescopePromptNormal"] = { bg = c.polar_night.bright }
+                    hl["TelescopePromptBorder"] =
+                        { bg = c.polar_night.bright, fg = c.polar_night.bright }
+                    hl["TelescopePromptTitle"] = { fg = c.frost.artic_water }
+                    hl["TelescopeSelection"] = selection
+                    hl["Title"] = { fg = c.frost.artic_water, bg = origin_shade, bold = true }
+                    hl["TelescopeTitle"] = { link = "Title" }
+                    hl["TelescopeMultiIcon"] = { fg = c.aurora.yellow }
+                    hl["TelescopeMultiSelection"] = { fg = c.aurora.yellow }
 
-                    highlights["CmpNormal"] = float_normal
-                    highlights["CmpBorder"] = float_border
-                    highlights["CmpCursorLine"] = selection
+                    hl["CmpNormal"] = float_normal
+                    hl["CmpBorder"] = float_border
+                    hl["CmpCursorLine"] = selection
 
-                    highlights["FloatBorder"] = float_border
-                    highlights["NormalFloat"] = float_normal
-                    highlights["Pmenu"] = { bg = origin_shade }
-                    highlights["PmenuSel"] = selection
+                    hl["FloatBorder"] = float_border
+                    hl["NormalFloat"] = float_normal
+                    hl["Pmenu"] = { bg = origin_shade }
+                    hl["PmenuSel"] = selection
                 end,
             })
             vim.cmd.colorscheme("nord")
