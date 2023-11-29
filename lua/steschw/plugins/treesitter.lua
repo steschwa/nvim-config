@@ -6,29 +6,18 @@ return {
         cmd = { "TSUpdateSync" },
         event = { "BufReadPost", "BufNewFile" },
         config = function()
+            local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+            parser_config.nu = {
+                filetype = "nu",
+                install_info = {
+                    url = "https://github.com/nushell/tree-sitter-nu",
+                    files = { "src/parser.c" },
+                    branch = "main",
+                },
+            }
+
             local configs = require("nvim-treesitter.configs")
             configs.setup({
-                ensure_installed = {
-                    "bash",
-                    "css",
-                    "dockerfile",
-                    "fish",
-                    "gitignore",
-                    "go",
-                    "gomod",
-                    "html",
-                    "javascript",
-                    "json",
-                    "jsonc",
-                    "lua",
-                    "python",
-                    "scss",
-                    "sql",
-                    "tsx",
-                    "typescript",
-                    "xml",
-                    "yaml",
-                },
                 sync_install = false,
                 highlight = {
                     enable = true,
