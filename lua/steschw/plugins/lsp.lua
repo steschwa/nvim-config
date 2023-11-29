@@ -43,59 +43,24 @@ return {
                 },
             })
 
-            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-                border = "rounded",
-            })
-            vim.lsp.handlers["textDocument/signatureHelp"] =
-                vim.lsp.with(vim.lsp.handlers.signature_help, {
+            local handlers = { "textDocument/hover", "textDocument/signatureHelp" }
+            for _, handler in pairs(handlers) do
+                vim.lsp.handlers[handler] = vim.lsp.with(vim.lsp.handlers[handler], {
                     border = "rounded",
                 })
-
-            local on_attach = function(client)
-                if client.server_capabilities.document_highlight then
-                    local group = augroup("lsp_document_highlight")
-
-                    vim.api.nvim_create_autocmd("CursorHold", {
-                        group = group,
-                        buffer = 0,
-                        callback = function()
-                            vim.lsp.buf.document_highlight()
-                        end,
-                    })
-                    vim.api.nvim_create_autocmd("CursorMoved", {
-                        group = group,
-                        buffer = 0,
-                        callback = function()
-                            vim.lsp.buf.clear_references()
-                        end,
-                    })
-                end
             end
 
-            local cmp_nvim_lsp = require("cmp_nvim_lsp")
-            local capabilities =
-                cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
             local server_options = {
-                on_attach = on_attach,
                 capabilities = capabilities,
             }
 
             local lspconfig = require("lspconfig")
-            local mason_lspconfig = require("mason-lspconfig")
-
-            mason_lspconfig.setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "jsonls",
-                    "cssls",
-                    "tailwindcss",
-                    "gopls",
-                },
-            })
-            mason_lspconfig.setup_handlers({
+            require("mason-lspconfig").setup_handlers({
                 function(server_name)
-                    require("lspconfig")[server_name].setup(server_options)
+                    lspconfig[server_name].setup(server_options)
                 end,
                 ["lua_ls"] = function()
                     local lua_opts = {
@@ -121,19 +86,6 @@ return {
                             json = {
                                 schemas = require("schemastore").json.schemas(),
                                 validate = { enable = true },
-                            },
-                        },
-                    })
-                end,
-                ["yamlls"] = function()
-                    lspconfig.yamlls.setup({
-                        settings = {
-                            yaml = {
-                                schemaStore = {
-                                    enable = false,
-                                    url = "",
-                                },
-                                schemas = require("schemastore").yaml.schemas(),
                             },
                         },
                     })
