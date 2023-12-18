@@ -175,35 +175,18 @@ return {
         "hrsh7th/nvim-cmp",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
             "onsails/lspkind.nvim",
-            "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
+            "L3MON4D3/LuaSnip",
         },
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
             local lspkind = require("lspkind")
-
-            require("luasnip.loaders.from_vscode").lazy_load()
-
-            local function border(hl_name)
-                return {
-                    { "╭", hl_name },
-                    { "─", hl_name },
-                    { "╮", hl_name },
-                    { "│", hl_name },
-                    { "╯", hl_name },
-                    { "─", hl_name },
-                    { "╰", hl_name },
-                    { "│", hl_name },
-                }
-            end
 
             cmp.setup({
                 snippet = {
@@ -214,63 +197,61 @@ return {
                 mapping = {
                     ["<C-k>"] = cmp.mapping.select_prev_item(),
                     ["<C-j>"] = cmp.mapping.select_next_item(),
-                    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+                    ["<C-Space>"] = cmp.mapping.complete(),
                     ["<Esc>"] = cmp.mapping.abort(),
-                    -- Accept currently selected item. If none selected, `select` first item.
-                    -- Set `select` to `false` to only confirm explicitly selected items.
                     ["<CR>"] = cmp.mapping.confirm({ select = false }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
                         elseif luasnip.expandable() then
                             luasnip.expand()
+                        elseif luasnip.locally_jumpable(1) then
+                            luasnip.jump(1)
                         else
                             fallback()
                         end
-                    end, {
-                        "i",
-                        "s",
-                    }),
+                    end, { "i", "s" }),
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
+                        elseif luasnip.locally_jumpable(-1) then
+                            luasnip.jump(-1)
                         else
                             fallback()
                         end
-                    end, {
-                        "i",
-                        "s",
-                    }),
+                    end, { "i", "s" }),
                 },
                 formatting = {
+                    expandable_indicator = false,
                     format = lspkind.cmp_format({
                         mode = "symbol_text",
                         preset = "codicons",
                     }),
                 },
-                sources = {
+                sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "nvim_lua" },
-                    { name = "nvim_lsp_signature_help" },
+                }, {
                     { name = "luasnip" },
-                    { name = "buffer" },
                     { name = "path" },
-                },
-                confirm_opts = {
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = false,
-                },
+                }),
                 window = {
-                    completion = {
-                        border = border("CmpBorder"),
+                    completion = cmp.config.window.bordered({
                         winhighlight = "Normal:CmpNormal,CursorLine:CmpCursorLine,Search:None",
-                    },
-                    documentation = {
-                        border = border("CmpBorder"),
+                    }),
+                    documentation = cmp.config.window.bordered({
                         winhighlight = "Normal:CmpNormal",
-                    },
+                    }),
                 },
             })
+        end,
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        event = { "BufReadPost" },
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
         end,
     },
 }
