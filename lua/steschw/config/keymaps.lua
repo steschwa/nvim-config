@@ -21,7 +21,8 @@ keymap("v", ">", ">gv")
 keymap({ "n", "v" }, "<C-c>", '"+')
 
 -- macros
-keymap("n", "<C-x>", "@q")
+keymap("n", "Q", "@q")
+keymap("v", "Q", "<cmd>norm @q<cr>")
 
 -- windows
 keymap("n", "wp", "<C-w>v")
@@ -61,10 +62,10 @@ keymap({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help)
 keymap("n", "gu", "<cmd>TSToolsRemoveUnusedImports<cr>")
 keymap("n", "go", "<cmd>TSToolsSortImports<cr>")
 keymap("n", "gi", "<cmd>TSToolsAddMissingImports<cr>")
-keymap("n", "[d", function()
+keymap("n", "[", function()
     vim.diagnostic.goto_next({ float = false })
 end)
-keymap("n", "]d", function()
+keymap("n", "]", function()
     vim.diagnostic.goto_prev({ float = false })
 end)
 keymap("n", "gs", function()
