@@ -57,39 +57,44 @@ return {
                 capabilities = capabilities,
             }
 
+            --- @param lsp_name string
+            --- @param opts table<string, unknown>
+            local function setup_lsp(lsp_name, opts)
+                local final_opts = vim.tbl_deep_extend("force", opts, server_options)
+                return function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig[lsp_name].setup(final_opts)
+                end
+            end
+
             local lspconfig = require("lspconfig")
             require("mason-lspconfig").setup_handlers({
                 function(server_name)
                     lspconfig[server_name].setup(server_options)
                 end,
-                ["lua_ls"] = function()
-                    local lua_opts = {
-                        settings = {
-                            Lua = {
-                                diagnostics = {
-                                    globals = { "vim" },
-                                },
-                                workspace = {
-                                    library = {
-                                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                        [vim.fn.stdpath("config") .. "/lua"] = true,
-                                    },
+                lua_ls = setup_lsp("lua_ls", {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" },
+                            },
+                            workspace = {
+                                library = {
+                                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                    [vim.fn.stdpath("config") .. "/lua"] = true,
                                 },
                             },
                         },
-                    }
-                    lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", lua_opts, server_options))
-                end,
-                ["jsonls"] = function()
-                    lspconfig.jsonls.setup({
-                        settings = {
-                            json = {
-                                schemas = require("schemastore").json.schemas(),
-                                validate = { enable = true },
-                            },
+                    },
+                }),
+                jsonls = setup_lsp("jsonls", {
+                    settings = {
+                        json = {
+                            schemas = require("schemastore").json.schemas(),
+                            validate = { enable = true },
                         },
-                    })
-                end,
+                    },
+                }),
             })
         end,
     },
@@ -107,7 +112,13 @@ return {
     {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        config = true,
+        config = function()
+            local lspconfig = require("lspconfig")
+            require("typescript-tools").setup({
+                root_dir = lspconfig.util.root_pattern("package.json"),
+                single_file_support = false,
+            })
+        end,
     },
     {
         "b0o/schemastore.nvim",
