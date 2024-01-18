@@ -85,7 +85,10 @@ keymap("n", "<leader>d", "<cmd>Trouble document_diagnostics<cr>")
 keymap("n", "<leader>q", "<cmd>Trouble quickfix<cr>")
 keymap("n", "gr", "<cmd>Trouble lsp_references<cr>")
 keymap("n", "gd", "<cmd>Trouble lsp_definitions<cr>")
-keymap("n", "<C-q>", "<cmd>TroubleClose<cr>")
+keymap("n", "<C-q>", function()
+    vim.cmd("TroubleClose")
+    vim.cmd("cclose")
+end)
 keymap("n", "<leader>t", "<cmd>TodoTrouble<cr>")
 
 -- git
