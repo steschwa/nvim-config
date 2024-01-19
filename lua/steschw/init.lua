@@ -6,5 +6,6 @@ vim.api.nvim_create_autocmd("User", {
     callback = function()
         require("steschw.config.keymaps")
         require("steschw.config.autocmds")
+        require("steschw.config.commands")
     end,
 })
