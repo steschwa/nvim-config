@@ -41,12 +41,8 @@ keymap("i", "jk", "<esc>")
 keymap("v", "p", '"_dP')
 
 -- bufferline
-keymap("n", "<S-h>", "<cmd>BufferPrevious<cr>")
-keymap("n", "<S-l>", "<cmd>BufferNext<cr>")
-keymap("n", "<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>")
-keymap("n", "<leader>bc", "<cmd>BufferClose<cr>")
-keymap("n", "<leader>bh", "<cmd>BufferCloseBuffersLeft<cr>")
-keymap("n", "<leader>bl", "<cmd>BufferCloseBuffersRight<cr>")
+keymap("n", "<S-h>", "<cmd>bprev<cr>")
+keymap("n", "<S-l>", "<cmd>bnext<cr>")
 
 -- telescope
 local telescope = require("telescope.builtin")

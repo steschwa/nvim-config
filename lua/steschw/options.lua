@@ -26,7 +26,7 @@ opt.shiftwidth = 4
 opt.shiftround = true
 opt.shortmess:append({ c = true, W = true, C = true })
 opt.showmode = true
-opt.showtabline = 2
+opt.showtabline = 1
 opt.sidescrolloff = 8
 opt.signcolumn = "yes"
 opt.smartcase = true
@@ -38,7 +38,7 @@ opt.tabstop = 4
 opt.termguicolors = true
 opt.timeoutlen = 500
 opt.undofile = true
-opt.updatetime = 500
+opt.updatetime = 1000
 opt.wrap = false
 opt.writebackup = false
 opt.splitkeep = "cursor"
