@@ -135,7 +135,6 @@ return {
                 notify_on_error = false,
                 formatters_by_ft = {
                     lua = { "stylua" },
-                    python = { "black" },
                     go = { "goimports" },
                     javascript = { "prettierd" },
                     javascriptreact = { "prettierd" },
@@ -169,6 +168,9 @@ return {
                 javascriptreact = { "eslint_d" },
                 go = { "revive" },
             }
+
+            local revive_linter = lint.linters.revive
+            revive_linter.args = { "-config", vim.fn.expand("~/.config/revive/revive.toml") }
 
             vim.api.nvim_create_autocmd(
                 { "BufReadPost", "BufWritePost", "InsertLeave", "CursorHold" },
