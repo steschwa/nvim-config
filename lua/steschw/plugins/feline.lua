@@ -12,12 +12,12 @@ local S = {}
 function S.get_separator_left(params)
     local c = require("nord.colors").palette
 
-    local bg = c.polar_night.bright
+    local bg = c.polar_night.brighter
     local fg = params.color
 
     if params.inset then
         bg = params.color
-        fg = c.polar_night.bright
+        fg = c.polar_night.brighter
     end
 
     return {
@@ -30,12 +30,12 @@ end
 function S.get_separator_right(params)
     local c = require("nord.colors").palette
 
-    local bg = c.polar_night.bright
+    local bg = c.polar_night.brighter
     local fg = params.color
 
     if params.inset then
         bg = params.color
-        fg = c.polar_night.bright
+        fg = c.polar_night.brighter
     end
 
     return {
@@ -276,6 +276,9 @@ return {
         local f = require("feline")
         local c = require("nord.colors").palette
 
+        -- TODO: git hunks component
+        -- TODO: maybe git changes component
+
         local components = {
             active = {
                 {
@@ -310,12 +313,15 @@ return {
         f.setup({
             components = components,
             theme = {
-                bg = c.polar_night.bright,
-                fg = c.polar_night.bright,
+                bg = c.polar_night.brighter,
+                fg = c.polar_night.brighter,
             },
             disable = {
                 filetypes = {
                     "^NvimTree$",
+                    "^help$",
+                    "^Trouble$",
+                    "^qf$",
                 },
             },
         })
