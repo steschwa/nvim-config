@@ -12,7 +12,7 @@ function M.format_write(bufnr)
         bufnr = bufnr,
         async = true,
     }, function()
-        vim.cmd("w")
+        pcall(vim.cmd.w)
     end)
 end
 
