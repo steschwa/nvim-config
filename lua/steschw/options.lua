@@ -24,8 +24,8 @@ opt.relativenumber = true
 opt.scrolloff = 1
 opt.shiftwidth = 4
 opt.shiftround = true
-opt.shortmess:append({ c = true, W = true, C = true })
-opt.showmode = true
+opt.shortmess:append({ a = true, c = true, W = true, C = true, s = true, S = true })
+opt.showmode = false
 opt.showtabline = 1
 opt.sidescrolloff = 8
 opt.signcolumn = "yes"

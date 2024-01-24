@@ -36,6 +36,9 @@ return {
                     hl["NormalFloat"] = float_normal
                     hl["Pmenu"] = { bg = origin_shade }
                     hl["PmenuSel"] = selection
+
+                    hl["StatusLineNC"] = { bg = c.polar_night.origin, fg = c.polar_night.origin }
+                    hl["StatusLine"] = { bg = c.polar_night.origin }
                 end,
             })
             vim.cmd.colorscheme("nord")
