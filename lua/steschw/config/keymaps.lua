@@ -22,10 +22,9 @@ keymap({ "n", "v" }, "<C-c>", '"+')
 
 -- macros
 keymap("n", "Q", "@q")
-keymap("v", "Q", "<cmd>norm @q<cr>")
 
 -- windows
-keymap("n", "wp", "<C-w>v")
+keymap("n", "wl", "<C-w>v")
 keymap("n", "wc", "<C-w>q")
 keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
@@ -40,15 +39,15 @@ keymap("i", "jk", "<esc>")
 -- better paste
 keymap("v", "p", '"_dP')
 
--- bufferline
-keymap("n", "<S-h>", "<cmd>bprev<cr>")
-keymap("n", "<S-l>", "<cmd>bnext<cr>")
+-- buffers
+keymap("n", "<S-h>", "<cmd>b#<cr>")
 
 -- telescope
 local telescope = require("telescope.builtin")
 keymap("n", "<leader>p", telescope.find_files)
 keymap("n", "<leader>f", telescope.live_grep)
 keymap("n", "<leader>s", telescope.lsp_document_symbols)
+keymap("n", "<leader>h", telescope.help_tags)
 keymap("n", "<leader><leader>", telescope.resume)
 
 -- lsp
@@ -97,13 +96,12 @@ keymap("n", "]g", "<cmd>Gitsigns prev_hunk<cr>")
 keymap("n", "<C-t>", function()
     local bufid = vim.api.nvim_get_current_buf()
     local ft = vim.filetype.match({ buf = bufid })
-    print(ft)
+    vim.print(ft)
 end)
 keymap("n", "<leader>ui", "<cmd>Inspect<cr>")
 keymap("n", "<C-f>", function()
     local filepath = vim.fn.fnamemodify(vim.fn.expand("%"), ":p")
-
-    print(filepath)
+    vim.print(filepath)
     vim.fn.setreg("+", filepath)
 end)
 keymap("n", "<leader>l", "<cmd>Lazy<cr>")
