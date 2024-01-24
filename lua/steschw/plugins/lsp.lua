@@ -10,27 +10,9 @@ return {
             "b0o/schemastore.nvim",
         },
         config = function()
-            local lsp_utils = require("steschw.utils.lsp")
-            local signs = {
-                { name = "DiagnosticSignError", icon = lsp_utils.signs.error },
-                { name = "DiagnosticSignWarn", icon = lsp_utils.signs.warn },
-                { name = "DiagnosticSignInfo", icon = lsp_utils.signs.info },
-                { name = "DiagnosticSignHint", icon = lsp_utils.signs.hint },
-            }
-
-            for _, sign in ipairs(signs) do
-                vim.fn.sign_define(sign.name, {
-                    text = sign.icon,
-                    texthl = sign.name,
-                    numhl = sign.name,
-                })
-            end
-
             vim.diagnostic.config({
                 virtual_text = true,
-                signs = {
-                    active = signs,
-                },
+                signs = true,
                 update_in_insert = true,
                 underline = true,
                 severity_sort = true,
