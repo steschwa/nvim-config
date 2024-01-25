@@ -41,6 +41,7 @@ keymap("v", "p", '"_dP')
 
 -- buffers
 keymap("n", "<S-h>", "<cmd>b#<cr>")
+keymap("n", "<S-l>", "<cmd>b#<cr>")
 
 -- telescope
 local telescope = require("telescope.builtin")

@@ -30,7 +30,7 @@ function M.get_sign_by_severity(severity)
         [vim.diagnostic.severity.HINT] = "Hint",
     })[severity]
 
-    if type == nil then
+    if not type then
         return
     end
 
@@ -41,14 +41,12 @@ end
 --- @param severity number
 --- @return string
 function M.get_hl_name_by_severity(severity)
-    local type = ({
-        [vim.diagnostic.severity.ERROR] = "Error",
-        [vim.diagnostic.severity.WARN] = "Warn",
-        [vim.diagnostic.severity.INFO] = "Info",
-        [vim.diagnostic.severity.HINT] = "Hint",
-    })[severity]
+    local sign = M.get_sign_by_severity(severity)
+    if not sign then
+        return ""
+    end
 
-    return "Diagnostic" .. type
+    return sign.texthl
 end
 
 return M

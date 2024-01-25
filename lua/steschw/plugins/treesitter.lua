@@ -29,6 +29,7 @@ return {
                     enable = true,
                     additional_vim_regex_highlighting = false,
                 },
+                -- TODO: investigate what this does
                 indent = {
                     enable = true,
                     disable = { "yaml" },
@@ -38,6 +39,7 @@ return {
                     enable_close_on_slash = false,
                 },
                 textobjects = {
+                    -- TODO: do i really need this?
                     swap = {
                         enable = true,
                         swap_next = {

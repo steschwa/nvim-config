@@ -1,7 +1,7 @@
 local M = {}
 
 function M.update_statusline()
-    vim.opt.statusline = vim.opt.statusline
+    vim.cmd("redrawstatus!")
 end
 
 return M

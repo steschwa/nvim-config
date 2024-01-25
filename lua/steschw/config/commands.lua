@@ -7,9 +7,7 @@ vim.api.nvim_create_user_command("Lines", function(opts)
     vim.api.nvim_buf_set_lines(bufid, 0, -1, false, lines)
 
     vim.cmd("vsplit")
-    local winid = vim.api.nvim_get_current_win()
-
-    vim.api.nvim_win_set_buf(winid, bufid)
+    vim.api.nvim_set_current_buf(bufid)
 end, {
     force = false,
     nargs = 1,
