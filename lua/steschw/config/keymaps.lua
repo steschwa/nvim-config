@@ -95,9 +95,7 @@ keymap("n", "]g", "<cmd>Gitsigns prev_hunk<cr>")
 
 -- misc
 keymap("n", "<C-t>", function()
-    local bufid = vim.api.nvim_get_current_buf()
-    local ft = vim.filetype.match({ buf = bufid })
-    vim.print(ft)
+    vim.print(vim.bo.filetype)
 end)
 keymap("n", "<leader>ui", "<cmd>Inspect<cr>")
 keymap("n", "<C-f>", function()

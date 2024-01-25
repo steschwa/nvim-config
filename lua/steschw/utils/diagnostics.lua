@@ -31,6 +31,7 @@ function M.get_sign_by_severity(severity)
     })[severity]
 
     if not type then
+        vim.notify_once("invalid sign severity: " .. severity, vim.log.levels.WARN)
         return
     end
 
@@ -43,6 +44,7 @@ end
 function M.get_hl_name_by_severity(severity)
     local sign = M.get_sign_by_severity(severity)
     if not sign then
+        vim.notify_once("could not find sign by severity: " .. severity, vim.log.levels.DEBUG)
         return ""
     end
 
