@@ -2,10 +2,6 @@ local keymap = require("steschw.utils.keys").keymap
 
 keymap("n", "`", "^")
 
--- better up/down with wrapped lines
-keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-
 keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "<C-d>", "<C-d>zz")
 

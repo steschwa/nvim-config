@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd("FileType", {
         "Trouble",
         "DressingSelect",
         "vim",
+        "lazy",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

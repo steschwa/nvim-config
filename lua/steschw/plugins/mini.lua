@@ -1,13 +1,5 @@
 return {
     {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        config = function()
-            vim.g.skip_ts_context_commentstring_module = true
-            require("ts_context_commentstring").setup()
-        end,
-    },
-    { "windwp/nvim-ts-autotag" },
-    {
         "echasnovski/mini.comment",
         version = "*",
         dependencies = {
@@ -45,9 +37,9 @@ return {
         version = "*",
         opts = {
             mappings = {
-                add = "<C-s>a",
-                delete = "<C-s>d",
-                replace = "<C-s>r",
+                add = "sa",
+                delete = "sd",
+                replace = "sr",
                 update_n_lines = "",
                 find = "",
                 find_left = "",

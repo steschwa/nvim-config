@@ -5,22 +5,27 @@ return {
         build = ":TSUpdate",
         cmd = { "TSUpdateSync" },
         event = { "BufReadPost", "BufNewFile" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            "windwp/nvim-ts-autotag",
+        },
         config = function()
-            vim.filetype.add({
-                extension = {
-                    nu = "nu",
-                },
-            })
-
-            local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-            parser_config.nu = {
-                filetype = "nu",
-                install_info = {
-                    url = "https://github.com/nushell/tree-sitter-nu",
-                    files = { "src/parser.c" },
-                    branch = "main",
-                },
-            }
+            -- wait for https://github.com/nushell/tree-sitter-nu/issues/76 to be fixed
+            -- vim.filetype.add({
+            --     extension = {
+            --         nu = "nu",
+            --     },
+            -- })
+            --
+            -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+            -- parser_config.nu = {
+            --     filetype = "nu",
+            --     install_info = {
+            --         url = "https://github.com/nushell/tree-sitter-nu",
+            --         files = { "src/parser.c" },
+            --         branch = "main",
+            --     },
+            -- }
 
             local configs = require("nvim-treesitter.configs")
             configs.setup({
@@ -39,7 +44,6 @@ return {
                     enable_close_on_slash = false,
                 },
                 textobjects = {
-                    -- TODO: do i really need this?
                     swap = {
                         enable = true,
                         swap_next = {
@@ -71,5 +75,18 @@ return {
             })
         end,
     },
-    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    {
+        "windwp/nvim-ts-autotag",
+    },
+    {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            vim.g.skip_ts_context_commentstring_module = true
+            require("ts_context_commentstring").setup()
+        end,
+    },
 }
