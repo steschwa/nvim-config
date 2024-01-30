@@ -1,15 +1,25 @@
+local deps = require("steschw.utils.dependencies")
+
 return {
     {
         "neovim/nvim-lspconfig",
+        dependencies = {
+            deps.mason_tool("css-lsp"),
+        },
         opts = function(_, opts)
             opts.servers.cssls = {}
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "stevearc/conform.nvim",
+        dependencies = {
+            deps.mason_tool("prettierd"),
+        },
         opts = function(_, opts)
-            table.insert(opts.tools, "css-lsp")
-            table.insert(opts.tools, "prettierd")
+            local formatter = { "prettierd" }
+
+            opts.formatters_by_ft.css = formatter
+            opts.formatters_by_ft.scss = formatter
         end,
     },
 }

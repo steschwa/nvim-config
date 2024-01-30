@@ -1,6 +1,11 @@
+local deps = require("steschw.utils.dependencies")
+
 return {
     {
         "neovim/nvim-lspconfig",
+        dependencies = {
+            deps.mason_tool("lua-language-server"),
+        },
         opts = function(_, opts)
             opts.servers.lua_ls = {
                 settings = {
@@ -20,10 +25,14 @@ return {
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "stevearc/conform.nvim",
+        dependencies = {
+            deps.mason_tool("stylua"),
+        },
         opts = function(_, opts)
-            table.insert(opts.tools, "lua-language-server")
-            table.insert(opts.tools, "stylua")
+            opts.formatters_by_ft.lua = {
+                "stylua",
+            }
         end,
     },
     -- TODO: investigate folke/neodev.nvim

@@ -1,8 +1,11 @@
+local deps = require("steschw.utils.dependencies")
+
 return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
             "b0o/schemastore.nvim",
+            deps.mason_tool("json-lsp"),
         },
         opts = function(_, opts)
             opts.servers.jsonls = {
@@ -16,10 +19,14 @@ return {
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "stevearc/conform.nvim",
+        dependencies = {
+            deps.mason_tool("prettierd"),
+        },
         opts = function(_, opts)
-            table.insert(opts.tools, "json-lsp")
-            table.insert(opts.tools, "prettierd")
+            opts.formatters_by_ft.json = {
+                "prettierd",
+            }
         end,
     },
     {

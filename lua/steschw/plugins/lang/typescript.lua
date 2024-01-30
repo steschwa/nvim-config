@@ -1,3 +1,5 @@
+local deps = require("steschw.utils.dependencies")
+
 return {
     {
         "pmizio/typescript-tools.nvim",
@@ -13,10 +15,31 @@ return {
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "stevearc/conform.nvim",
+        dependencies = {
+            deps.mason_tool("prettierd"),
+        },
         opts = function(_, opts)
-            table.insert(opts.tools, "prettierd")
-            table.insert(opts.tools, "eslint_d")
+            local formatters = { "prettierd" }
+
+            opts.formatters_by_ft.javascript = formatters
+            opts.formatters_by_ft.javascriptreact = formatters
+            opts.formatters_by_ft.typescript = formatters
+            opts.formatters_by_ft.typescriptreact = formatters
+        end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        dependencies = {
+            deps.mason_tool("eslint_d"),
+        },
+        opts = function(_, opts)
+            local linters = { "eslint_d" }
+
+            opts.linters_by_ft.javascript = linters
+            opts.linters_by_ft.javascriptreact = linters
+            opts.linters_by_ft.typescriptreact = linters
+            opts.linters_by_ft.typescriptreact = linters
         end,
     },
 }
