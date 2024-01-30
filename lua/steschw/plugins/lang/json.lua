@@ -18,17 +18,7 @@ return {
             }
         end,
     },
-    {
-        "stevearc/conform.nvim",
-        dependencies = {
-            deps.mason_tool("prettierd"),
-        },
-        opts = function(_, opts)
-            opts.formatters_by_ft.json = {
-                "prettierd",
-            }
-        end,
-    },
+    deps.formatter("prettierd", { "json" }),
     {
         "b0o/schemastore.nvim",
     },

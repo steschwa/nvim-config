@@ -24,16 +24,6 @@ return {
             }
         end,
     },
-    {
-        "stevearc/conform.nvim",
-        dependencies = {
-            deps.mason_tool("stylua"),
-        },
-        opts = function(_, opts)
-            opts.formatters_by_ft.lua = {
-                "stylua",
-            }
-        end,
-    },
+    deps.formatter("stylua", { "lua" }),
     -- TODO: investigate folke/neodev.nvim
 }

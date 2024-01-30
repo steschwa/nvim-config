@@ -14,32 +14,16 @@ return {
             })
         end,
     },
-    {
-        "stevearc/conform.nvim",
-        dependencies = {
-            deps.mason_tool("prettierd"),
-        },
-        opts = function(_, opts)
-            local formatters = { "prettierd" }
-
-            opts.formatters_by_ft.javascript = formatters
-            opts.formatters_by_ft.javascriptreact = formatters
-            opts.formatters_by_ft.typescript = formatters
-            opts.formatters_by_ft.typescriptreact = formatters
-        end,
-    },
-    {
-        "mfussenegger/nvim-lint",
-        dependencies = {
-            deps.mason_tool("eslint_d"),
-        },
-        opts = function(_, opts)
-            local linters = { "eslint_d" }
-
-            opts.linters_by_ft.javascript = linters
-            opts.linters_by_ft.javascriptreact = linters
-            opts.linters_by_ft.typescriptreact = linters
-            opts.linters_by_ft.typescriptreact = linters
-        end,
-    },
+    deps.formatter("prettierd", {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+    }),
+    deps.linter("eslint_d", {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+    }),
 }
