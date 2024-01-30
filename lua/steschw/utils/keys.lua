@@ -1,4 +1,4 @@
-local default_opts = {
+local DEFAULT_OPTS = {
     noremap = true,
     silent = true,
     nowait = true,
@@ -15,7 +15,7 @@ function M.keymap(mode, lhs, rhs, opts)
     --do not create the keymap if a lazy keys handler exists
     if not keys.active[keys.parse({ lhs, mode = mode }).id] then
         opts = opts or {}
-        opts = vim.tbl_extend("force", default_opts, opts)
+        opts = vim.tbl_extend("force", DEFAULT_OPTS, opts)
         vim.keymap.set(mode, lhs, rhs, opts)
     end
 end

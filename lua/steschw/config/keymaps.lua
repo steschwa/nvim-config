@@ -1,6 +1,6 @@
 local keymap = require("steschw.utils.keys").keymap
 
-keymap("n", "`", "^")
+keymap({ "n", "v" }, "`", "^")
 
 keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "<C-d>", "<C-d>zz")
@@ -100,3 +100,5 @@ keymap("n", "<C-f>", function()
     vim.fn.setreg("+", filepath)
 end)
 keymap("n", "<leader>l", "<cmd>Lazy<cr>")
+
+-- TODO: remap gd to <C-]> if in help to jump to tags

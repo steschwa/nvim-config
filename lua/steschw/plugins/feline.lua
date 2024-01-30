@@ -354,9 +354,7 @@ return {
             disable = {
                 filetypes = {
                     "^NvimTree$",
-                    "^help$",
                     "^Trouble$",
-                    "^qf$",
                 },
             },
         })
