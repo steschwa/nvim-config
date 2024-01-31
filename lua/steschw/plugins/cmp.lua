@@ -23,7 +23,6 @@ return {
                         luasnip.lsp_expand(args.body)
                     end,
                 },
-                -- TODO: do not specify mappings here. rather use `keymap` just like in `keymaps.lua`
                 mapping = {
                     ["<C-k>"] = cmp.mapping.select_prev_item(),
                     ["<C-j>"] = cmp.mapping.select_next_item(),

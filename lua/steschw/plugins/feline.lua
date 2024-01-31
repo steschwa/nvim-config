@@ -6,7 +6,6 @@ local s = vim.diagnostic.severity
 
 --- @class StatuslineFactory
 --- @field active boolean
---- @field sig string
 local M = {}
 
 --- @param active boolean
@@ -14,7 +13,6 @@ local M = {}
 function M:new(active)
     local this = {
         active = active,
-        sig = active and "active" or "inactive",
     }
     setmetatable(this, self)
     self.__index = self
@@ -82,6 +80,13 @@ function M:component_filename()
 
     return {
         provider = function()
+            local ft = vim.bo.filetype
+            if ft == "qf" then
+                return " Quickfix "
+            elseif ft == "help" then
+                return " Help "
+            end
+
             local path = vim.api.nvim_buf_get_name(0)
             if path == "" then
                 return " [No Name] "
