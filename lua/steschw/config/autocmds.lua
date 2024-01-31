@@ -24,3 +24,13 @@ vim.api.nvim_create_autocmd("FileType", {
         keymap("n", "q", "<cmd>close<cr>", { buffer = event.buf })
     end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("navigate_help"),
+    pattern = {
+        "help",
+    },
+    callback = function(event)
+        keymap("n", "gd", "<C-]>", { buffer = event.buf })
+    end,
+})
