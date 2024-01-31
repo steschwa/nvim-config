@@ -34,3 +34,18 @@ vim.api.nvim_create_autocmd("FileType", {
         keymap("n", "gd", "<C-]>", { buffer = event.buf })
     end,
 })
+
+vim.api.nvim_create_autocmd("WinEnter", {
+    group = augroup("show_cursorline_inactive_win"),
+    callback = function()
+        local win_id = vim.api.nvim_get_current_win()
+        vim.wo[win_id].cursorline = true
+    end,
+})
+vim.api.nvim_create_autocmd("WinLeave", {
+    group = augroup("hide_cursorline_inactive_win"),
+    callback = function()
+        local win_id = vim.api.nvim_get_current_win()
+        vim.wo[win_id].cursorline = false
+    end,
+})
