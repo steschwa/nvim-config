@@ -5,6 +5,7 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             deps.with_mason("lua-language-server"),
+            "folke/neodev.nvim",
         },
         opts = function(_, opts)
             opts.servers.lua_ls = {
@@ -25,5 +26,8 @@ return {
         end,
     },
     deps.formatter("stylua", { "lua" }),
-    -- TODO: investigate folke/neodev.nvim
+    {
+        "folke/neodev.nvim",
+        opts = {},
+    },
 }

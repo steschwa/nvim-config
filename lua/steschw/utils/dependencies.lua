@@ -1,20 +1,11 @@
 local M = {}
 
-function M.with_mason(...)
-    --- @type string[]
-    local tools = {}
-    if type(...) == "string" then
-        tools = { ... }
-    else
-        tools = ...
-    end
-
+--- @param tool string
+function M.with_mason(tool)
     return {
         "williamboman/mason.nvim",
         opts = function(_, opts)
-            for _, t in ipairs(tools) do
-                table.insert(opts.tools, t)
-            end
+            table.insert(opts.tools, tool)
         end,
     }
 end

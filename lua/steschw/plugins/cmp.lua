@@ -53,6 +53,7 @@ return {
                     }),
                 },
                 formatting = {
+                    fields = { "abbr", "menu", "kind" },
                     expandable_indicator = false,
                     format = lspkind.cmp_format({
                         mode = "symbol_text",
