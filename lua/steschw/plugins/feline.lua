@@ -23,7 +23,11 @@ end
 --- @return string
 function M:get_bg()
     local c = require("nord.colors").palette
-    return self.active and c.polar_night.brighter or c.polar_night.bright
+
+    -- slightly darker c.polar_night.bright
+    local darker_bright = "#323946"
+
+    return self.active and c.polar_night.brighter or darker_bright
 end
 
 --- @class SeparatorParams
@@ -359,9 +363,9 @@ return {
             disable = {
                 filetypes = {
                     "^NvimTree$",
-                    "^Trouble$",
                 },
             },
+            force_inactive = {},
         })
     end,
 }
