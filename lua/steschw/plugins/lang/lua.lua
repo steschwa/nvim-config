@@ -4,7 +4,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            deps.mason_tool("lua-language-server"),
+            deps.with_mason("lua-language-server"),
         },
         opts = function(_, opts)
             opts.servers.lua_ls = {

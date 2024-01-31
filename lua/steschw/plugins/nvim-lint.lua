@@ -1,4 +1,5 @@
 local augroup = require("steschw.utils.autocmd").augroup
+local do_lint = require("steschw.utils.linting").lint
 
 return {
     "mfussenegger/nvim-lint",
@@ -23,9 +24,7 @@ return {
             "CursorHold",
         }, {
             group = augroup("lint"),
-            callback = function()
-                require("lint").try_lint()
-            end,
+            callback = do_lint,
         })
     end,
 }

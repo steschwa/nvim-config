@@ -1,6 +1,6 @@
 local M = {}
 
-function M.mason_tool(...)
+function M.with_mason(...)
     --- @type string[]
     local tools = {}
     if type(...) == "string" then
@@ -25,7 +25,7 @@ function M.formatter(name, filetypes)
     return {
         "stevearc/conform.nvim",
         dependencies = {
-            M.mason_tool(name),
+            M.with_mason(name),
         },
         opts = function(_, opts)
             for _, ft in ipairs(filetypes) do
@@ -41,7 +41,7 @@ function M.linter(name, filetypes)
     return {
         "mfussenegger/nvim-lint",
         dependencies = {
-            M.mason_tool(name),
+            M.with_mason(name),
         },
         opts = function(_, opts)
             for _, ft in ipairs(filetypes) do
