@@ -4,8 +4,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            deps.with_mason("css-lsp"),
-            deps.with_mason("tailwindcss-language-server"),
+            deps.mason("css-lsp"),
+            deps.mason("tailwindcss-language-server"),
         },
         opts = function(_, opts)
             opts.servers.cssls = {}

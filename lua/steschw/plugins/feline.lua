@@ -147,7 +147,6 @@ function M:component_lazy_updates()
             fg = fg,
         },
         left_sep = self:get_separator_left({ color = bg }),
-        right_sep = self:get_separator_left({ inset = true, color = bg }),
     }
 end
 

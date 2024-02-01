@@ -1,7 +1,7 @@
 local M = {}
 
 --- @param tool string
-function M.with_mason(tool)
+function M.mason(tool)
     return {
         "williamboman/mason.nvim",
         opts = function(_, opts)
@@ -16,7 +16,7 @@ function M.formatter(name, filetypes)
     return {
         "stevearc/conform.nvim",
         dependencies = {
-            M.with_mason(name),
+            M.mason(name),
         },
         opts = function(_, opts)
             for _, ft in ipairs(filetypes) do
@@ -32,7 +32,7 @@ function M.linter(name, filetypes)
     return {
         "mfussenegger/nvim-lint",
         dependencies = {
-            M.with_mason(name),
+            M.mason(name),
         },
         opts = function(_, opts)
             for _, ft in ipairs(filetypes) do

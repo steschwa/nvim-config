@@ -4,20 +4,17 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            deps.with_mason("lua-language-server"),
+            deps.mason("lua-language-server"),
             "folke/neodev.nvim",
         },
         opts = function(_, opts)
             opts.servers.lua_ls = {
                 settings = {
                     Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
                         workspace = {
                             library = {
-                                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                [vim.fn.stdpath("config") .. "/lua"] = true,
+                                vim.fn.expand("$VIMRUNTIME/lua"),
+                                vim.fn.stdpath("config") .. "/lua",
                             },
                         },
                     },

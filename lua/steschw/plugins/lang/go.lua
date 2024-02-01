@@ -4,7 +4,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            deps.with_mason("gopls"),
+            deps.mason("gopls"),
         },
         opts = function(_, opts)
             opts.servers.gopls = {}

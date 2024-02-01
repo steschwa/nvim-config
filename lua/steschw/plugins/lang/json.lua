@@ -5,7 +5,7 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             "b0o/schemastore.nvim",
-            deps.with_mason("json-lsp"),
+            deps.mason("json-lsp"),
         },
         opts = function(_, opts)
             opts.servers.jsonls = {
