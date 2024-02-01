@@ -56,31 +56,11 @@ function M:get_separator_right(params)
     }
 end
 
-function M:component_vi_mode()
-    local p_vi_mode = require("feline.providers.vi_mode")
-
-    local c = require("nord.colors").palette
-
-    local bg = c.frost.artic_ocean
-    local fg = c.snow_storm.origin
-
-    return {
-        provider = function()
-            return string.format(" %s ", p_vi_mode.get_vim_mode())
-        end,
-        hl = {
-            bg = bg,
-            fg = fg,
-        },
-        right_sep = self:get_separator_right({ color = bg }),
-    }
-end
-
 function M:component_filename()
     local c = require("nord.colors").palette
 
     local bg = self.active and c.frost.artic_ocean or c.polar_night.brightest
-    local fg = self.active and c.snow_storm.origin or c.snow_storm.origin
+    local fg = c.snow_storm.origin
 
     return {
         provider = function()
@@ -106,7 +86,7 @@ function M:component_filename()
             bg = bg,
             fg = fg,
         },
-        left_sep = self:get_separator_left({ color = bg }),
+        right_sep = self:get_separator_right({ color = bg }),
     }
 end
 
@@ -275,8 +255,8 @@ end
 function M:component_grapple()
     local c = require("nord.colors").palette
 
-    local bg = c.polar_night.brightest
-    local fg = c.snow_storm.origin
+    local bg = c.frost.artic_water
+    local fg = c.polar_night.origin
 
     local function provider()
         local g = require("grapple")
@@ -297,8 +277,8 @@ function M:component_grapple()
             bg = bg,
             fg = fg,
         },
-        left_sep = self:get_separator_left({ color = bg }),
-        right_sep = self:get_separator_left({ inset = true, color = bg }),
+        left_sep = self:get_separator_right({ inset = true, color = bg }),
+        right_sep = self:get_separator_right({ color = bg }),
     }
 end
 
@@ -331,9 +311,11 @@ return {
         local components = {
             active = {
                 {
-                    active_factory:component_vi_mode(),
-                    active_factory:component_macro(),
+                    active_factory:component_file_changes(),
+                    active_factory:component_filename(),
+                    active_factory:component_grapple(),
                     active_factory:component_search_count(),
+                    active_factory:component_macro(),
                     active_factory:component_diagnostics(s.ERROR),
                     active_factory:component_diagnostics(s.WARN),
                     active_factory:component_diagnostics(s.INFO),
@@ -342,19 +324,14 @@ return {
                 },
                 {
                     active_factory:component_lazy_updates(),
-                    active_factory:component_grapple(),
-                    active_factory:component_filename(),
-                    active_factory:component_file_changes(),
                 },
             },
             inactive = {
                 {
-                    inactive_factory:component_gap(),
-                },
-                {
-                    inactive_factory:component_grapple(),
-                    inactive_factory:component_filename(),
                     inactive_factory:component_file_changes(),
+                    inactive_factory:component_filename(),
+                    inactive_factory:component_grapple(),
+                    inactive_factory:component_gap(),
                 },
             },
         }
