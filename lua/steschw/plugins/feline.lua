@@ -219,7 +219,8 @@ function M:component_file_changes()
 
     --- @return string
     local function provider()
-        local buf_info = vim.fn.getbufinfo()
+        ---@diagnostic disable-next-line: param-type-mismatch
+        local buf_info = vim.fn.getbufinfo("%")
         if #buf_info ~= 1 then
             return ""
         end
