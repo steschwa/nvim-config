@@ -38,6 +38,7 @@ return {
 
                 hl["StatusLineNC"] = { bg = c.polar_night.origin, fg = c.polar_night.origin }
                 hl["StatusLine"] = { bg = c.polar_night.origin }
+                hl["QuickFixLine"] = { bg = c.polar_night.brighter }
             end,
         })
         vim.cmd.colorscheme("nord")

@@ -86,6 +86,10 @@ keymap("n", "gp", "<cmd>Gitsigns preview_hunk_inline<cr>")
 keymap("n", "[g", "<cmd>Gitsigns next_hunk<cr>")
 keymap("n", "]g", "<cmd>Gitsigns prev_hunk<cr>")
 
+-- quickfix
+keymap("n", "[q", "<cmd>cnext<cr>")
+keymap("n", "]q", "<cmd>cprevious<cr>")
+
 -- misc
 keymap("n", "<C-t>", function()
     vim.print(vim.bo.filetype)
