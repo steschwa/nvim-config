@@ -45,7 +45,7 @@ keymap("n", "<leader>p", telescope.find_files)
 keymap("n", "<leader>f", telescope.live_grep)
 keymap("n", "<leader>s", telescope.lsp_document_symbols)
 keymap("n", "<leader>h", telescope.help_tags)
-keymap("n", "<leader><leader>", telescope.resume)
+keymap("n", "<leader><leader>", telescope.pickers)
 
 -- lsp
 keymap("n", "gh", vim.lsp.buf.hover)

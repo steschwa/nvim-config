@@ -35,7 +35,7 @@ return {
                     path_display = { "tail" },
                     dynamic_preview_title = true,
                     cache_picker = {
-                        num_pickers = 1,
+                        num_pickers = 5,
                         limit_entries = 100,
                     },
                     layout_strategy = "vertical",
