@@ -9,6 +9,7 @@ return {
             TODO = { icon = " ", color = "info" },
             REFACTOR = { icon = "פֿ ", color = "warning" },
             FIXME = { icon = " ", color = "error" },
+            TESTME = { icon = "󰙨 ", color = "hint" },
         },
         colors = {
             error = { "DiagnosticError" },
