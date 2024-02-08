@@ -5,6 +5,7 @@ vim.api.nvim_create_user_command("Lines", function(opts)
 
     local bufid = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_buf_set_lines(bufid, 0, -1, false, lines)
+    vim.bo[bufid].filetype = "lines"
 
     vim.cmd("vsplit")
     vim.api.nvim_set_current_buf(bufid)

@@ -6,6 +6,7 @@ return {
             filetypes = {
                 "css",
                 "scss",
+                "lines",
             },
             user_default_options = {
                 mode = "background",
