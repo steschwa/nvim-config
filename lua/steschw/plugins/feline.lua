@@ -90,36 +90,6 @@ function M:component_filename()
     }
 end
 
-function M:component_macro()
-    local c = require("nord.colors").palette
-
-    local bg = c.frost.artic_water
-    local fg = c.polar_night.origin
-
-    --- @return string
-    local function provider()
-        local recording_register = vim.fn.reg_recording()
-        if #recording_register == 0 then
-            return ""
-        end
-
-        return string.format(" @%s ", recording_register)
-    end
-
-    return {
-        provider = provider,
-        enabled = function()
-            return provider() ~= ""
-        end,
-        hl = {
-            bg = bg,
-            fg = fg,
-        },
-        left_sep = self:get_separator_right({ inset = true, color = bg }),
-        right_sep = self:get_separator_right({ color = bg }),
-    }
-end
-
 function M:component_lazy_updates()
     local c = require("nord.colors").palette
 
@@ -162,7 +132,10 @@ function M:component_search_count()
             return ""
         end
 
-        local result = vim.fn.searchcount()
+        local ok, result = pcall(vim.fn.searchcount)
+        if not ok then
+            return ""
+        end
         if result.incomplete == 1 then
             return ""
         elseif result.incomplete == 2 then
@@ -314,7 +287,6 @@ return {
                     active_factory:component_filename(),
                     active_factory:component_grapple(),
                     active_factory:component_search_count(),
-                    active_factory:component_macro(),
                     active_factory:component_diagnostics(s.ERROR),
                     active_factory:component_diagnostics(s.WARN),
                     active_factory:component_diagnostics(s.INFO),
