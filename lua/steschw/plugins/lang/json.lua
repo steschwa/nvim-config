@@ -18,7 +18,7 @@ return {
             }
         end,
     },
-    deps.formatter("prettierd", { "json" }),
+    deps.formatter("prettierd", { "json", "jsonc" }),
     {
         "b0o/schemastore.nvim",
     },

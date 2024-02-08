@@ -10,9 +10,18 @@ return {
             "williamboman/mason-lspconfig.nvim",
         },
         init = function()
+            local signs = {
+                { name = "DiagnosticSignError", text = "E", texthl = "DiagnosticSignError" },
+                { name = "DiagnosticSignWarn", text = "W", texthl = "DiagnosticSignWarn" },
+                { name = "DiagnosticSignInfo", text = "I", texthl = "DiagnosticSignInfo" },
+                { name = "DiagnosticSignHint", text = "H", texthl = "DiagnosticSignHint" },
+            }
+            for _, sign in ipairs(signs) do
+                vim.fn.sign_define(sign.name, sign)
+            end
+
             vim.diagnostic.config({
                 virtual_text = true,
-                signs = true,
                 update_in_insert = true,
                 underline = true,
                 severity_sort = true,
