@@ -42,6 +42,7 @@ opt.updatetime = 1000
 opt.wrap = false
 opt.writebackup = false
 opt.splitkeep = "cursor"
+opt.history = 20
 
 opt.whichwrap:append("<,>,[,],h,l")
 
