@@ -1,5 +1,4 @@
 local utils_diagnostics = require("steschw.utils.diagnostics")
-local utils_hl = require("steschw.utils.hl")
 local utils_statusline = require("steschw.utils.statusline")
 
 local s = vim.diagnostic.severity
@@ -198,6 +197,8 @@ end
 
 --- @param severity number
 function M:component_diagnostics(severity)
+    local c = require("nord.colors").palette
+
     local function provider()
         local sign = utils_diagnostics.get_sign_by_severity(severity)
         local sign_prefix = vim.trim(sign and sign.text or "")
@@ -210,6 +211,13 @@ function M:component_diagnostics(severity)
         return string.format(" %s:%d ", sign_prefix, #diagnostics)
     end
 
+    local fg = {
+        [vim.diagnostic.severity.ERROR] = c.aurora.red,
+        [vim.diagnostic.severity.WARN] = c.aurora.yellow,
+        [vim.diagnostic.severity.INFO] = c.frost.ice,
+        [vim.diagnostic.severity.HINT] = c.frost.artic_water,
+    }
+
     return {
         provider = provider,
         enabled = function()
@@ -218,7 +226,7 @@ function M:component_diagnostics(severity)
         hl = function()
             return {
                 bg = self:get_bg(),
-                fg = utils_hl.get_hl_fg(utils_diagnostics.get_hl_name_by_severity(severity)),
+                fg = fg,
             }
         end,
     }
