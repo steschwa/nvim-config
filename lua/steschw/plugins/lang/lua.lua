@@ -2,13 +2,17 @@ local deps = require("steschw.utils.dependencies")
 
 return {
     {
-        "neovim/nvim-lspconfig",
+        "folke/neodev.nvim",
         dependencies = {
+            "neovim/nvim-lspconfig",
             deps.mason("lua-language-server"),
-            "folke/neodev.nvim",
         },
-        opts = function(_, opts)
-            opts.servers.lua_ls = {
+        config = function()
+            require("neodev").setup({
+                setup_jsonls = false,
+            })
+
+            require("lspconfig").lua_ls.setup({
                 settings = {
                     Lua = {
                         runtime = {
@@ -16,12 +20,8 @@ return {
                         },
                     },
                 },
-            }
+            })
         end,
     },
     deps.formatter("stylua", { "lua" }),
-    {
-        "folke/neodev.nvim",
-        opts = {},
-    },
 }
