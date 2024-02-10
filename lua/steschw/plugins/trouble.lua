@@ -1,7 +1,7 @@
 return {
     "folke/trouble.nvim",
     version = "^2.0.0",
-    event = { "LspAttach" },
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         position = "bottom",

@@ -1,5 +1,4 @@
 local utils_diagnostics = require("steschw.utils.diagnostics")
-local utils_statusline = require("steschw.utils.statusline")
 
 local s = vim.diagnostic.severity
 
@@ -276,7 +275,9 @@ return {
     init = function()
         vim.api.nvim_create_autocmd("User", {
             pattern = "LazyCheck",
-            callback = utils_statusline.update_statusline,
+            callback = function()
+                vim.cmd("redrawstatus!")
+            end,
         })
     end,
     config = function()

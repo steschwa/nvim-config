@@ -11,7 +11,7 @@ return {
             mode = { "n" },
             function()
                 require("grapple").toggle()
-                require("steschw.utils.statusline").update_statusline()
+                vim.cmd("redrawstatus!")
             end,
         },
         {
