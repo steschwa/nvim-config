@@ -70,16 +70,59 @@ keymap("n", "gl", function()
     require("steschw.utils.linting").lint()
 end)
 
--- trouble
-keymap("n", "<leader>d", "<cmd>Trouble document_diagnostics<cr>")
-keymap("n", "<leader>q", "<cmd>Trouble quickfix<cr>")
-keymap("n", "gr", "<cmd>Trouble lsp_references<cr>")
-keymap("n", "gd", "<cmd>Trouble lsp_definitions<cr>")
-keymap("n", "<C-q>", function()
-    vim.cmd("TroubleClose")
-    vim.cmd("cclose")
+keymap("n", "<leader>d", function()
+    local filename = vim.fn.fnamemodify(vim.fn.expand("%"), ":t")
+
+    local diagnostics = vim.diagnostic.get(0)
+    local what = {
+        title = string.format("Diagnostics (%s)", filename),
+        context = "diagnostics",
+        nr = "$",
+        items = vim.diagnostic.toqflist(diagnostics),
+    }
+
+    vim.fn.setqflist({}, " ", what)
+    vim.cmd("cw")
 end)
-keymap("n", "<leader>t", "<cmd>TodoTrouble<cr>")
+keymap("n", "gr", function()
+    local word = vim.fn.expand("<cword>")
+
+    local function on_list(res)
+        res.title = string.format('References "%s"', word)
+        res.nr = "$"
+
+        vim.fn.setqflist({}, " ", res)
+        vim.cmd("cw")
+    end
+
+    vim.lsp.buf.references({ includeDeclaration = false }, {
+        on_list = on_list,
+    })
+end)
+keymap("n", "gd", function()
+    local word = vim.fn.expand("<cword>")
+
+    local function on_list(res)
+        if #res.items == 1 then
+            local filename = res.items[1].filename
+            vim.cmd.edit(filename)
+            return
+        end
+
+        res.title = string.format('Definition "%s"', word)
+        res.nr = "$"
+
+        vim.fn.setqflist({}, " ", res)
+        vim.cmd("cw")
+    end
+
+    vim.lsp.buf.definition({
+        reuse_win = true,
+        on_list = on_list,
+    })
+end)
+keymap("n", "<C-q>", "<cmd>cclose<cr>")
+keymap("n", "<leader>t", "<cmd>TodoQuickFix<cr>")
 
 -- git
 keymap("n", "gb", "<cmd>Gitsigns blame_line<cr>")
@@ -88,6 +131,7 @@ keymap("n", "[g", "<cmd>Gitsigns next_hunk<cr>")
 keymap("n", "]g", "<cmd>Gitsigns prev_hunk<cr>")
 
 -- quickfix
+keymap("n", "<leader>q", "<cmd>cw<cr>")
 keymap("n", "[q", "<cmd>cnext<cr>")
 keymap("n", "]q", "<cmd>cprevious<cr>")
 

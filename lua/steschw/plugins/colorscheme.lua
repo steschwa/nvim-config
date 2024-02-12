@@ -38,7 +38,14 @@ return {
 
                 hl["StatusLineNC"] = { bg = c.polar_night.origin, fg = c.polar_night.origin }
                 hl["StatusLine"] = { bg = c.polar_night.origin }
-                hl["QuickFixLine"] = { bg = c.polar_night.brighter }
+
+                hl["FixmeSeverityError"] = { fg = c.aurora.red }
+                hl["FixmeSeverityWarn"] = { fg = c.aurora.yellow }
+                hl["FixmeSeverityInfo"] = { fg = c.frost.ice }
+                hl["FixmeSeverityHint"] = { fg = c.frost.artic_water }
+                hl["FixmeFilepath"] = { link = "Directory" }
+                hl["FixmeText"] = { fg = c.snow_storm.origin }
+                hl["QuickFixLine"] = { bg = c.polar_night.brightest }
             end,
         })
         vim.cmd.colorscheme("nord")

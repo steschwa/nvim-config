@@ -7,6 +7,7 @@ return {
             "neovim/nvim-lspconfig",
             deps.mason("lua-language-server"),
         },
+        ft = { "lua" },
         config = function()
             require("neodev").setup({
                 setup_jsonls = false,

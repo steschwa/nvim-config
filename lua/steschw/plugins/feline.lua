@@ -64,7 +64,16 @@ function M:component_filename()
         provider = function()
             local ft = vim.bo.filetype
             if ft == "qf" then
-                return " Quickfix "
+                local res = vim.fn.getqflist({
+                    title = true,
+                    context = true,
+                })
+
+                if res.title == "" or res.title == ":setqflist()" then
+                    return " Quickfix "
+                end
+
+                return string.format(" %s ", res.title)
             elseif ft == "help" then
                 return " Help "
             end
@@ -210,12 +219,12 @@ function M:component_diagnostics(severity)
         return string.format(" %s:%d ", sign_prefix, #diagnostics)
     end
 
-    local fg = {
+    local fg = ({
         [vim.diagnostic.severity.ERROR] = c.aurora.red,
         [vim.diagnostic.severity.WARN] = c.aurora.yellow,
         [vim.diagnostic.severity.INFO] = c.frost.ice,
         [vim.diagnostic.severity.HINT] = c.frost.artic_water,
-    }
+    })[severity]
 
     return {
         provider = provider,
@@ -288,6 +297,8 @@ return {
 
         -- TODO: git hunks component
         -- TODO: maybe git changes component
+
+        -- TODO: quickfix status (items count and current item index)
 
         local components = {
             active = {
