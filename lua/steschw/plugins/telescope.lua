@@ -4,18 +4,9 @@ return {
         event = "VeryLazy",
         config = function()
             local telescope = require("telescope")
-            local telescope_actions = require("telescope.actions")
-            local transform_mod = require("telescope.actions.mt").transform_mod
+            local actions = require("telescope.actions")
 
-            local mod_qflist = {}
-            mod_qflist.smart_send_to_qflist = function(bufnr)
-                telescope_actions.smart_send_to_qflist(bufnr)
-            end
-            mod_qflist.open_qflist = function()
-                vim.cmd("Trouble quickfix")
-            end
-            mod_qflist = transform_mod(mod_qflist)
-            local action_qflist = mod_qflist.smart_send_to_qflist + mod_qflist.open_qflist
+            local action_qflist = actions.smart_send_to_qflist + actions.open_qflist
 
             telescope.setup({
                 defaults = {
@@ -47,12 +38,12 @@ return {
                     },
                     mappings = {
                         n = {
-                            ["q"] = telescope_actions.close,
+                            ["q"] = actions.close,
                             ["<C-q>"] = action_qflist,
                         },
                         i = {
-                            ["<C-j>"] = telescope_actions.move_selection_next,
-                            ["<C-k>"] = telescope_actions.move_selection_previous,
+                            ["<C-j>"] = actions.move_selection_next,
+                            ["<C-k>"] = actions.move_selection_previous,
                             ["<C-q>"] = action_qflist,
                         },
                     },
