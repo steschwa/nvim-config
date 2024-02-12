@@ -104,8 +104,8 @@ keymap("n", "gd", function()
 
     local function on_list(res)
         if #res.items == 1 then
-            local filename = res.items[1].filename
-            vim.cmd.edit(filename)
+            local item = res.items[1]
+            vim.cmd(string.format("edit +%d %s", item.lnum, item.filename))
             return
         end
 
