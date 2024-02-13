@@ -45,7 +45,7 @@ return {
                 hl["FixmeSeverityHint"] = { fg = c.frost.artic_water }
                 hl["FixmeFilepath"] = { link = "Directory" }
                 hl["FixmeText"] = { fg = c.snow_storm.origin }
-                hl["QuickFixLine"] = { bg = c.polar_night.brightest }
+                hl["QuickFixLine"] = { bg = c.polar_night.brighter }
             end,
         })
         vim.cmd.colorscheme("nord")

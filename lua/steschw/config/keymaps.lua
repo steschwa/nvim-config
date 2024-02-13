@@ -93,6 +93,7 @@ keymap("n", "gr", function()
 
         vim.fn.setqflist({}, " ", res)
         vim.cmd("cw")
+        vim.cmd.wincmd("J")
     end
 
     vim.lsp.buf.references({ includeDeclaration = false }, {
@@ -105,7 +106,17 @@ keymap("n", "gd", function()
     local function on_list(res)
         if #res.items == 1 then
             local item = res.items[1]
-            vim.cmd(string.format("edit +%d %s", item.lnum, item.filename))
+
+            -- add current pos to jumplist
+            vim.cmd("normal! m'")
+
+            local bufnr = vim.fn.bufnr(item.filename, true)
+            vim.api.nvim_win_set_buf(0, bufnr)
+            vim.api.nvim_win_set_cursor(0, { item.lnum, 0 })
+            vim.api.nvim_win_call(0, function()
+                vim.cmd.normal("zz")
+            end)
+
             return
         end
 
@@ -114,6 +125,7 @@ keymap("n", "gd", function()
 
         vim.fn.setqflist({}, " ", res)
         vim.cmd("cw")
+        vim.cmd.wincmd("J")
     end
 
     vim.lsp.buf.definition({

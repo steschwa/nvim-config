@@ -25,7 +25,7 @@ function M:get_bg()
     -- slightly darker c.polar_night.bright
     local darker_bright = "#323946"
 
-    return self.active and c.polar_night.brighter or darker_bright
+    return self.active and c.polar_night.bright or darker_bright
 end
 
 --- @class SeparatorParams
