@@ -100,7 +100,7 @@ end
 function M:component_lazy_updates()
     local c = require("nord.colors").palette
 
-    local bg = c.aurora.purple
+    local bg = c.frost.polar_water
     local fg = c.polar_night.origin
 
     --- @return string
