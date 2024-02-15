@@ -43,98 +43,31 @@ keymap("n", "<S-l>", "<cmd>b#<cr>")
 local telescope = require("telescope.builtin")
 keymap("n", "<leader>p", telescope.find_files)
 keymap("n", "<leader>f", telescope.live_grep)
-keymap("n", "<leader>s", telescope.lsp_document_symbols)
 keymap("n", "<leader>h", telescope.help_tags)
 keymap("n", "<leader>b", telescope.buffers)
 keymap("n", "<leader><leader>", telescope.pickers)
 
--- lsp
-keymap("n", "gh", vim.lsp.buf.hover)
-keymap("n", "gH", vim.diagnostic.open_float)
-keymap("n", "gR", vim.lsp.buf.rename)
-keymap("n", "ga", vim.lsp.buf.code_action)
-keymap({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help)
+-- diagnostics
 keymap("n", "[d", function()
     vim.diagnostic.goto_next({ float = false })
 end)
 keymap("n", "]d", function()
     vim.diagnostic.goto_prev({ float = false })
 end)
+keymap("n", "<leader>t", "<cmd>TodoQuickFix<cr>")
+
+-- formatting
 keymap("n", "gs", function()
     require("steschw.utils.formatting").format_write()
 end)
 keymap("n", "gf", function()
     require("steschw.utils.formatting").format()
 end)
+
+-- linting
 keymap("n", "gl", function()
     require("steschw.utils.linting").lint()
 end)
-
-keymap("n", "<leader>d", function()
-    local filename = vim.fn.fnamemodify(vim.fn.expand("%"), ":t")
-
-    local diagnostics = vim.diagnostic.get(0)
-    local what = {
-        title = string.format("Diagnostics (%s)", filename),
-        context = "diagnostics",
-        nr = "$",
-        items = vim.diagnostic.toqflist(diagnostics),
-    }
-
-    vim.fn.setqflist({}, " ", what)
-    vim.cmd("cw")
-end)
-keymap("n", "gr", function()
-    local word = vim.fn.expand("<cword>")
-
-    local function on_list(res)
-        res.title = string.format('References "%s"', word)
-        res.nr = "$"
-
-        vim.fn.setqflist({}, " ", res)
-        vim.cmd("cw")
-        vim.cmd.wincmd("J")
-    end
-
-    vim.lsp.buf.references({ includeDeclaration = false }, {
-        on_list = on_list,
-    })
-end)
-keymap("n", "gd", function()
-    local word = vim.fn.expand("<cword>")
-
-    local function on_list(res)
-        if #res.items == 1 then
-            local item = res.items[1]
-
-            -- add current pos to jumplist
-            vim.cmd("normal! m'")
-
-            local bufnr = vim.fn.bufnr(item.filename, true)
-            vim.api.nvim_win_set_buf(0, bufnr)
-            vim.api.nvim_win_set_cursor(0, { item.lnum, 0 })
-            vim.api.nvim_win_call(0, function()
-                vim.cmd.normal("zz")
-            end)
-
-            return
-        end
-
-        res.title = string.format('Definition "%s"', word)
-        res.nr = "$"
-
-        vim.fn.setqflist({}, " ", res)
-        vim.cmd("cw")
-        vim.cmd.wincmd("J")
-    end
-
-    vim.lsp.buf.definition({
-        reuse_win = true,
-        on_list = on_list,
-    })
-end)
-keymap("n", "<C-q>", "<cmd>cclose<cr>")
-keymap("n", "<leader>t", "<cmd>TodoQuickFix<cr>")
 
 -- git
 keymap("n", "gb", "<cmd>Gitsigns blame_line<cr>")
@@ -146,6 +79,7 @@ keymap("n", "]g", "<cmd>Gitsigns prev_hunk<cr>")
 keymap("n", "<leader>q", "<cmd>cw<cr>")
 keymap("n", "[q", "<cmd>cnext<cr>")
 keymap("n", "]q", "<cmd>cprevious<cr>")
+keymap("n", "<C-q>", "<cmd>cclose<cr>")
 
 -- misc
 keymap("n", "<C-t>", function()

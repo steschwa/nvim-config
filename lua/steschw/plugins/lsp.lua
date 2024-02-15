@@ -10,6 +10,13 @@ return {
             "williamboman/mason-lspconfig.nvim",
         },
         init = function()
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local keymaps_lsp = require("steschw.config.keymaps_lsp")
+                    keymaps_lsp.set(args.buf)
+                end,
+            })
+
             local signs = {
                 { name = "DiagnosticSignError", text = "E", texthl = "DiagnosticSignError" },
                 { name = "DiagnosticSignWarn", text = "W", texthl = "DiagnosticSignWarn" },
