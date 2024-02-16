@@ -66,7 +66,6 @@ function M:component_filename()
             if ft == "qf" then
                 local res = vim.fn.getqflist({
                     title = true,
-                    context = true,
                 })
 
                 if res.title == "" or res.title == ":setqflist()" then
