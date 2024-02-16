@@ -29,24 +29,8 @@ return {
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<Esc>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-                    ["<Tab>"] = cmp.mapping({
-                        i = function(fallback)
-                            if cmp.visible() then
-                                cmp.select_next_item()
-                            else
-                                fallback()
-                            end
-                        end,
-                    }),
-                    ["<S-Tab>"] = cmp.mapping({
-                        i = function(fallback)
-                            if cmp.visible() then
-                                cmp.select_prev_item()
-                            else
-                                fallback()
-                            end
-                        end,
-                    }),
+                    ["<Tab>"] = cmp.mapping.select_next_item(),
+                    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
                 },
                 formatting = {
                     fields = { "abbr", "menu", "kind" },
@@ -58,8 +42,8 @@ return {
                 },
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    { name = "path" },
                     { name = "luasnip" },
+                    { name = "path" },
                 }),
                 window = {
                     completion = cmp.config.window.bordered({
@@ -75,6 +59,12 @@ return {
     {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
-        config = true,
+        config = function()
+            require("luasnip").setup()
+
+            require("luasnip.loaders.from_lua").load({
+                paths = { vim.fn.stdpath("config") .. "/snippets" },
+            })
+        end,
     },
 }
