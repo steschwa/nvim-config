@@ -8,6 +8,7 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
             "windwp/nvim-ts-autotag",
+            "nushell/tree-sitter-nu",
         },
         config = function()
             -- wait for https://github.com/nushell/tree-sitter-nu/issues/76 to be fixed
@@ -28,6 +29,8 @@ return {
             -- }
 
             local configs = require("nvim-treesitter.configs")
+
+            ---@diagnostic disable-next-line: missing-fields
             configs.setup({
                 sync_install = false,
                 highlight = {
