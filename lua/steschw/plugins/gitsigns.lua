@@ -1,23 +1,18 @@
+local sign = "▎"
+
 return {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    event = { "BufEnter" },
     opts = {
         signs = {
-            add = { text = "│" },
-            change = { text = "│" },
-            delete = { text = "│" },
-            topdelete = { text = "│" },
-            changedelete = { text = "│" },
-            untracked = { text = "│" },
+            add = { text = sign },
+            change = { text = sign },
+            delete = { text = sign },
+            topdelete = { text = sign },
+            changedelete = { text = sign },
+            untracked = { text = sign },
         },
-        current_line_blame_formatter = "<abbrev_sha>: <author> (<author_time:%a %d.%m.%Y>)",
         update_debounce = 1000,
         current_line_blame = false,
-        current_line_blame_opts = {
-            virt_text = true,
-            virt_text_pos = "eol",
-            delay = 500,
-            ignore_whitespace = false,
-        },
     },
 }
