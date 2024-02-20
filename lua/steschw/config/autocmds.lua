@@ -33,9 +33,7 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("navigate_help"),
-    pattern = {
-        "help",
-    },
+    pattern = { "help" },
     callback = function(event)
         keymap("n", "gd", "<C-]>", { buffer = event.buf })
     end,

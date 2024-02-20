@@ -28,7 +28,7 @@ local function provider_lnum(item)
     local lnum = item.line_start or item.line_end
 
     return {
-        text = string.format(" (%s)", lnum),
+        text = string.format(" [%s]", lnum),
         hl = "Comment",
     }
 end
