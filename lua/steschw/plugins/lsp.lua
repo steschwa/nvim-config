@@ -44,8 +44,25 @@ return {
             local handlers = { "textDocument/hover", "textDocument/signatureHelp" }
             for _, handler in pairs(handlers) do
                 vim.lsp.handlers[handler] = vim.lsp.with(vim.lsp.handlers[handler], {
-                    border = "rounded",
+                    border = "single",
                 })
+            end
+
+            -- always jump to first definition
+            vim.lsp.handlers["textDocument/definition"] = function(_, result)
+                if not result or vim.tbl_isempty(result) then
+                    vim.notify("[LSP] Could not find definition", vim.log.levels.INFO)
+                    return
+                end
+
+                local item = result
+                if type(result) == "table" and #result > 0 then
+                    item = result[1]
+                end
+
+                if item ~= nil then
+                    vim.lsp.util.jump_to_location(item, "utf-8")
+                end
             end
         end,
         opts = {
