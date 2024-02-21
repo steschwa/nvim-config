@@ -14,23 +14,43 @@ return {
         },
         config = function()
             local cmp = require("cmp")
-            local luasnip = require("luasnip")
+            local ls = require("luasnip")
             local lspkind = require("lspkind")
+
+            local function jump(dir)
+                return function(fallback)
+                    if cmp.visible() then
+                        if dir == 1 then
+                            cmp.select_next_item()
+                        else
+                            cmp.select_prev_item()
+                        end
+                    elseif ls.locally_jumpable(dir) then
+                        ls.jump(dir)
+                    else
+                        fallback()
+                    end
+                end
+            end
 
             cmp.setup({
                 snippet = {
                     expand = function(args)
-                        luasnip.lsp_expand(args.body)
+                        ls.lsp_expand(args.body)
                     end,
                 },
                 mapping = {
-                    ["<C-k>"] = cmp.mapping.select_prev_item(),
-                    ["<C-j>"] = cmp.mapping.select_next_item(),
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<Esc>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-                    ["<Tab>"] = cmp.mapping.select_next_item(),
-                    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+                    ["<c-k>"] = cmp.mapping.select_prev_item(),
+                    ["<c-j>"] = cmp.mapping.select_next_item(),
+                    ["<c-u>"] = cmp.mapping.scroll_docs(-5),
+                    ["<c-d>"] = cmp.mapping.scroll_docs(5),
+
+                    ["<tab>"] = cmp.mapping(jump(1)),
+                    ["<s-tab>"] = cmp.mapping(jump(-1)),
+
+                    ["<c-space>"] = cmp.mapping.complete(),
+                    ["<esc>"] = cmp.mapping.abort(),
+                    ["<cr>"] = cmp.mapping.confirm({ select = false }),
                 },
                 formatting = {
                     fields = { "abbr", "menu", "kind" },
