@@ -26,10 +26,10 @@ return {
         "typescript",
         "typescriptreact",
     }),
-    deps.linter("eslint_d", {
+    deps.linter("eslint", {
         "javascript",
         "javascriptreact",
         "typescript",
         "typescriptreact",
-    }),
+    }, { install = false }),
 }

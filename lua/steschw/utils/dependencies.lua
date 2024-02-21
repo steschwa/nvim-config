@@ -10,14 +10,23 @@ function M.mason(tool)
     }
 end
 
+--- @class ToolOpts
+--- @field install? boolean
+
 --- @param name string
 --- @param filetypes string[]
-function M.formatter(name, filetypes)
+--- @param tool_opts? ToolOpts
+function M.formatter(name, filetypes, tool_opts)
+    tool_opts = tool_opts or {}
+
+    local deps = {}
+    if tool_opts.install == nil or tool_opts.install then
+        deps = { M.mason(name) }
+    end
+
     return {
         "stevearc/conform.nvim",
-        dependencies = {
-            M.mason(name),
-        },
+        dependencies = deps,
         opts = function(_, opts)
             for _, ft in ipairs(filetypes) do
                 opts.formatters_by_ft[ft] = { name }
@@ -28,12 +37,18 @@ end
 
 --- @param name string
 --- @param filetypes string[]
-function M.linter(name, filetypes)
+--- @param tool_opts? ToolOpts
+function M.linter(name, filetypes, tool_opts)
+    tool_opts = tool_opts or {}
+
+    local deps = {}
+    if tool_opts.install == nil or tool_opts.install then
+        deps = { M.mason(name) }
+    end
+
     return {
         "mfussenegger/nvim-lint",
-        dependencies = {
-            M.mason(name),
-        },
+        dependencies = deps,
         opts = function(_, opts)
             for _, ft in ipairs(filetypes) do
                 opts.linters_by_ft[ft] = { name }
