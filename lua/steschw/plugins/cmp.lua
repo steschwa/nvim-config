@@ -45,8 +45,8 @@ return {
                     ["<c-u>"] = cmp.mapping.scroll_docs(-5),
                     ["<c-d>"] = cmp.mapping.scroll_docs(5),
 
-                    ["<tab>"] = cmp.mapping(jump(1)),
-                    ["<s-tab>"] = cmp.mapping(jump(-1)),
+                    ["<tab>"] = cmp.mapping(jump(1), { "i", "s" }),
+                    ["<s-tab>"] = cmp.mapping(jump(-1), { "i", "s" }),
 
                     ["<c-space>"] = cmp.mapping.complete(),
                     ["<esc>"] = cmp.mapping.abort(),
