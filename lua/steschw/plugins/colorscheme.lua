@@ -46,6 +46,10 @@ return {
                 hl["FixmeFilepath"] = { link = "Directory" }
                 hl["FixmeText"] = { fg = c.snow_storm.origin }
                 hl["QuickFixLine"] = { bg = c.polar_night.brighter }
+
+                hl["MiniHipatternsTodo"] = { bg = c.frost.ice, fg = c.polar_night.origin }
+                hl["MiniHipatternsRefactor"] = { bg = c.aurora.yellow, fg = c.polar_night.origin }
+                hl["MiniHipatternsFixme"] = { bg = c.aurora.red, fg = c.snow_storm.origin }
             end,
         })
         vim.cmd.colorscheme("nord")

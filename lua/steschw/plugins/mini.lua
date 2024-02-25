@@ -71,4 +71,15 @@ return {
             },
         },
     },
+    {
+        "echasnovski/mini.hipatterns",
+        version = "*",
+        opts = {
+            highlighters = {
+                todo = { pattern = "()TODO():", group = "MiniHipatternsTodo" },
+                refactor = { pattern = "()REFACTOR():", group = "MiniHipatternsRefactor" },
+                fixme = { pattern = "()FIXME():", group = "MiniHipatternsFixme" },
+            },
+        },
+    },
 }
