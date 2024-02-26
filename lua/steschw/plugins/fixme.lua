@@ -19,7 +19,7 @@ local function provider_severity(item)
     })[severity]
 
     return {
-        text = string.format("%s  ", severity_name:sub(1, 4):upper()),
+        text = string.format("%s ", severity_name:sub(1, 4):upper()),
         hl = hl,
     }
 end
@@ -28,7 +28,7 @@ local function provider_lnum(item)
     local lnum = item.line_start or item.line_end
 
     return {
-        text = string.format(" [%s]", lnum),
+        text = string.format(" %s", lnum),
         hl = "Comment",
     }
 end
@@ -54,17 +54,17 @@ local function provider_text(item)
 end
 
 --- @param cols number[]
-local function hook_expand_columns(cols)
+local function expand_columns(cols)
     return function(line_builders)
-        local max_col_width = 0
         --- @type number[]
         local line_width = {}
+        local max_col_width = 0
 
         for i, line_builder in ipairs(line_builders) do
             local cols_width = 0
 
             for _, column in ipairs(cols) do
-                local component = line_builder.components[column]
+                local component = line_builder:at(column)
                 if component ~= nil then
                     cols_width = cols_width + #component.text
                 end
@@ -74,17 +74,14 @@ local function hook_expand_columns(cols)
             max_col_width = math.max(max_col_width, cols_width)
         end
 
-        local pad_col_index = cols[#cols]
+        local insert_after_index = cols[#cols] + 1
 
         for i, line_builder in ipairs(line_builders) do
-            local component = line_builder.components[pad_col_index]
-            if component ~= nil then
-                local padding = max_col_width - line_width[i]
-                if padding > 0 then
-                    local spacing = string.rep(" ", padding)
-                    component.text = component.text .. spacing
-                end
-            end
+            local padding = max_col_width - line_width[i]
+
+            line_builder:add({
+                text = string.rep(" ", padding),
+            }, insert_after_index)
         end
     end
 end
@@ -111,9 +108,7 @@ return {
                         provider_lnum,
                         provider_text,
                     },
-                    hooks = {
-                        hook_expand_columns({ 2, 3 }),
-                    },
+                    layout = expand_columns({ 1, 2, 3 }),
                 },
                 {
                     providers = {
@@ -121,9 +116,7 @@ return {
                         provider_lnum,
                         provider_text,
                     },
-                    hooks = {
-                        hook_expand_columns({ 1, 2 }),
-                    },
+                    layout = expand_columns({ 1, 2 }),
                 },
             },
             column_separator = "  ",
