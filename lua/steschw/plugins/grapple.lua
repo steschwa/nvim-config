@@ -1,9 +1,7 @@
-local win_utils = require("steschw.utils.window")
-
 return {
     "cbochs/grapple.nvim",
     dependencies = {
-        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
     },
     keys = {
         {
@@ -18,14 +16,18 @@ return {
             "<leader>m",
             mode = { "n" },
             function()
-                require("grapple").popup_tags()
+                require("grapple").toggle_tags()
             end,
         },
     },
     opts = {
-        popup_options = {
-            border = "rounded",
-            width = win_utils.calc_width({ percent = 0.7 }),
+        icons = false,
+        scope = "git_branch",
+        tag_title = function()
+            return "Grapple"
+        end,
+        win_opts = {
+            width = 0.7,
         },
     },
 }

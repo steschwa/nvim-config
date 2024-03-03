@@ -252,7 +252,7 @@ function M:component_grapple()
             return ""
         end
 
-        return string.format("  %s ", g.key())
+        return string.format("  %s ", g.name_or_index())
     end
 
     return {
