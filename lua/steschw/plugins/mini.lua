@@ -79,6 +79,7 @@ return {
                 todo = { pattern = "()TODO():", group = "MiniHipatternsTodo" },
                 refactor = { pattern = "()REFACTOR():", group = "MiniHipatternsRefactor" },
                 fixme = { pattern = "()FIXME():", group = "MiniHipatternsFixme" },
+                testme = { pattern = "()TESTME():", group = "MiniHipatternsTestme" },
             },
         },
     },
