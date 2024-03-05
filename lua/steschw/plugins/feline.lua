@@ -54,6 +54,35 @@ function M:get_separator_right(params)
     }
 end
 
+local function filename_quickfix()
+    local res = vim.fn.getqflist({
+        title = true,
+    })
+
+    if res.title == "" or res.title == ":setqflist()" then
+        return " Quickfix "
+    end
+
+    return string.format(" %s ", res.title)
+end
+
+local function filename_help()
+    return " Help "
+end
+
+local function filename_buf()
+    local path = vim.api.nvim_buf_get_name(0)
+    if path == "" then
+        return " [No Name] "
+    end
+
+    local parts = vim.split(path, "/")
+    local folder = parts[#parts - 1]
+    local filename = parts[#parts]
+
+    return string.format(" %s/%s ", folder, filename)
+end
+
 function M:component_filename()
     local c = require("nord.colors").palette
 
@@ -64,29 +93,12 @@ function M:component_filename()
         provider = function()
             local ft = vim.bo.filetype
             if ft == "qf" then
-                local res = vim.fn.getqflist({
-                    title = true,
-                })
-
-                if res.title == "" or res.title == ":setqflist()" then
-                    return " Quickfix "
-                end
-
-                return string.format(" %s ", res.title)
+                return filename_quickfix()
             elseif ft == "help" then
-                return " Help "
+                return filename_help()
             end
 
-            local path = vim.api.nvim_buf_get_name(0)
-            if path == "" then
-                return " [No Name] "
-            end
-
-            local parts = vim.split(path, "/")
-            local folder = parts[#parts - 1]
-            local filename = parts[#parts]
-
-            return string.format(" %s/%s ", folder, filename)
+            return filename_buf()
         end,
         hl = {
             bg = bg,
@@ -269,6 +281,41 @@ function M:component_grapple()
     }
 end
 
+function M:component_qf()
+    local c = require("nord.colors").palette
+
+    local bg = self.active and c.frost.artic_water or c.polar_night.bright
+    local fg = self.active and c.polar_night.origin or c.snow_storm.origin
+
+    --- @return string
+    local function provider()
+        local ft = vim.bo.filetype
+        if ft ~= "qf" then
+            return ""
+        end
+
+        local res = vim.fn.getqflist({
+            idx = 0,
+            size = true,
+        })
+
+        return string.format(" %d of %d ", res.idx, res.size)
+    end
+
+    return {
+        provider = provider,
+        enabled = function()
+            return provider() ~= ""
+        end,
+        hl = {
+            bg = bg,
+            fg = fg,
+        },
+        left_sep = self:get_separator_right({ inset = true, color = bg }),
+        right_sep = self:get_separator_right({ color = bg }),
+    }
+end
+
 function M:component_gap()
     return {
         hl = {
@@ -304,6 +351,7 @@ return {
                 {
                     active_factory:component_file_changes(),
                     active_factory:component_filename(),
+                    active_factory:component_qf(),
                     active_factory:component_grapple(),
                     active_factory:component_search_count(),
                     active_factory:component_diagnostics(s.ERROR),
@@ -320,6 +368,7 @@ return {
                 {
                     inactive_factory:component_file_changes(),
                     inactive_factory:component_filename(),
+                    inactive_factory:component_qf(),
                     inactive_factory:component_grapple(),
                     inactive_factory:component_gap(),
                 },
