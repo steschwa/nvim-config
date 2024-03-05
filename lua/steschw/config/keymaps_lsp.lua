@@ -38,6 +38,10 @@ function M.references()
         res.title = string.format('References "%s"', word)
         res.nr = "$"
 
+        res.items = vim.tbl_filter(function(item)
+            return item.text:sub(1, #"import") ~= "import"
+        end, res.items)
+
         vim.fn.setqflist({}, " ", res)
         vim.cmd("cw")
         vim.cmd.wincmd("J")

@@ -66,6 +66,7 @@ end)
 
 -- linting
 keymap("n", "gl", function()
+    vim.diagnostic.reset()
     require("steschw.utils.linting").lint()
 end)
 
