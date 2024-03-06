@@ -53,23 +53,3 @@ vim.api.nvim_create_autocmd("WinLeave", {
         vim.wo[win_id].cursorline = false
     end,
 })
-
-vim.api.nvim_create_autocmd({ "InsertLeave", "InsertEnter" }, {
-    callback = function(event)
-        local ok, ls = pcall(require, "luasnip")
-        if not ok then
-            return
-        end
-
-        if ls.in_snippet() then
-            return
-        end
-
-        local active_node = require("luasnip.session").current_nodes[event.buf]
-        if not active_node then
-            return
-        end
-
-        ls.unlink_current()
-    end,
-})

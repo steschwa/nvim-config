@@ -54,7 +54,6 @@ end)
 keymap("n", "]d", function()
     vim.diagnostic.goto_prev({ float = false })
 end)
-keymap("n", "<leader>t", "<cmd>TodoQuickFix<cr>")
 
 -- formatting
 keymap("n", "gs", function()
