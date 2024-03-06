@@ -344,8 +344,6 @@ return {
         -- TODO: git hunks component
         -- TODO: maybe git changes component
 
-        -- TODO: quickfix status (items count and current item index)
-
         local components = {
             active = {
                 {
