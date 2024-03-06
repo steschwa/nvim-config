@@ -80,11 +80,12 @@ return {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
         config = function()
-            require("luasnip").setup()
+            local ls = require("luasnip")
+            ls.setup()
 
-            require("luasnip.loaders.from_lua").load({
-                paths = { vim.fn.stdpath("config") .. "/snippets" },
-            })
+            ls.add_snippets("typescriptreact", require("steschw.plugins.snippets.typescriptreact"))
+            ls.add_snippets("typescript", require("steschw.plugins.snippets.typescript"))
+            ls.add_snippets("scss", require("steschw.plugins.snippets.scss"))
         end,
     },
 }
