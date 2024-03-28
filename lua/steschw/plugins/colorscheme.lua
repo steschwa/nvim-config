@@ -51,6 +51,7 @@ return {
                 hl["MiniHipatternsRefactor"] = { bg = c.aurora.yellow, fg = c.polar_night.origin }
                 hl["MiniHipatternsFixme"] = { bg = c.aurora.red, fg = c.snow_storm.origin }
                 hl["MiniHipatternsTestme"] = { bg = c.aurora.purple, fg = c.polar_night.origin }
+                hl["MiniHipatternsRemoveme"] = { bg = c.aurora.orange, fg = c.polar_night.origin }
             end,
         })
         vim.cmd.colorscheme("nord")

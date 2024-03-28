@@ -21,7 +21,7 @@ return {
         },
     },
     opts = {
-        icons = false,
+        icons = true,
         scope = "git_branch",
         tag_title = function()
             return "Grapple"

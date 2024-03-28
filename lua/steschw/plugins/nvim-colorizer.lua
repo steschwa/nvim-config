@@ -7,6 +7,7 @@ return {
                 "css",
                 "scss",
                 "dump",
+                "go",
             },
             user_default_options = {
                 mode = "background",

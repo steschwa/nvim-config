@@ -21,6 +21,7 @@ require("lazy").setup({
     },
     ui = {
         border = "rounded",
+        backdrop = 100,
     },
     checker = {
         enabled = true,
